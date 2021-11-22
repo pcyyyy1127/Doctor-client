@@ -583,39 +583,14 @@
                     console.log(that.tableData)
                 })
             },
-            //页面渲染时，请求
-            created() {
-                let startDate
-                let endDate
-                let that=this
-
-                if (this.rangeDate !=null){
-                    startDate = this.rangeDate[0]
-                    endDate = this.rangeDate[1]
-                    startDate = startDate.getFullYear() + '-' + (startDate.getMonth() + 1) + '-' + startDate.getDate()
-                    endDate = endDate.getFullYear() + '-' + (endDate.getMonth() + 1) + '-' + endDate.getDate()
-
-                }
-
-                this.$axios.get("/doctor/archives/getArchivesList",{
-                    params:{
-                        type:that.type || "",
-                        startDate:startDate || "",
-                        endDate:endDate || "",
-                        currentPage:that.currentPage,
-                        pageSize:that.pageSize
-
-                    }
-                }).then(res =>{
-
-                    console.log(res)
-                    that.tableData = res.data.data.list
-                    console.log(that.tableData)
-                })
-
-            }
 
 
+
+
+        },
+        //页面渲染时，请求
+        created() {
+            this.onSubmit()
         }
 
     }

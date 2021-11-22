@@ -12,7 +12,7 @@ const request = axios.create({
 })
 request.interceptors.request.use(config => {
     config.headers['token'] = localStorage.getItem("token") // 请求头带上token
-    console.log(config)
+
     if (config.url =="/auth/oauth/token"){
         config.data = qs.stringify(config.data)
     }
@@ -21,7 +21,7 @@ request.interceptors.request.use(config => {
 })
 request.interceptors.response.use(response => {
         let res = response.data;
-        console.log(response)
+
 
         if (res.message === "success") {
             return response

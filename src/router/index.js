@@ -23,22 +23,22 @@ const routes = [
       {
         path: '/archives',
         name: 'Archives',
-        component: () => import( '../views/Archives')
+        component: () => import( '../views/Archives.vue')
       },
       {
         path: '/userCenter',
         name: 'UserCenter',
-        component: () => import( '../views/UserCenter')
+        component: () => import( '../views/UserCenter.vue')
       },
       {
         path: '/visit',
         name: 'Visit',
-        component: () => import( '../views/Visit')
+        component: () => import( '../views/Visit.vue')
       },
       {
         path: '/followUp',
         name: 'FollowUp',
-        component: () => import( '../views/FollowUp')
+        component: () => import( '../views/FollowUp.vue')
       },
     ]
   },
