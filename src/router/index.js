@@ -7,11 +7,19 @@ import Visit from "../views/Visit";
 import FollowUp from "../views/FollowUp";
 import axios from "../axios";
 import store from "../store";
+import Login from "../views/Login";
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
+    name: "Login",
+    component:Login
+  } ,
+
+
+  {
+    path: '/home',
     name: 'Home',
     component: Home,
     children:[
