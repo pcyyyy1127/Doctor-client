@@ -36,12 +36,24 @@ request.interceptors.response.use(response => {
         if (error.response.url =="auth/oauth/token"){
             error.message = error.response.data.data.error_description
         }
+
+        if(error.response.status === 401) {
+            error.message = error.response.data.data
+            router.push("/login")
+            Element.Message.error(error.message, {duration: 3 * 1000})
+            return Promise.reject(error)
+        }
+
+        if(error.response.status === 504) {
+            error.message = error.response.data.data
+            Element.Message.error("请求超时,请联系管理员", {duration: 3 * 1000})
+            return Promise.reject(error)
+        }
+
         else if(error.response.data) {
             error.message = error.response.data.data.error_description
         }
-        if(error.response.status === 401) {
-            router.push("/login")
-        }
+
         Element.Message.error(error.message, {duration: 3 * 1000})
         return Promise.reject(error)
     }

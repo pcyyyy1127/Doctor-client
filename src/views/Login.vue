@@ -66,7 +66,7 @@
                     if (valid) {
                         this.$axios.post("/auth/oauth/token",this.loginForm).then(res =>{
                             console.log(res)
-                            const  jwt = res.headers['authorization']
+                            const  jwt = res.data.data.access_token
                             this.$store.commit('SET_TOKEN',jwt)
 
                             this.$router.push("/archives")

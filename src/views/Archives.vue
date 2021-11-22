@@ -505,6 +505,8 @@
                 type:null,  //档案号 /姓名 查询条件
                 rangeDate:null,
                 dialogVisible: false,
+                currentPage: 1,
+                pageSize:10,
                 ruleForm:{
                     checkOne:null,
                     checkTwo:null,
@@ -548,64 +550,11 @@
 
 
                 },
-                tableData: [{
-                    archivesNo:'0000001',
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    age:'20',
-                    sex:'男',
-                    phone:"1554541231",
-                    address: '上海市普陀区金沙江路 1518'
-                }, {
-                    archivesNo:'0000002',
-                    date: '2016-05-02',
-                    name: '张小虎',
-                    age:'21',
-                    sex:'女',
-                    phone:"1554541231",
-                    address: '北京市海定区金沙江路 1518 '
-                }, {
-                    archivesNo:'0000003',
-                    date: '2016-05-02',
-                    name: '李小虎',
-                    age:'40',
-                    sex:'男',
-                    phone:"1554541231",
-                    address: '上海市普陀区金沙江路 1518'
-                }, {
-                    archivesNo:'0000004',
-                    date: '2018-05-02',
-                    name: '王小虎',
-                    age:'50',
-                    sex:'女',
-                    phone:"1554541231",
-                    address: '上海市普陀区金沙江路 1518 '
-                }]
+                tableData: []
             }
         },
         methods:{
 
-            nationInputChange (){
-              this.nationInput = true
-            },
-            nationInputChange2 (){
-                this.nationInput = false
-            },
-            eduInputChange (){
-                this.eduInput = true
-
-            },
-            eduInputChange2 (){
-                this.eduInput = false
-            },
-
-            professionInputChange (){
-                this.professionInput = true
-
-            },
-            professionInputChange2 (){
-                this.professionInput = false
-            },
 
             onSubmit(){
                let startDate
@@ -619,19 +568,52 @@
 
                 }
 
-                this.$axios.get("http://localhost:8080/archives/getArchivesList",{
+                this.$axios.get("/doctor/archives/getArchivesList",{
                     params:{
                         type:that.type || "",
                         startDate:startDate || "",
                         endDate:endDate || "",
+                        currentPage:that.currentPage,
+                        pageSize:that.pageSize
                     }
                 }).then(res =>{
 
                     console.log(res)
-                   that.tableData = res.data
+                    that.tableData = res.data.data.list
                     console.log(that.tableData)
                 })
             },
+            //页面渲染时，请求
+            created() {
+                let startDate
+                let endDate
+                let that=this
+
+                if (this.rangeDate !=null){
+                    startDate = this.rangeDate[0]
+                    endDate = this.rangeDate[1]
+                    startDate = startDate.getFullYear() + '-' + (startDate.getMonth() + 1) + '-' + startDate.getDate()
+                    endDate = endDate.getFullYear() + '-' + (endDate.getMonth() + 1) + '-' + endDate.getDate()
+
+                }
+
+                this.$axios.get("/doctor/archives/getArchivesList",{
+                    params:{
+                        type:that.type || "",
+                        startDate:startDate || "",
+                        endDate:endDate || "",
+                        currentPage:that.currentPage,
+                        pageSize:that.pageSize
+
+                    }
+                }).then(res =>{
+
+                    console.log(res)
+                    that.tableData = res.data.data.list
+                    console.log(that.tableData)
+                })
+
+            }
 
 
         }
