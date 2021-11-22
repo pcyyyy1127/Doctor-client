@@ -6,9 +6,7 @@ axios.defaults.baseURL = "http://127.0.0.1:5001"
 
 const request = axios.create({
     timeout: 5000,
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
+
 })
 request.interceptors.request.use(config => {
     config.headers['token'] = localStorage.getItem("token") // 请求头带上token
@@ -16,6 +14,7 @@ request.interceptors.request.use(config => {
     if (config.url =="/auth/oauth/token"){
         config.data = qs.stringify(config.data)
     }
+
 
     return config
 })
@@ -28,6 +27,7 @@ request.interceptors.response.use(response => {
         } else {
             Element.Message.error(!res.msg? res.message : '系统异常！', {duration: 3 * 1000})
             console.log("-----------------------")
+            console.log(res.message);
             return Promise.reject(response.data.message)
         }
     },

@@ -114,7 +114,7 @@
                 width="70%"
                 >
 
-            <el-form :model="ruleForm"  ref="ruleForm" label-width="100px" >
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm"  label-width="100px" >
                 <div style="display: flex;justify-content: center">
                     <h2 >基本信息建档</h2>
                 </div>
@@ -122,7 +122,7 @@
                     <el-descriptions-item label="1. IPF诊断遵循如下标准 诊断标准：">①排除其他已知原因的ILD(例如家庭或职业环境暴露、结缔组织病和药物毒性)。
                         <br>②HRCT表现为UIP型(此类患者不建议行外科肺活检)。
                         <br>③已进行外科肺活检的患者，根据HRCT和外科肺活检特定的组合进行诊断。
-                        <el-form-item label="" >
+                        <el-form-item label=""  prop="checkOne">
                             <el-radio-group v-model="ruleForm.checkOne">
                                 <el-radio label="是"></el-radio>
                                 <el-radio label="否"></el-radio>
@@ -131,7 +131,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="2. IPF急性加重(acute exacerbation of IPF) IPF病人出现新的弥漫性肺泡损伤导致急性或显著的呼吸困难恶化即为AE-IPF。诊断标准:">①过去或现在诊断IPF；<br>②1个月内发生显著的呼吸困难加重；<br>③CT表现为UIP背景下出现新的双侧磨玻璃影伴或不伴实变影；<br>④不能完全由心衰或液体过载解释。
-                        <el-form-item label="" >
+                        <el-form-item label="" prop="checkTwo">
                             <el-radio-group v-model="ruleForm.checkTwo">
                                 <el-radio label="是"></el-radio>
                                 <el-radio label="否"></el-radio>
@@ -148,7 +148,7 @@
 
                 <el-descriptions style="margin-top:-5%" title="纳入标准（任何一项选“否” 即不能纳入本研究）" direction="vertical" :column="1" border >
                     <el-descriptions-item label="1.符合西医特发性肺纤维化诊断"  >
-                        <el-form-item label="" >
+                        <el-form-item label="" prop="addOne" >
                             <el-radio-group v-model="ruleForm.addOne">
                                 <el-radio label="是"></el-radio>
                                 <el-radio label="否"></el-radio>
@@ -157,7 +157,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="2.年龄在18岁以上">
-                        <el-form-item label="" >
+                        <el-form-item label="" prop="addTwo">
                             <el-radio-group v-model="ruleForm.addTwo">
                                 <el-radio label="是"></el-radio>
                                 <el-radio label="否"></el-radio>
@@ -166,7 +166,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="3.签署知情同意书">
-                        <el-form-item label="" >
+                        <el-form-item label="" prop="addThree">
                             <el-radio-group v-model="ruleForm.addThree">
                                 <el-radio label="是"></el-radio>
                                 <el-radio label="否"></el-radio>
@@ -175,7 +175,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="参加三次诊疗及随访">
-                        <el-form-item label="" >
+                        <el-form-item label="" prop="addFour">
                             <el-radio-group v-model="ruleForm.addFour">
                                 <el-radio label="是"></el-radio>
                                 <el-radio label="否"></el-radio>
@@ -194,7 +194,7 @@
 
                 <el-descriptions style="margin-top:-5%" title="排除标准（任何一项选“是” 即不能纳入本研究）" direction="vertical" :column="1" border >
                     <el-descriptions-item label="1.正在参加其他临床研究者"  >
-                        <el-form-item label="" >
+                        <el-form-item label="" prop="excludeOne">
                             <el-radio-group v-model="ruleForm.excludeOne">
                                 <el-radio label="是"></el-radio>
                                 <el-radio label="否"></el-radio>
@@ -203,7 +203,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="2.精神类疾病患者">
-                        <el-form-item label="" >
+                        <el-form-item label="" prop="excludeTwo">
                             <el-radio-group v-model="ruleForm.excludeTwo">
                                 <el-radio label="是"></el-radio>
                                 <el-radio label="否"></el-radio>
@@ -212,7 +212,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="3.合并心脑血管疾患、肿瘤等严重危及生命的疾病">
-                        <el-form-item label="" >
+                        <el-form-item label="" prop="excludeThree">
                             <el-radio-group v-model="ruleForm.excludeThree">
                                 <el-radio label="是"></el-radio>
                                 <el-radio label="否"></el-radio>
@@ -461,19 +461,16 @@
                    </el-descriptions-item>
 
                    <el-descriptions-item label="系统字段">
-                       <el-form-item  >
+
 
                                    <div>
-                                       姓名: <el-input v-model="ruleForm.name"  size="mini" placeholder="请输入姓名" style="width: 60%" ></el-input><br>
-                                       电话: <el-input v-model="ruleForm.phone"  size="mini" placeholder="请输入电话" style="width: 60%" ></el-input><br>
-                                       住址: <el-input v-model="ruleForm.address"  size="mini" placeholder="请输入住址" style="width: 60%" ></el-input>
+                                        <el-form-item label="姓名" prop="name" ><el-input v-model="ruleForm.name"  size="mini" placeholder="请输入姓名" style="width: 60%" ></el-input></el-form-item>
+                                        <el-form-item label="电话" prop="phone" ><el-input v-model="ruleForm.phone"  size="mini" placeholder="请输入电话" style="width: 60%" prop="phone" ></el-input></el-form-item>
+                                        <el-form-item label="住址" prop="address" ><el-input v-model="ruleForm.address"  size="mini" placeholder="请输入住址" style="width: 60%" prop="address"></el-input></el-form-item>
+                                       <el-form-item label="年龄" prop="age" ><el-input v-model="ruleForm.age"  size="mini" placeholder="请输入年龄" style="width: 60%" prop="age"></el-input></el-form-item>
                                    </div>
 
 
-
-
-
-                       </el-form-item>
                    </el-descriptions-item>
 
 
@@ -485,8 +482,8 @@
 
 
                 <el-form-item style="margin-top: 5%">
-                    <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-                    <el-button @click="resetForm('ruleForm')">重置</el-button>
+                    <el-button type="primary" @click="saveArchives">提交</el-button>
+                    <el-button @click="resetForm('ruleForm')">重置标准</el-button>
                 </el-form-item>
             </el-form>
 
@@ -545,12 +542,30 @@
                     drugAllergyHistoryDetail:null,
                     name:null,
                     phone:null,
-                    address:null
+                    address:null,
+                    age:null
 
 
 
                 },
-                tableData: []
+                tableData: [],
+                rules: {
+                    name: [
+                        { required: true, message: '姓名不能为空', trigger: 'blur' },
+                    ],
+                    phone: [
+                        { required: true, message: '电话不能为空', trigger: 'blur' },
+                    ],
+                    address: [
+                        { required: true, message: '地址不能为空', trigger: 'blur' },
+
+                    ],
+                    age: [
+                        { required: true, message: '年龄不能为空', trigger: 'blur' },
+
+                    ],
+
+                }
             }
         },
         methods:{
@@ -575,7 +590,8 @@
                         endDate:endDate || "",
                         currentPage:that.currentPage,
                         pageSize:that.pageSize
-                    }
+                    },
+
                 }).then(res =>{
 
                     console.log(res)
@@ -583,6 +599,72 @@
                     console.log(that.tableData)
                 })
             },
+
+
+            saveArchives(){
+
+                let that= this
+                this.$axios.post("/doctor/archives/saveArchives",{
+
+                        checkOne:that.ruleForm.checkOne,
+                        checkTwo:that.ruleForm.checkTwo,
+                        addOne:that.ruleForm.addOne,
+                        addTwo:that.ruleForm.addTwo,
+                        addThree:that.ruleForm.addThree,
+                        addFour:that.ruleForm.addFour,
+                        excludeOne:that.ruleForm.excludeOne,
+                        excludeTwo:that.ruleForm.excludeTwo,
+                        excludeThree:that.ruleForm.excludeThree,
+                        sex:that.ruleForm.sex,
+                        birth:that.ruleForm.birth,
+                        nation:that.ruleForm.nation,
+                        marriage:that.ruleForm.marriage,
+                        edu:that.ruleForm.edu,
+                        profession:that.ruleForm.profession,
+                        height:that.ruleForm.height,
+                        weight:that.ruleForm.weight,
+                        startDate:that.ruleForm.startDate,
+                        endDate:that.ruleForm.sureDate,
+                        pastHistory:that.ruleForm.pastHistory,
+                        otherPastHistory:that.ruleForm.otherPastHistory,
+                        smokeHistoryYear:that.ruleForm.smokeHistoryYear,
+                        smokeNum:that.ruleForm.smokeNum,
+                        noSmokeDays:that.ruleForm.noSmokeDays,
+                        drinkHistoryYear:that.ruleForm.drinkHistoryYear,
+                        whiteDrink:that.ruleForm.whiteDrink,
+                        bearDrink:that.ruleForm.bearDrink,
+                        noDrinkDays:that.ruleForm.noDrinkDays,
+                        exposureHistoryYear:that.ruleForm.exposureHistoryYear,
+                        exposureHistory:that.ruleForm.exposureHistory,
+                        pets:that.ruleForm.pets,
+                        familyHistory:that.ruleForm.familyHistory,
+                        otherFamilyHistory:that.ruleForm.otherFamilyHistory,
+                        drugAllergyHistory:that.ruleForm.drugAllergyHistory,
+                        drugAllergyHistoryDetail:that.ruleForm.drugAllergyHistoryDetail,
+                        name:that.ruleForm.name,
+                        phone:that.ruleForm.phone,
+                        address:that.ruleForm.address,
+                        age:that.ruleForm.age
+
+
+                }).then(res =>{
+                    console.log(res)
+
+                    if (res.data.message == "success"){
+                        that.dialogVisible =false
+                        that.$message({
+                            showClose: true,
+                            message: res.data.data,
+                            type: 'success'
+                        });
+                    }
+
+                })
+
+            },
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
+            }
 
 
 
