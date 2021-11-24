@@ -14,7 +14,7 @@
 
 
           <el-form-item >
-              <el-input  placeholder="姓名/档案号"></el-input>
+              <el-input  placeholder="姓名/档案号" v-model="type" clearable></el-input>
           </el-form-item>
 
           <el-form-item style="margin-left: 10px" >
@@ -100,15 +100,94 @@
                     prop="option"
                     label="操作"
              width="300">
-                <el-button size="mini" round>历史随访</el-button>
-                <el-button size="mini" round>历史就诊</el-button>
-                <el-button size="mini" round>自我管理</el-button>
+                <el-button size="mini" round @click="drawer = true">选中</el-button>
             </el-table-column>
 
         </el-table>
 
+        <el-drawer
+                title="我是标题"
+                :visible.sync="drawer"
+                :with-header="false"
+        >
+            <span style="justify-content: center;display: flex"><h3>就诊信息采集</h3></span>
 
-        <!--新增对话框-->
+
+
+
+
+                    <div style="justify-content: center;display: flex;flex-direction: row;line-height: 0px;margin-top: 0px">
+
+
+                        <div>
+                            面相
+                            <el-button size="medium" round  >采集</el-button>
+                        </div>
+                    </div>
+
+            <div style="justify-content: center;display: flex;flex-direction: row;line-height: 0px;margin-top: 5%">
+
+
+                <div>
+                    舌象
+                    <el-button size="medium" round >采集</el-button>
+                </div>
+            </div>
+
+            <div style="justify-content: center;display: flex;flex-direction: row;line-height: 0px;margin-top: 5%">
+
+
+                <div>
+                    其他
+                    <el-button size="medium" round @click="dialogVisible2 = true" >采集</el-button>
+                </div>
+            </div>
+
+            <div style="justify-content: center;display: flex;flex-direction: row;line-height: 0px;margin-top: 5%">
+
+
+                <el-button size="mini" style="" round >结束就诊</el-button>
+            </div>
+
+
+
+            <div style="justify-content: center;display: flex;flex-direction: column;line-height: 0px;margin-top: 25%">
+
+                <div style="display: flex;flex-direction: row;justify-content: center">
+                    <el-button size="medium" round  >历史随访</el-button>
+                    <el-button size="medium" round  >自我管理</el-button>
+                </div>
+
+                <div style="display: flex;flex-direction: row;justify-content: center;margin-top: 10%">
+                    <el-button size="medium" round  >历史就诊</el-button>
+                    <el-button size="medium" round  >档案修改</el-button>
+                </div>
+
+
+
+            </div>
+
+
+
+
+        </el-drawer>
+
+        <div class="block">
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-sizes="[5, 10, 30]"
+                    :page-size="pageSize"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="total"
+                    background
+            >
+            </el-pagination>
+        </div>
+
+
+        <!--新建档案对话框-->
         <el-dialog
                 :visible.sync="dialogVisible"
                 width="70%"
@@ -489,6 +568,534 @@
 
         </el-dialog>
 
+
+        <!--就诊信息采集对话框-->
+        <el-dialog
+                :visible.sync="dialogVisible2"
+                width="70%"
+        >
+
+            <el-form :model="collectForm" :rules="rules2" ref="ruleForm"  label-width="100px" >
+                <div style="display: flex;justify-content: center">
+                    <h2 >中医信息采集</h2>
+                </div>
+                <el-descriptions   direction="vertical" :column="1"  border >
+                    <el-descriptions-item label="主诉">
+                        <el-input
+                                type="textarea"
+                                :autosize="{ minRows: 2, maxRows: 4}"
+                                placeholder="请输入主诉内容"
+                                v-model="collectForm.main">
+                        </el-input>
+
+
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="现病史">
+
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 2, maxRows: 4}"
+                                    placeholder="请输入现病史内容"
+                                    v-model="collectForm.present">
+                            </el-input>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="刻下症">
+
+                        <el-input
+                                type="textarea"
+                                :autosize="{ minRows: 2, maxRows: 4}"
+                                placeholder="请输入刻下症内容"
+                                v-model="collectForm.visible">
+                        </el-input>
+                    </el-descriptions-item>
+                </el-descriptions>
+
+
+
+
+
+                <el-descriptions  title="主症" direction="vertical" :column="1" border >
+                    <el-descriptions-item label="咳嗽"  >
+                        <el-form-item label=""  >
+                            <el-radio-group v-model="collectForm.cough">
+                                <el-radio label="无"></el-radio>
+                                <el-radio label="有"></el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="性质">
+                        <el-form-item >
+                            <el-radio-group v-model="collectForm.nature">
+                                <el-radio label="干咳"></el-radio>
+                                <el-radio label="湿咳（每天痰量>10ml）"></el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="程度">
+                        <el-form-item >
+                            <el-radio-group v-model="collectForm.degree">
+                                <el-radio label="偶有短暂咳嗽"></el-radio>
+                                <el-radio label="频繁咳嗽，轻度影响日常生活"></el-radio>
+                                <el-radio label="频繁咳嗽，严重影响日常生活"></el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="加重因素">
+                        <el-form-item >
+                            <el-radio-group v-model="collectForm.increaseFactors">
+                                <el-radio label="活动后加重"></el-radio>
+                                <el-radio label="无明显加重因素"></el-radio>
+                                <el-radio  label="其他"></el-radio>
+                                <el-input v-model="collectForm.increaseFactors"  size="mini" placeholder="请输入其他加重因素" style="width: 140px" ></el-input>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="缓解因素">
+                        <el-form-item >
+                            <el-radio-group v-model="collectForm.decreaseFactors">
+                                <el-radio label="痰出"></el-radio>
+                                <el-radio label="休息"></el-radio>
+                                <el-radio label="无明显缓解因素"></el-radio>
+                                <el-radio  label="其他"></el-radio>
+                                <el-input v-model="collectForm.decreaseFactors"  size="mini" placeholder="请输入其他缓解因素" style="width: 140px" ></el-input>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="咳痰">
+                        <el-form-item >
+                            <el-radio-group v-model="collectForm.expectoration">
+                                <el-radio label="无"></el-radio>
+                                <el-radio label="有"></el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="痰量">
+                        <el-form-item >
+                            <el-radio-group v-model="collectForm.volume">
+                                <el-radio label="少量（昼夜咯痰10-50ml）"></el-radio>
+                                <el-radio label="中等量（昼夜咯痰51-100ml）"></el-radio>
+                                <el-radio label="大量（昼夜咯痰>100ml）"></el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="痰色">
+                        <el-form-item >
+                            <el-radio-group v-model="collectForm.phlegmColor">
+                                <el-radio label="白"></el-radio>
+                                <el-radio label="灰"></el-radio>
+                                <el-radio label="黄"></el-radio>
+                                <el-radio label="带血"></el-radio>
+                                <el-radio label="其他"></el-radio>
+                                <el-input v-model="collectForm.phlegmColor"  size="mini" placeholder="请输入其他痰色" style="width: 140px" ></el-input>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="痰质">
+                        <el-form-item >
+                            <el-radio-group v-model="collectForm.PhlegmQuality">
+                                <el-radio label="清稀"></el-radio>
+                                <el-radio label="泡沫"></el-radio>
+                                <el-radio label="黏稠"></el-radio>
+                                <el-radio label="破絮"></el-radio>
+                                <el-radio label="拉丝"></el-radio>
+                                <el-radio label="其他"></el-radio>
+                                <el-input v-model="collectForm.PhlegmQuality"  size="mini" placeholder="请输入其他痰质" style="width: 140px" ></el-input>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="痰味">
+                        <el-form-item >
+                            <el-radio-group v-model="collectForm.PhlegmTaste">
+                                <el-radio label="无"></el-radio>
+                                <el-radio label="甜"></el-radio>
+                                <el-radio label="咸"></el-radio>
+                                <el-radio label="腥"></el-radio>
+                                <el-radio label="其他"></el-radio>
+                                <el-input v-model="collectForm.PhlegmTaste"  size="mini" placeholder="请输入其他痰味" style="width: 140px" ></el-input>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="呼吸困难">
+                        <el-form-item >
+                            <el-radio-group v-model="collectForm.dyspnea">
+                                <el-radio label="无"></el-radio>
+                                <el-radio label="有"></el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="呼吸困难加重因素">
+                        <el-form-item >
+                            <el-checkbox-group v-model="collectForm.dyspneaIncrease">
+                                <el-checkbox label="活动"></el-checkbox>
+                                <el-checkbox label="平卧"></el-checkbox>
+                                <el-checkbox label="情绪波动"></el-checkbox>
+                                <el-checkbox label="呼吸道感染"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.dyspneaIncreaseOther"  size="mini" placeholder="请在此补充其他呼吸困难加重因素" style="width: 200px" ></el-input>
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="呼吸困难缓解因素">
+                        <el-form-item >
+                            <el-checkbox-group v-model="collectForm.dyspneaDecrease">
+                                <el-checkbox label="休息"></el-checkbox>
+                                <el-checkbox label="吸氧"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.dyspneaDecreaseOther"  size="mini" placeholder="请在此补充其他呼吸困难缓解因素" style="width: 200px" ></el-input>
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="呼吸困难程度">
+                        <el-form-item >
+                            <el-radio-group v-model="collectForm.dyspneaDegree">
+                                <el-radio label="0级 只在剧烈运动时才出现呼吸困难"></el-radio><br>
+                                <el-radio label="1级 在走路较急或爬缓坡时会出现呼吸困难"></el-radio><br>
+                                <el-radio label="2级 按平时走路方式走时会出现气短，必须停下来休息，走路比同龄人慢"></el-radio><br>
+                                <el-radio label="3级 步行100码（91.44米）或几分钟后需要停下来休息"></el-radio><br>
+                                <el-radio label="4级 因呼吸困难严重不能离家，或穿脱衣时出现呼吸困难"></el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="伴随症状">
+                        <el-form-item >
+                            <el-checkbox-group v-model="collectForm.accompanyingSymptoms">
+                                <el-checkbox label="发热"></el-checkbox>
+                                <el-checkbox label="胸闷"></el-checkbox>
+                                <el-checkbox label="胸痛"></el-checkbox>
+                                <el-checkbox label="咯血"></el-checkbox>
+                                <el-checkbox label="发绀"></el-checkbox>
+                                <el-checkbox label="杵状指"></el-checkbox>
+                                <el-checkbox label="velcro啰音"></el-checkbox>
+                                <el-checkbox label="心悸"></el-checkbox>
+                                <el-checkbox label="下肢水肿"></el-checkbox>
+                                <el-checkbox label="颈静脉怒张"></el-checkbox>
+                                <el-checkbox label="焦虑"></el-checkbox>
+                                <el-checkbox label="抑郁"></el-checkbox>
+                                <el-checkbox label="睡眠障碍"></el-checkbox>
+                                <el-checkbox label="嗜睡"></el-checkbox>
+                                <el-checkbox label="头晕"></el-checkbox>
+                                <el-checkbox label="头痛"></el-checkbox>
+                                <el-checkbox label="谵妄"></el-checkbox>
+                                <el-checkbox label="自汗"></el-checkbox>
+                                <el-checkbox label="盗汗"></el-checkbox>
+                                <el-checkbox label="畏寒"></el-checkbox>
+                                <el-checkbox label="怕热"></el-checkbox>
+                                <el-checkbox label="乏力"></el-checkbox>
+                                <el-checkbox label="口干或眼干"></el-checkbox>
+                                <el-checkbox label="皮疹"></el-checkbox>
+                                <el-checkbox label="关节疼痛或肿胀"></el-checkbox>
+                                <el-checkbox label="口腔溃疡"></el-checkbox>
+                                <el-checkbox label="食欲不振"></el-checkbox>
+                                <el-checkbox label="腹胀"></el-checkbox>
+                                <el-checkbox label="腹泻"></el-checkbox>
+                                <el-checkbox label="体重下降"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.accompanyingSymptomsOther"  size="mini" placeholder="请在此补充其他伴随症状" style="width: 200px" ></el-input>
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+
+
+                </el-descriptions>
+
+
+
+
+
+
+                <el-descriptions style="margin-top:-5%" title="中医证候信息表" direction="vertical" :column="1" border >
+
+                    <el-descriptions-item label="肺系">
+                        <el-form-item >
+                            <el-checkbox-group v-model="collectForm.pulmonarySystem">
+                                <el-checkbox label="咳嗽"></el-checkbox>
+                                <el-checkbox label="咳声重浊/沉闷"></el-checkbox>
+                                <el-checkbox label="咳声高亢"></el-checkbox>
+                                <el-checkbox label="咳声低微"></el-checkbox>
+                                <el-checkbox label="咳声短促"></el-checkbox>
+                                <el-checkbox label="咯痰"></el-checkbox>
+                                <el-checkbox label="痰量多"></el-checkbox>
+                                <el-checkbox label="痰量少"></el-checkbox>
+                                <el-checkbox label="无痰"></el-checkbox>
+                                <el-checkbox label="痰黄"></el-checkbox>
+                                <el-checkbox label="痰白"></el-checkbox>
+                                <el-checkbox label="痰质黏稠"></el-checkbox>
+                                <el-checkbox label="痰质清稀"></el-checkbox>
+                                <el-checkbox label="喘息"></el-checkbox>
+                                <el-checkbox label="气短"></el-checkbox>
+                                <el-checkbox label="气急/气促"></el-checkbox>
+                                <el-checkbox label="胸痛"></el-checkbox>
+                                <el-checkbox label="咯血"></el-checkbox>
+                                <el-checkbox label="咽干"></el-checkbox>
+                                <el-checkbox label="咽痒"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.pulmonarySystemOther"  size="mini" placeholder="请在此补充其他肺系情况" style="width: 200px" ></el-input>
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="寒热">
+                        <el-form-item >
+                            <el-checkbox-group v-model="collectForm.coldAndHeat">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="畏寒"></el-checkbox>
+                                <el-checkbox label="恶寒"></el-checkbox>
+                                <el-checkbox label="恶风"></el-checkbox>
+                                <el-checkbox label="微热"></el-checkbox>
+                                <el-checkbox label="壮热"></el-checkbox>
+                                <el-checkbox label="潮热"></el-checkbox>
+                                <el-checkbox label="五心烦热"></el-checkbox>
+                                <el-checkbox label="寒热往来"></el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="汗出">
+                        <el-form-item >
+                            <el-checkbox-group v-model="collectForm.perspiration">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="无汗"></el-checkbox>
+                                <el-checkbox label="自汗"></el-checkbox>
+                                <el-checkbox label="盗汗"></el-checkbox>
+                                <el-checkbox label="头汗"></el-checkbox>
+                                <el-checkbox label="手足心汗"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.perspirationOther"  size="mini" placeholder="请在此补充其他汗出情况" style="width: 200px" ></el-input>
+
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="精神">
+                        <el-form-item >
+                            <el-checkbox-group v-model="collectForm.spirit">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="乏力"></el-checkbox>
+                                <el-checkbox label="神疲"></el-checkbox>
+                                <el-checkbox label="嗜睡"></el-checkbox>
+                                <el-checkbox label="烦躁"></el-checkbox>
+                                <el-checkbox label="神昏"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.spiritOther"  size="mini" placeholder="请在此补充其他精神情况" style="width: 200px" ></el-input>
+
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="情志">
+                        <el-form-item >
+                            <el-checkbox-group v-model="collectForm.emotion">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="烦躁易怒"></el-checkbox>
+                                <el-checkbox label="抑郁"></el-checkbox>
+                                <el-checkbox label="健忘"></el-checkbox>
+                                <el-checkbox label="易惊"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.emotionOther"  size="mini" placeholder="请在此补充其他情志情况" style="width: 200px" ></el-input>
+
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="面色">
+                        <el-form-item >
+                            <el-checkbox-group v-model="collectForm.Complexion">
+                                <el-checkbox label="常色"></el-checkbox>
+                                <el-checkbox label="淡白无华"></el-checkbox>
+                                <el-checkbox label="㿠白"></el-checkbox>
+                                <el-checkbox label="萎黄"></el-checkbox>
+                                <el-checkbox label="潮红"></el-checkbox>
+                                <el-checkbox label="青紫"></el-checkbox><br>
+                                <el-checkbox label="晦暗"></el-checkbox>
+                                <el-checkbox label="面色黧黑、肌肤甲错"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.ComplexionOther"  size="mini" placeholder="请在此补充其他面色情况" style="width: 200px" ></el-input>
+
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="饮食">
+                        <el-form-item >
+                            <div>食：</div>
+                            <el-checkbox-group v-model="collectForm.food">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="纳差"></el-checkbox>
+                                <el-checkbox label="饥不欲食"></el-checkbox>
+                                <el-checkbox label="消谷善饥"></el-checkbox>
+                                <el-checkbox label="恶心呕吐"></el-checkbox><br>
+                                <el-checkbox label="朝食暮吐、暮食朝吐"></el-checkbox>
+                                <el-checkbox label="脘闷"></el-checkbox>
+                                <el-checkbox label="腹胀"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.foodOther"  size="mini" placeholder="请在此补充其他" style="width: 200px" ></el-input>
+
+                            </el-checkbox-group>
+
+                            <div>饮：</div>
+                            <el-checkbox-group v-model="collectForm.drink">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="口不渴"></el-checkbox>
+                                <el-checkbox label="渴喜冷饮"></el-checkbox>
+                                <el-checkbox label="渴喜热饮"></el-checkbox>
+                                <el-checkbox label="渴不欲饮"></el-checkbox><br>
+                                <el-checkbox label="渴饮不多"></el-checkbox>
+                                <el-checkbox label="口渴但欲漱水不欲咽"></el-checkbox>
+                                <el-checkbox label="水入即吐"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.drinkOther"  size="mini" placeholder="请在此补充其他" style="width: 200px" ></el-input>
+
+                            </el-checkbox-group>
+
+                            <div>味：</div>
+                            <el-checkbox-group v-model="collectForm.taste">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="口苦"></el-checkbox>
+                                <el-checkbox label="口淡"></el-checkbox>
+                                <el-checkbox label="口咸"></el-checkbox>
+                                <el-checkbox label="口腥"></el-checkbox><br>
+                                <el-checkbox label="口甜"></el-checkbox>
+                                <el-checkbox label="口腻"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.tasteOther"  size="mini" placeholder="请在此补充其他" style="width: 200px" ></el-input>
+
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="二便">
+                        <el-form-item >
+                            <div>小便：</div>
+                            <el-checkbox-group v-model="collectForm.urine">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="清长"></el-checkbox>
+                                <el-checkbox label="短赤"></el-checkbox>
+                                <el-checkbox label="便黄"></el-checkbox>
+                                <el-checkbox label="夜尿频数"></el-checkbox>
+                                <el-checkbox label="小便涩痛"></el-checkbox><br>
+                                <el-checkbox label="淋漓不尽"></el-checkbox>
+                                <el-checkbox label="遗尿"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.urineOther"  size="mini" placeholder="请在此补充其他小便情况" style="width: 200px" ></el-input>
+
+                            </el-checkbox-group>
+
+                            <div>大便：</div>
+                            <el-checkbox-group v-model="collectForm.defecate">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="干结"></el-checkbox>
+                                <el-checkbox label="稀溏"></el-checkbox>
+                                <el-checkbox label="排便无力"></el-checkbox>
+                                <el-checkbox label="黏滞不爽"></el-checkbox>
+                                <el-checkbox label="完谷不化"></el-checkbox><br>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.defecateOther"  size="mini" placeholder="请在此补充其他大便情况" style="width: 200px" ></el-input>
+
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="睡眠">
+                        <el-form-item >
+
+                            <el-checkbox-group v-model="collectForm.sleep">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="迟难入睡"></el-checkbox>
+                                <el-checkbox label="多梦"></el-checkbox>
+                                <el-checkbox label="易醒"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.sleepOther"  size="mini" placeholder="请在此补充其他睡眠情况" style="width: 200px" ></el-input>
+
+                            </el-checkbox-group>
+
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="周身四肢">
+                        <el-form-item >
+
+                            <el-checkbox-group v-model="collectForm.bodyAndLimbs">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="腰膝酸软"></el-checkbox>
+                                <el-checkbox label="肢冷"></el-checkbox>
+                                <el-checkbox label="耳鸣"></el-checkbox>
+                                <el-checkbox label="目干"></el-checkbox>
+                                <el-checkbox label="面目或肢体浮肿"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-input v-model="collectForm.bodyAndLimbsOther"  size="mini" placeholder="请在此补充其他周身四肢情况" style="width: 200px" ></el-input>
+
+                            </el-checkbox-group>
+
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+
+
+                </el-descriptions>
+
+
+                <div style="display: flex;justify-content: center">
+                    <h2 >一般资料及主要病史</h2>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                <el-form-item style="margin-top: 5%">
+                    <el-button type="primary" @click="saveArchives">提交</el-button>
+                    <el-button @click="resetForm('ruleForm')">重置标准</el-button>
+                </el-form-item>
+            </el-form>
+
+        </el-dialog>
+
     </div>
 </template>
 
@@ -497,13 +1104,17 @@
     export default {
         name: "Archives",
 
+
         data() {
             return {
                 type:null,  //档案号 /姓名 查询条件
                 rangeDate:null,
                 dialogVisible: false,
+                dialogVisible2: false,
                 currentPage: 1,
                 pageSize:10,
+                total:null,
+                drawer: false,
                 ruleForm:{
                     checkOne:null,
                     checkTwo:null,
@@ -549,6 +1160,7 @@
 
                 },
                 tableData: [],
+
                 rules: {
                     name: [
                         { required: true, message: '姓名不能为空', trigger: 'blur' },
@@ -565,11 +1177,75 @@
 
                     ],
 
-                }
+                },
+                  //就诊采集字段
+                collectForm:{
+                    //表一字段
+                    main:null,
+                    present:null,
+                    visible:null,//刻下症
+                    cough:null,
+                    nature:null,
+                    degree:null,
+                    increaseFactors:null,
+                    decreaseFactors:null,
+                    expectoration:null,
+                    volume:null,
+                    phlegmColor:null,
+                    PhlegmQuality:null,
+                    PhlegmTaste:null,
+                    dyspnea:null,
+                    dyspneaIncrease:[],
+                    dyspneaIncreaseOther:null,
+                    dyspneaDecrease:[],
+                    dyspneaDecreaseOther:null,
+                    dyspneaDegree:null,
+                    accompanyingSymptoms:[],
+                    accompanyingSymptomsOther:null,
+                    pulmonarySystem:[],
+                    pulmonarySystemOther:null,
+                    coldAndHeat:null,
+                    perspiration:[],
+                    perspirationOther:null,
+                    spirit:[],
+                    spiritOther:null,
+                    emotion:[],
+                    emotionOther:null,
+                    Complexion:[],
+                    ComplexionOther:null,
+                    food:[],
+                    foodOther:null,
+                    drink:[],
+                    drinkOther:null,
+                    taste:[],
+                    tasteOther:null,
+                    urine:[],
+                    urineOther:null,
+                    defecate:[],
+                    defecateOther:null,
+                    sleep:[],
+                    sleepOther:null,
+                    bodyAndLimbs:[],
+                    bodyAndLimbsOthers:null
+                    //表二字段
+
+
+
+
+
+
+                },
             }
         },
         methods:{
-
+            handleSizeChange(val) {
+               this.pageSize = val
+                this.onSubmit()
+            },
+            handleCurrentChange(val) {
+                this.currentPage = val
+                this.onSubmit()
+            },
 
             onSubmit(){
                let startDate
@@ -596,7 +1272,10 @@
 
                     console.log(res)
                     that.tableData = res.data.data.list
-                    console.log(that.tableData)
+                    that.total = res.data.data.total
+                    that.pageSize = res.data.data.pageSize
+
+                        console.log(that.tableData)
                 })
             },
 
@@ -657,6 +1336,7 @@
                             message: res.data.data,
                             type: 'success'
                         });
+
                     }
 
                 })
@@ -664,7 +1344,8 @@
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();
-            }
+            },
+
 
 
 
