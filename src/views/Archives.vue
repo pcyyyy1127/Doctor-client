@@ -310,8 +310,8 @@
 
 
                 <el-descriptions style="margin-top:-5%" title="人口学资料" direction="vertical" :column="1" border >
-                    <el-descriptions-item label="性别"  >
-                        <el-form-item label="" >
+                    <el-descriptions-item label="性别"   >
+                        <el-form-item label="" prop="sex">
                             <el-radio-group v-model="ruleForm.sex">
                                 <el-radio label="男"></el-radio>
                                 <el-radio label="女"></el-radio>
@@ -322,15 +322,15 @@
                     <el-descriptions-item label="出生日期">
 
                             <el-col :span="11">
-                                <el-form-item >
+                                <el-form-item prop="birth">
                                     <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.birth" style="width: 100%;"></el-date-picker>
                                 </el-form-item>
                             </el-col>
 
                     </el-descriptions-item>
 
-                    <el-descriptions-item label="民族">
-                        <el-form-item label="" >
+                    <el-descriptions-item label="民族" >
+                        <el-form-item label="" prop="nation">
                             <el-radio-group v-model="ruleForm.nation">
                                 <el-radio label="汉族"></el-radio>
                                 <el-radio label="壮族"></el-radio>
@@ -344,7 +344,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="婚否"  >
-                        <el-form-item label="" >
+                        <el-form-item label="" prop="marriage" >
                             <el-radio-group v-model="ruleForm.marriage">
                                 <el-radio label="是"></el-radio>
                                 <el-radio label="否"></el-radio>
@@ -353,8 +353,8 @@
                     </el-descriptions-item>
 
 
-                    <el-descriptions-item label="教育程度">
-                        <el-form-item label="" >
+                    <el-descriptions-item label="教育程度" >
+                        <el-form-item label="" prop="edu">
                             <el-radio-group v-model="ruleForm.edu">
                                 <el-radio label="硕士以上" ></el-radio>
                                 <el-radio label="本科" ></el-radio>
@@ -371,7 +371,7 @@
 
 
                     <el-descriptions-item label="职业">
-                        <el-form-item label="" >
+                        <el-form-item label="" prop="profession">
                             <el-radio-group v-model="ruleForm.profession">
                                 <el-radio label="工人" ></el-radio>
                                 <el-radio label="农民" ></el-radio>
@@ -392,14 +392,15 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="身高体重">
-                        <el-form-item label="" >
+                        <el-form-item label="" prop="height"   >
 
-
-                               <div>身高(cm)</div> <el-input v-model="ruleForm.height" size="mini" placeholder="请输入身高" style="width: 140px" ></el-input>
-                               <div>体重(kg)</div> <el-input v-model="ruleForm.weight" size="mini" placeholder="请输入体重" style="width: 140px" ></el-input>
-
+                               <div>身高(cm)</div> <el-input v-model="ruleForm.height" size="mini" placeholder="请输入身高" style="width: 140px"  ></el-input>
 
                         </el-form-item>
+                        <el-form-item label="" prop="weight"   >
+                            <div>体重(kg)</div> <el-input v-model="ruleForm.weight" size="mini" placeholder="请输入体重" style="width: 140px"  ></el-input>
+                        </el-form-item>
+
                     </el-descriptions-item>
 
                 </el-descriptions>
@@ -412,7 +413,7 @@
                    <el-descriptions-item label="起病时间">
 
                        <el-col :span="11">
-                           <el-form-item >
+                           <el-form-item  prop="startDate">
                                <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.startDate" style="width: 100%;"></el-date-picker>
                            </el-form-item>
                        </el-col>
@@ -422,7 +423,7 @@
                    <el-descriptions-item label="确诊时间">
 
                        <el-col :span="11">
-                           <el-form-item >
+                           <el-form-item prop="sureDate">
                                <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.sureDate" style="width: 100%;"></el-date-picker>
                            </el-form-item>
                        </el-col>
@@ -430,7 +431,7 @@
                    </el-descriptions-item>
 
                    <el-descriptions-item label="既往史">
-                   <el-form-item  >
+                   <el-form-item prop="pastHistory"  >
 
 
                        <el-checkbox-group v-model="ruleForm.pastHistory">
@@ -452,61 +453,67 @@
                                </div>
 
                            </el-form-item>
-                           <el-form-item>
-                               <div>
-                                   其他既往史: <el-input v-model="ruleForm.otherPastHistory"  size="mini" placeholder="请输入其他既往史" style="width: 80%" ></el-input>
 
-                               </div>
-
-
-                           </el-form-item>
 
                        </el-checkbox-group>
                    </el-form-item>
-                   </el-descriptions-item>
 
+                       <el-form-item prop="otherPastHistory">
+                           <div>
+                               其他既往史: <el-input v-model="ruleForm.otherPastHistory"  size="mini" placeholder="请输入其他既往史" style="width: 80%" ></el-input>
 
-                   <el-descriptions-item label="个人史">
-                       <el-form-item  >
-                               <el-form-item>
-                                   <div><h4>吸烟史(若无则不填)</h4>
-                                       时间（年）：<el-input v-model="ruleForm.smokeHistoryYear"  size="mini" placeholder="请输入吸烟史时长（年）" style="width: 20%" ></el-input>(若无则不填)<br>
-                                       支/天：<el-input v-model="ruleForm.smokeNum"  size="mini" placeholder="请输入每天吸烟支数" style="width: 17%" ></el-input>(若无则不填)<br>
-                                       已戒烟:<el-input v-model="ruleForm.noSmokeDays"  size="mini" placeholder="请输入戒除天数" style="width: 17%" ></el-input>天(若未戒则不填)
+                           </div>
 
-                                   </div>
-
-                                   <div><h4>饮酒史(若无则不填)</h4>
-                                       时间(年)：<el-input v-model="ruleForm.drinkHistoryYear"  size="mini" placeholder="请输入饮酒史时长（年）" style="width: 20%" ></el-input>(若无则不填)<br>
-                                       白酒    :<el-input v-model="ruleForm.whiteDrink"  size="mini" placeholder="请输入每天白酒饮用量" style="width: 17%" ></el-input>两/天(若无则不填)<br>
-                                       啤酒    :<el-input v-model="ruleForm.bearDrink"  size="mini" placeholder="请输入每天啤酒饮用量" style="width: 17%" ></el-input>瓶/天(若无则不填)<br>
-
-                                       已戒酒:<el-input v-model="ruleForm.noDrinkDays"  size="mini" placeholder="请输入戒除天数" style="width: 17%" ></el-input>天（若未戒则不填）
-                                   </div>
-
-                                   <div><h4>职业环境与暴露史(若无则不填)</h4>
-                                       时间（年）：<el-input v-model="ruleForm.exposureHistoryYear"  size="mini" placeholder="请输入职业环境与暴露史时长（年）" style="width: 40%" ></el-input>(若无则不填)<br>
-                                       职业环境与暴露史类型:<el-input v-model="ruleForm.exposureHistory"  size="mini" placeholder="请输入职业环境暴露史类型（如：粉尘）" style="width: 40%" ></el-input>(若无则不填)<br>
-                                   </div>
-
-                                   <div><h4>宠物嗜好与接触史(若无则不填)</h4>
-                                       <el-input v-model="ruleForm.pets"  size="mini" placeholder="请输入宠物嗜好与接触史" style="width: 40%" ></el-input>(若无则不填)<br>
-                                   </div>
-                               </el-form-item>
 
                        </el-form-item>
                    </el-descriptions-item>
 
 
+                   <el-descriptions-item label="个人史">
+
+
+
+
+                                   <div><h4>吸烟史(若无则不填)</h4>
+                                       <el-form-item prop="smokeHistoryYear">时间（年）：<el-input v-model="ruleForm.smokeHistoryYear"  size="mini" placeholder="请输入吸烟史时长（年）" style="width: 20%" ></el-input>(若无则不填)<br></el-form-item>
+                                       <el-form-item prop="smokeNum">支/天：<el-input v-model="ruleForm.smokeNum"  size="mini" placeholder="请输入每天吸烟支数" style="width: 17%" ></el-input>(若无则不填)<br></el-form-item>
+                                       <el-form-item prop="noSmokeDays">已戒烟:<el-input v-model="ruleForm.noSmokeDays"  size="mini" placeholder="请输入戒除天数" style="width: 17%" ></el-input>天(若未戒则不填)</el-form-item>
+
+                                   </div>
+
+                                   <div><h4>饮酒史(若无则不填)</h4>
+                                       <el-form-item prop="drinkHistoryYear"> 时间(年)：<el-input v-model="ruleForm.drinkHistoryYear"  size="mini" placeholder="请输入饮酒史时长（年）" style="width: 20%" ></el-input>(若无则不填)<br></el-form-item>
+                                       <el-form-item prop="whiteDrink">白酒    :<el-input v-model="ruleForm.whiteDrink"  size="mini" placeholder="请输入每天白酒饮用量" style="width: 17%" ></el-input>两/天(若无则不填)<br></el-form-item>
+                                       <el-form-item prop="bearDrink">啤酒    :<el-input v-model="ruleForm.bearDrink"  size="mini" placeholder="请输入每天啤酒饮用量" style="width: 17%" ></el-input>瓶/天(若无则不填)<br></el-form-item>
+
+                                       <el-form-item prop="noDrinkDays">已戒酒:<el-input v-model="ruleForm.noDrinkDays"  size="mini" placeholder="请输入戒除天数" style="width: 17%" ></el-input>天（若未戒则不填）</el-form-item>
+                                   </div>
+
+                                   <div><h4>职业环境与暴露史(若无则不填)</h4>
+                                       <el-form-item prop="exposureHistoryYear"> 时间（年）：<el-input v-model="ruleForm.exposureHistoryYear"  size="mini" placeholder="请输入职业环境与暴露史时长（年）" style="width: 40%" ></el-input>(若无则不填)<br></el-form-item>
+                                       <el-form-item prop="exposureHistory"> 职业环境与暴露史类型:<el-input v-model="ruleForm.exposureHistory"  size="mini" placeholder="请输入职业环境暴露史类型（如：粉尘）" style="width: 40%" ></el-input>(若无则不填)<br></el-form-item>
+                                   </div>
+
+                                   <div><h4>宠物嗜好与接触史(若无则不填)</h4>
+                                       <el-form-item prop="pets"><el-input v-model="ruleForm.pets"  size="mini" placeholder="请输入宠物嗜好与接触史" style="width: 40%" ></el-input>(若无则不填)<br></el-form-item>
+                                   </div>
+
+
+
+                   </el-descriptions-item>
+
+
                    <el-descriptions-item label="家族史">
-                       <el-form-item  >
+
 
 
                            <el-radio-group v-model="ruleForm.familyHistory">
+                               <el-form-item prop="familyHistory">
                                <el-radio label="无" ></el-radio>
                                <el-radio label="特发性肺纤维化" ></el-radio>
+                               </el-form-item>
 
-                               <el-form-item>
+                               <el-form-item prop="otherFamilyHistory">
                                    <div>
                                        其他家族史(若无则不填): <el-input v-model="ruleForm.otherFamilyHistory"  size="mini" placeholder="请输入其他家族史" style="width: 60%" ></el-input>
                                    </div>
@@ -515,19 +522,20 @@
                            </el-radio-group>
 
 
-                       </el-form-item>
+
                    </el-descriptions-item>
 
 
                    <el-descriptions-item label="药物过敏史">
-                       <el-form-item  >
+
 
 
                            <el-radio-group v-model="ruleForm.drugAllergyHistory">
+                               <el-form-item prop="drugAllergyHistory">
                                <el-radio label="无" ></el-radio>
                                <el-radio label="有" ></el-radio>
-
-                               <el-form-item>
+                               </el-form-item>
+                               <el-form-item prop="drugAllergyHistoryDetail">
                                    <div>
                                        如有药物过敏史,详细记载: <el-input v-model="ruleForm.drugAllergyHistoryDetail"  size="mini" placeholder="请输入药物过敏史" style="width: 60%" ></el-input>
                                    </div>
@@ -536,7 +544,7 @@
                            </el-radio-group>
 
 
-                       </el-form-item>
+
                    </el-descriptions-item>
 
                    <el-descriptions-item label="系统字段">
@@ -562,7 +570,7 @@
 
                 <el-form-item style="margin-top: 5%">
                     <el-button type="primary" @click="saveArchives">提交</el-button>
-                    <el-button @click="resetForm('ruleForm')">重置标准</el-button>
+                    <el-button @click="resetForm('ruleForm')">重置</el-button>
                 </el-form-item>
             </el-form>
 
@@ -575,40 +583,53 @@
                 width="70%"
         >
 
-            <el-form :model="collectForm" :rules="rules2" ref="ruleForm"  label-width="100px" >
+            <el-form :model="collectForm"  ref="collectForm"  label-width="100px" >
                 <div style="display: flex;justify-content: center">
                     <h2 >中医信息采集</h2>
                 </div>
                 <el-descriptions   direction="vertical" :column="1"  border >
-                    <el-descriptions-item label="主诉">
-                        <el-input
-                                type="textarea"
-                                :autosize="{ minRows: 2, maxRows: 4}"
-                                placeholder="请输入主诉内容"
-                                v-model="collectForm.main">
-                        </el-input>
+
+
+
+
+                    <el-descriptions-item label="主诉" >
+
+
+                        <el-form-item prop="main">
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 2, maxRows: 4}"
+                                    placeholder="请输入主诉内容"
+                                    v-model="collectForm.main">
+                            </el-input>
+                        </el-form-item>
+
+
 
 
                     </el-descriptions-item>
 
                     <el-descriptions-item label="现病史">
+                       <el-form-item prop="present">
+                           <el-input
+                                   type="textarea"
+                                   :autosize="{ minRows: 2, maxRows: 4}"
+                                   placeholder="请输入现病史内容"
+                                   v-model="collectForm.present">
+                           </el-input>
+                       </el-form-item>
 
-                            <el-input
-                                    type="textarea"
-                                    :autosize="{ minRows: 2, maxRows: 4}"
-                                    placeholder="请输入现病史内容"
-                                    v-model="collectForm.present">
-                            </el-input>
                     </el-descriptions-item>
 
                     <el-descriptions-item label="刻下症">
-
+                        <el-form-item prop="visible">
                         <el-input
                                 type="textarea"
                                 :autosize="{ minRows: 2, maxRows: 4}"
                                 placeholder="请输入刻下症内容"
                                 v-model="collectForm.visible">
                         </el-input>
+                        </el-form-item>
                     </el-descriptions-item>
                 </el-descriptions>
 
@@ -618,7 +639,7 @@
 
                 <el-descriptions  title="主症" direction="vertical" :column="1" border >
                     <el-descriptions-item label="咳嗽"  >
-                        <el-form-item label=""  >
+                        <el-form-item label="" prop="cough" >
                             <el-radio-group v-model="collectForm.cough">
                                 <el-radio label="无"></el-radio>
                                 <el-radio label="有"></el-radio>
@@ -627,7 +648,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="性质">
-                        <el-form-item >
+                        <el-form-item prop="nature">
                             <el-radio-group v-model="collectForm.nature">
                                 <el-radio label="干咳"></el-radio>
                                 <el-radio label="湿咳（每天痰量>10ml）"></el-radio>
@@ -636,7 +657,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="程度">
-                        <el-form-item >
+                        <el-form-item  prop="degree">
                             <el-radio-group v-model="collectForm.degree">
                                 <el-radio label="偶有短暂咳嗽"></el-radio>
                                 <el-radio label="频繁咳嗽，轻度影响日常生活"></el-radio>
@@ -646,7 +667,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="加重因素">
-                        <el-form-item >
+                        <el-form-item prop="increaseFactors">
                             <el-radio-group v-model="collectForm.increaseFactors">
                                 <el-radio label="活动后加重"></el-radio>
                                 <el-radio label="无明显加重因素"></el-radio>
@@ -657,7 +678,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="缓解因素">
-                        <el-form-item >
+                        <el-form-item prop="decreaseFactors">
                             <el-radio-group v-model="collectForm.decreaseFactors">
                                 <el-radio label="痰出"></el-radio>
                                 <el-radio label="休息"></el-radio>
@@ -669,7 +690,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="咳痰">
-                        <el-form-item >
+                        <el-form-item prop="expectoration">
                             <el-radio-group v-model="collectForm.expectoration">
                                 <el-radio label="无"></el-radio>
                                 <el-radio label="有"></el-radio>
@@ -678,7 +699,7 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="痰量">
-                        <el-form-item >
+                        <el-form-item prop="volume">
                             <el-radio-group v-model="collectForm.volume">
                                 <el-radio label="少量（昼夜咯痰10-50ml）"></el-radio>
                                 <el-radio label="中等量（昼夜咯痰51-100ml）"></el-radio>
@@ -690,7 +711,7 @@
 
 
                     <el-descriptions-item label="痰色">
-                        <el-form-item >
+                        <el-form-item prop="phlegmColor">
                             <el-radio-group v-model="collectForm.phlegmColor">
                                 <el-radio label="白"></el-radio>
                                 <el-radio label="灰"></el-radio>
@@ -703,41 +724,41 @@
                     </el-descriptions-item>
 
                     <el-descriptions-item label="痰质">
-                        <el-form-item >
-                            <el-radio-group v-model="collectForm.PhlegmQuality">
+                        <el-form-item prop="phlegmQuality">
+                            <el-radio-group v-model="collectForm.phlegmQuality">
                                 <el-radio label="清稀"></el-radio>
                                 <el-radio label="泡沫"></el-radio>
                                 <el-radio label="黏稠"></el-radio>
                                 <el-radio label="破絮"></el-radio>
                                 <el-radio label="拉丝"></el-radio>
                                 <el-radio label="其他"></el-radio>
-                                <el-input v-model="collectForm.PhlegmQuality"  size="mini" placeholder="请输入其他痰质" style="width: 140px" ></el-input>
+                                <el-input v-model="collectForm.phlegmQuality"  size="mini" placeholder="请输入其他痰质" style="width: 140px" ></el-input>
                             </el-radio-group>
                         </el-form-item>
                     </el-descriptions-item>
 
                     <el-descriptions-item label="痰味">
-                        <el-form-item >
-                            <el-radio-group v-model="collectForm.PhlegmTaste">
+                        <el-form-item prop="phlegmTaste">
+                            <el-radio-group v-model="collectForm.phlegmTaste">
                                 <el-radio label="无"></el-radio>
                                 <el-radio label="甜"></el-radio>
                                 <el-radio label="咸"></el-radio>
                                 <el-radio label="腥"></el-radio>
                                 <el-radio label="其他"></el-radio>
-                                <el-input v-model="collectForm.PhlegmTaste"  size="mini" placeholder="请输入其他痰味" style="width: 140px" ></el-input>
+                                <el-input v-model="collectForm.phlegmTaste"  size="mini" placeholder="请输入其他痰味" style="width: 140px" ></el-input>
                             </el-radio-group>
                         </el-form-item>
                     </el-descriptions-item>
 
                     <el-descriptions-item label="呼吸困难">
-                        <el-form-item >
+                        <el-form-item prop="dyspnea">
                             <el-radio-group v-model="collectForm.dyspnea">
                                 <el-radio label="无"></el-radio>
                                 <el-radio label="有"></el-radio>
                             </el-radio-group>
                         </el-form-item>
                     </el-descriptions-item>
-
+  //TODO  以下字段 增加重置
                     <el-descriptions-item label="呼吸困难加重因素">
                         <el-form-item >
                             <el-checkbox-group v-model="collectForm.dyspneaIncrease">
@@ -1073,24 +1094,10 @@
                 </el-descriptions>
 
 
-                <div style="display: flex;justify-content: center">
-                    <h2 >一般资料及主要病史</h2>
-                </div>
-
-
-
-
-
-
-
-
-
-
-
 
                 <el-form-item style="margin-top: 5%">
-                    <el-button type="primary" @click="saveArchives">提交</el-button>
-                    <el-button @click="resetForm('ruleForm')">重置标准</el-button>
+                    <el-button type="primary" @click="">提交</el-button>
+                    <el-button @click="resetFormForCollect('collectForm')">重置</el-button>
                 </el-form-item>
             </el-form>
 
@@ -1180,6 +1187,7 @@
                 },
                   //就诊采集字段
                 collectForm:{
+                    name:null,
                     //表一字段
                     main:null,
                     present:null,
@@ -1192,8 +1200,8 @@
                     expectoration:null,
                     volume:null,
                     phlegmColor:null,
-                    PhlegmQuality:null,
-                    PhlegmTaste:null,
+                    phlegmQuality:null,
+                    phlegmTaste:null,
                     dyspnea:null,
                     dyspneaIncrease:[],
                     dyspneaIncreaseOther:null,
@@ -1328,7 +1336,7 @@
 
                 }).then(res =>{
                     console.log(res)
-
+                     that.resetForm('ruleForm')
                     if (res.data.message == "success"){
                         that.dialogVisible =false
                         that.$message({
@@ -1342,9 +1350,13 @@
                 })
 
             },
-            resetForm(formName) {
-                this.$refs[formName].resetFields();
+            resetForm(ruleForm) {
+                this.$refs[ruleForm].resetFields();
             },
+
+            resetFormForCollect(collectForm){
+                this.$refs[collectForm].resetFields();
+            }
 
 
 
