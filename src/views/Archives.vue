@@ -758,27 +758,32 @@
                             </el-radio-group>
                         </el-form-item>
                     </el-descriptions-item>
-  //TODO  以下字段 增加重置
+
                     <el-descriptions-item label="呼吸困难加重因素">
-                        <el-form-item >
+                        <el-form-item prop="dyspneaIncrease">
                             <el-checkbox-group v-model="collectForm.dyspneaIncrease">
                                 <el-checkbox label="活动"></el-checkbox>
                                 <el-checkbox label="平卧"></el-checkbox>
                                 <el-checkbox label="情绪波动"></el-checkbox>
                                 <el-checkbox label="呼吸道感染"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.dyspneaIncreaseOther"  size="mini" placeholder="请在此补充其他呼吸困难加重因素" style="width: 200px" ></el-input>
+                                <el-form-item prop="dyspneaIncreaseOther">
+                                    <el-input v-model="collectForm.dyspneaIncreaseOther"  size="mini" placeholder="请在此补充其他呼吸困难加重因素" style="width: 200px" ></el-input>
+                                </el-form-item>
                             </el-checkbox-group>
                         </el-form-item>
                     </el-descriptions-item>
 
                     <el-descriptions-item label="呼吸困难缓解因素">
-                        <el-form-item >
+                        <el-form-item prop="dyspneaDecrease">
                             <el-checkbox-group v-model="collectForm.dyspneaDecrease">
                                 <el-checkbox label="休息"></el-checkbox>
                                 <el-checkbox label="吸氧"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.dyspneaDecreaseOther"  size="mini" placeholder="请在此补充其他呼吸困难缓解因素" style="width: 200px" ></el-input>
+                                <el-form-item prop="dyspneaDecreaseOther">
+                                    <el-input v-model="collectForm.dyspneaDecreaseOther"  size="mini" placeholder="请在此补充其他呼吸困难缓解因素" style="width: 200px" ></el-input>
+
+                                </el-form-item>
                             </el-checkbox-group>
                         </el-form-item>
                     </el-descriptions-item>
@@ -786,7 +791,7 @@
 
 
                     <el-descriptions-item label="呼吸困难程度">
-                        <el-form-item >
+                        <el-form-item prop="dyspneaDegree">
                             <el-radio-group v-model="collectForm.dyspneaDegree">
                                 <el-radio label="0级 只在剧烈运动时才出现呼吸困难"></el-radio><br>
                                 <el-radio label="1级 在走路较急或爬缓坡时会出现呼吸困难"></el-radio><br>
@@ -800,7 +805,7 @@
 
 
                     <el-descriptions-item label="伴随症状">
-                        <el-form-item >
+                        <el-form-item prop="accompanyingSymptoms">
                             <el-checkbox-group v-model="collectForm.accompanyingSymptoms">
                                 <el-checkbox label="发热"></el-checkbox>
                                 <el-checkbox label="胸闷"></el-checkbox>
@@ -833,7 +838,10 @@
                                 <el-checkbox label="腹泻"></el-checkbox>
                                 <el-checkbox label="体重下降"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.accompanyingSymptomsOther"  size="mini" placeholder="请在此补充其他伴随症状" style="width: 200px" ></el-input>
+                                <el-form-item prop="accompanyingSymptomsOther">
+                                    <el-input v-model="collectForm.accompanyingSymptomsOther"  size="mini" placeholder="请在此补充其他伴随症状" style="width: 200px" ></el-input>
+
+                                </el-form-item>
                             </el-checkbox-group>
                         </el-form-item>
                     </el-descriptions-item>
@@ -851,7 +859,7 @@
                 <el-descriptions style="margin-top:-5%" title="中医证候信息表" direction="vertical" :column="1" border >
 
                     <el-descriptions-item label="肺系">
-                        <el-form-item >
+                        <el-form-item prop="pulmonarySystem">
                             <el-checkbox-group v-model="collectForm.pulmonarySystem">
                                 <el-checkbox label="咳嗽"></el-checkbox>
                                 <el-checkbox label="咳声重浊/沉闷"></el-checkbox>
@@ -874,7 +882,9 @@
                                 <el-checkbox label="咽干"></el-checkbox>
                                 <el-checkbox label="咽痒"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.pulmonarySystemOther"  size="mini" placeholder="请在此补充其他肺系情况" style="width: 200px" ></el-input>
+                                <el-form-item prop="pulmonarySystemOther">
+                                    <el-input v-model="collectForm.pulmonarySystemOther"  size="mini" placeholder="请在此补充其他肺系情况" style="width: 200px" ></el-input>
+                                </el-form-item>
                             </el-checkbox-group>
                         </el-form-item>
                     </el-descriptions-item>
@@ -882,7 +892,7 @@
 
 
                     <el-descriptions-item label="寒热">
-                        <el-form-item >
+                        <el-form-item prop="coldAndHeat">
                             <el-checkbox-group v-model="collectForm.coldAndHeat">
                                 <el-checkbox label="正常"></el-checkbox>
                                 <el-checkbox label="畏寒"></el-checkbox>
@@ -899,7 +909,7 @@
 
 
                     <el-descriptions-item label="汗出">
-                        <el-form-item >
+                        <el-form-item prop="perspiration">
                             <el-checkbox-group v-model="collectForm.perspiration">
                                 <el-checkbox label="正常"></el-checkbox>
                                 <el-checkbox label="无汗"></el-checkbox>
@@ -908,7 +918,9 @@
                                 <el-checkbox label="头汗"></el-checkbox>
                                 <el-checkbox label="手足心汗"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.perspirationOther"  size="mini" placeholder="请在此补充其他汗出情况" style="width: 200px" ></el-input>
+                                <el-form-item prop="perspirationOther">
+                                    <el-input v-model="collectForm.perspirationOther"  size="mini" placeholder="请在此补充其他汗出情况" style="width: 200px" ></el-input>
+                                </el-form-item>
 
                             </el-checkbox-group>
                         </el-form-item>
@@ -917,7 +929,7 @@
 
 
                     <el-descriptions-item label="精神">
-                        <el-form-item >
+                        <el-form-item prop="spirit">
                             <el-checkbox-group v-model="collectForm.spirit">
                                 <el-checkbox label="正常"></el-checkbox>
                                 <el-checkbox label="乏力"></el-checkbox>
@@ -926,7 +938,9 @@
                                 <el-checkbox label="烦躁"></el-checkbox>
                                 <el-checkbox label="神昏"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.spiritOther"  size="mini" placeholder="请在此补充其他精神情况" style="width: 200px" ></el-input>
+                                <el-form-item prop="spiritOther">
+                                    <el-input v-model="collectForm.spiritOther"  size="mini" placeholder="请在此补充其他精神情况" style="width: 200px" ></el-input>
+                                </el-form-item>
 
                             </el-checkbox-group>
                         </el-form-item>
@@ -935,7 +949,7 @@
 
 
                     <el-descriptions-item label="情志">
-                        <el-form-item >
+                        <el-form-item prop="emotion">
                             <el-checkbox-group v-model="collectForm.emotion">
                                 <el-checkbox label="正常"></el-checkbox>
                                 <el-checkbox label="烦躁易怒"></el-checkbox>
@@ -943,7 +957,10 @@
                                 <el-checkbox label="健忘"></el-checkbox>
                                 <el-checkbox label="易惊"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.emotionOther"  size="mini" placeholder="请在此补充其他情志情况" style="width: 200px" ></el-input>
+                                <el-form-item prop="emotionOther">
+                                    <el-input v-model="collectForm.emotionOther"  size="mini" placeholder="请在此补充其他情志情况" style="width: 200px" ></el-input>
+
+                                </el-form-item>
 
                             </el-checkbox-group>
                         </el-form-item>
@@ -951,8 +968,8 @@
 
 
                     <el-descriptions-item label="面色">
-                        <el-form-item >
-                            <el-checkbox-group v-model="collectForm.Complexion">
+                        <el-form-item prop="complexion">
+                            <el-checkbox-group v-model="collectForm.complexion">
                                 <el-checkbox label="常色"></el-checkbox>
                                 <el-checkbox label="淡白无华"></el-checkbox>
                                 <el-checkbox label="㿠白"></el-checkbox>
@@ -962,7 +979,10 @@
                                 <el-checkbox label="晦暗"></el-checkbox>
                                 <el-checkbox label="面色黧黑、肌肤甲错"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.ComplexionOther"  size="mini" placeholder="请在此补充其他面色情况" style="width: 200px" ></el-input>
+                                <el-form-item prop="complexionOther">
+                                    <el-input v-model="collectForm.complexionOther"  size="mini" placeholder="请在此补充其他面色情况" style="width: 200px" ></el-input>
+
+                                </el-form-item>
 
                             </el-checkbox-group>
                         </el-form-item>
@@ -973,6 +993,7 @@
                     <el-descriptions-item label="饮食">
                         <el-form-item >
                             <div>食：</div>
+                            <el-form-item prop="food">
                             <el-checkbox-group v-model="collectForm.food">
                                 <el-checkbox label="正常"></el-checkbox>
                                 <el-checkbox label="纳差"></el-checkbox>
@@ -983,11 +1004,16 @@
                                 <el-checkbox label="脘闷"></el-checkbox>
                                 <el-checkbox label="腹胀"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.foodOther"  size="mini" placeholder="请在此补充其他" style="width: 200px" ></el-input>
+                                <el-form-item prop="foodOther">
+                                    <el-input v-model="collectForm.foodOther"  size="mini" placeholder="请在此补充其他" style="width: 200px" ></el-input>
+
+                                </el-form-item>
 
                             </el-checkbox-group>
+                                </el-form-item >
 
                             <div>饮：</div>
+                        <el-form-item prop="drink">
                             <el-checkbox-group v-model="collectForm.drink">
                                 <el-checkbox label="正常"></el-checkbox>
                                 <el-checkbox label="口不渴"></el-checkbox>
@@ -998,11 +1024,13 @@
                                 <el-checkbox label="口渴但欲漱水不欲咽"></el-checkbox>
                                 <el-checkbox label="水入即吐"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
+                                <el-form-item prop="drinkOther">
                                 <el-input v-model="collectForm.drinkOther"  size="mini" placeholder="请在此补充其他" style="width: 200px" ></el-input>
-
+                                </el-form-item >
                             </el-checkbox-group>
-
+                        </el-form-item >
                             <div>味：</div>
+                        <el-form-item prop="taste">
                             <el-checkbox-group v-model="collectForm.taste">
                                 <el-checkbox label="正常"></el-checkbox>
                                 <el-checkbox label="口苦"></el-checkbox>
@@ -1012,17 +1040,20 @@
                                 <el-checkbox label="口甜"></el-checkbox>
                                 <el-checkbox label="口腻"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
+                                <el-form-item prop="tasteOther">
                                 <el-input v-model="collectForm.tasteOther"  size="mini" placeholder="请在此补充其他" style="width: 200px" ></el-input>
-
+                                </el-form-item >
                             </el-checkbox-group>
+                        </el-form-item >
                         </el-form-item>
                     </el-descriptions-item>
 
 
 
                     <el-descriptions-item label="二便">
-                        <el-form-item >
+                        <el-form-item prop="urine">
                             <div>小便：</div>
+
                             <el-checkbox-group v-model="collectForm.urine">
                                 <el-checkbox label="正常"></el-checkbox>
                                 <el-checkbox label="清长"></el-checkbox>
@@ -1033,9 +1064,14 @@
                                 <el-checkbox label="淋漓不尽"></el-checkbox>
                                 <el-checkbox label="遗尿"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.urineOther"  size="mini" placeholder="请在此补充其他小便情况" style="width: 200px" ></el-input>
+                                <el-form-item prop="urineOther">
+                                    <el-input v-model="collectForm.urineOther"  size="mini" placeholder="请在此补充其他小便情况" style="width: 200px" ></el-input>
+
+                                </el-form-item>
 
                             </el-checkbox-group>
+                        </el-form-item>
+                        <el-form-item prop="defecate">
 
                             <div>大便：</div>
                             <el-checkbox-group v-model="collectForm.defecate">
@@ -1046,15 +1082,21 @@
                                 <el-checkbox label="黏滞不爽"></el-checkbox>
                                 <el-checkbox label="完谷不化"></el-checkbox><br>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.defecateOther"  size="mini" placeholder="请在此补充其他大便情况" style="width: 200px" ></el-input>
+                                <el-form-item prop="defecateOther">
+                                    <el-input v-model="collectForm.defecateOther"  size="mini" placeholder="请在此补充其他大便情况" style="width: 200px" ></el-input>
+
+                                </el-form-item>
 
                             </el-checkbox-group>
+
                         </el-form-item>
+
+
                     </el-descriptions-item>
 
 
                     <el-descriptions-item label="睡眠">
-                        <el-form-item >
+                        <el-form-item prop="sleep">
 
                             <el-checkbox-group v-model="collectForm.sleep">
                                 <el-checkbox label="正常"></el-checkbox>
@@ -1062,7 +1104,10 @@
                                 <el-checkbox label="多梦"></el-checkbox>
                                 <el-checkbox label="易醒"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.sleepOther"  size="mini" placeholder="请在此补充其他睡眠情况" style="width: 200px" ></el-input>
+                                <el-form-item prop="sleepOther">
+                                    <el-input v-model="collectForm.sleepOther"  size="mini" placeholder="请在此补充其他睡眠情况" style="width: 200px" ></el-input>
+
+                                </el-form-item>
 
                             </el-checkbox-group>
 
@@ -1071,7 +1116,7 @@
 
 
                     <el-descriptions-item label="周身四肢">
-                        <el-form-item >
+                        <el-form-item prop="bodyAndLimbs">
 
                             <el-checkbox-group v-model="collectForm.bodyAndLimbs">
                                 <el-checkbox label="正常"></el-checkbox>
@@ -1081,7 +1126,10 @@
                                 <el-checkbox label="目干"></el-checkbox>
                                 <el-checkbox label="面目或肢体浮肿"></el-checkbox>
                                 <el-checkbox label="其他"></el-checkbox>
-                                <el-input v-model="collectForm.bodyAndLimbsOther"  size="mini" placeholder="请在此补充其他周身四肢情况" style="width: 200px" ></el-input>
+                                <el-form-item prop="bodyAndLimbsOthers">
+                                    <el-input v-model="collectForm.bodyAndLimbsOthers"  size="mini" placeholder="请在此补充其他周身四肢情况" style="width: 200px" ></el-input>
+
+                                </el-form-item>
 
                             </el-checkbox-group>
 
@@ -1212,15 +1260,15 @@
                     accompanyingSymptomsOther:null,
                     pulmonarySystem:[],
                     pulmonarySystemOther:null,
-                    coldAndHeat:null,
+                    coldAndHeat:[],
                     perspiration:[],
                     perspirationOther:null,
                     spirit:[],
                     spiritOther:null,
                     emotion:[],
                     emotionOther:null,
-                    Complexion:[],
-                    ComplexionOther:null,
+                    complexion:[],
+                    complexionOther:null,
                     food:[],
                     foodOther:null,
                     drink:[],
