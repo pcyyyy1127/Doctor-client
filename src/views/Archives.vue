@@ -1137,14 +1137,312 @@
                     </el-descriptions-item>
 
 
+                    <el-descriptions-item label="舌象">
+                        <el-form-item prop="tongueColor">
+                            <div>舌色</div>
+                            <el-checkbox-group v-model="collectForm.tongueColor">
+                                <el-checkbox label="淡红"></el-checkbox>
+                                <el-checkbox label="淡白"></el-checkbox>
+                                <el-checkbox label="红"></el-checkbox>
+                                <el-checkbox label="绛"></el-checkbox>
+                                <el-checkbox label="青紫"></el-checkbox>
+                                <el-checkbox label="暗/瘀斑瘀点"></el-checkbox>
+                            </el-checkbox-group>
+
+                        </el-form-item>
+
+                        <el-form-item prop="tongueShape">
+                            <div>舌形</div>
+                            <el-checkbox-group v-model="collectForm.tongueShape">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="老"></el-checkbox>
+                                <el-checkbox label="嫩"></el-checkbox>
+                                <el-checkbox label="胖大"></el-checkbox>
+                                <el-checkbox label="肿胀"></el-checkbox>
+                                <el-checkbox label="薄瘦"></el-checkbox>
+                                <el-checkbox label="点刺"></el-checkbox>
+                                <el-checkbox label="裂纹"></el-checkbox>
+                                <el-checkbox label="齿痕"></el-checkbox>
+                            </el-checkbox-group>
+
+                        </el-form-item>
+
+                        <el-form-item prop="tongueState">
+                            <div>舌态</div>
+                            <el-checkbox-group v-model="collectForm.tongueState">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="强硬"></el-checkbox>
+                                <el-checkbox label="痿软"></el-checkbox>
+                                <el-checkbox label="颤动"></el-checkbox>
+                                <el-checkbox label="歪斜"></el-checkbox>
+                                <el-checkbox label="吐弄"></el-checkbox>
+                                <el-checkbox label="短缩"></el-checkbox>
+                                <el-checkbox label="舌纵"></el-checkbox>
+                                <el-checkbox label="麻痹"></el-checkbox>
+                            </el-checkbox-group>
+
+                        </el-form-item>
+
+
+                        <el-form-item prop="coatingNature">
+                            <div>苔质</div>
+                            <el-checkbox-group v-model="collectForm.coatingNature">
+                                <el-checkbox label="薄"></el-checkbox>
+                                <el-checkbox label="厚"></el-checkbox>
+                                <el-checkbox label="润"></el-checkbox>
+                                <el-checkbox label="滑"></el-checkbox>
+                                <el-checkbox label="燥"></el-checkbox>
+                                <el-checkbox label="糙"></el-checkbox>
+                                <el-checkbox label="腻"></el-checkbox>
+                                <el-checkbox label="腐"></el-checkbox>
+                                <el-checkbox label="剥"></el-checkbox>
+                                <el-checkbox label="少"></el-checkbox>
+                                <el-checkbox label="无"></el-checkbox>
+                            </el-checkbox-group>
+
+                        </el-form-item>
+
+                        <el-form-item prop="coatingColour">
+                            <div>苔色</div>
+                            <el-checkbox-group v-model="collectForm.coatingColour">
+                                <el-checkbox label="白"></el-checkbox>
+                                <el-checkbox label="黄"></el-checkbox>
+                                <el-checkbox label="灰"></el-checkbox>
+                                <el-checkbox label="黑"></el-checkbox>
+                            </el-checkbox-group>
+
+                        </el-form-item>
+
+                        <el-form-item prop="tongueUnder">
+                            <div>舌下络脉</div>
+                            <el-checkbox-group v-model="collectForm.tongueUnder">
+                                <el-checkbox label="正常"></el-checkbox>
+                                <el-checkbox label="粗胀"></el-checkbox>
+                                <el-checkbox label="青紫"></el-checkbox>
+                                <el-checkbox label="其他"></el-checkbox>
+                                <el-form-item prop="tongueUnderOther">
+                                    <el-input v-model="collectForm.tongueUnderOther"  size="mini" placeholder="请在此补充其他舌下络脉情况" style="width: 200px" ></el-input>
+                                </el-form-item>
+                            </el-checkbox-group>
+
+                        </el-form-item>
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="脉象">
+                    <el-form-item prop="pulseCondition">
+                        <el-checkbox-group v-model="collectForm.pulseCondition">
+                            <el-checkbox label="浮"></el-checkbox>
+                            <el-checkbox label="洪"></el-checkbox>
+                            <el-checkbox label="濡"></el-checkbox>
+                            <el-checkbox label="散"></el-checkbox>
+                            <el-checkbox label="芤"></el-checkbox>
+                            <el-checkbox label="革"></el-checkbox>
+                            <el-checkbox label="沉"></el-checkbox>
+                            <el-checkbox label="伏"></el-checkbox>
+                            <el-checkbox label="牢"></el-checkbox>
+                            <el-checkbox label="弱"></el-checkbox>
+                            <el-checkbox label="迟"></el-checkbox>
+                            <el-checkbox label="缓"></el-checkbox>
+                            <el-checkbox label="涩"></el-checkbox>
+                            <el-checkbox label="结"></el-checkbox>
+                            <el-checkbox label="数"></el-checkbox>
+                            <el-checkbox label="疾"></el-checkbox>
+                            <el-checkbox label="促"></el-checkbox>
+                            <el-checkbox label="动"></el-checkbox>
+                            <el-checkbox label="虚"></el-checkbox>
+                            <el-checkbox label="微"></el-checkbox>
+                            <el-checkbox label="细"></el-checkbox>
+                            <el-checkbox label="代"></el-checkbox>
+                            <el-checkbox label="短"></el-checkbox>
+                            <el-checkbox label="实"></el-checkbox>
+                            <el-checkbox label="滑"></el-checkbox>
+                            <el-checkbox label="弦"></el-checkbox>
+                            <el-checkbox label="紧"></el-checkbox>
+                            <el-checkbox label="长"></el-checkbox>
+                            <el-checkbox label="大"></el-checkbox>
+                        </el-checkbox-group>
+
+                    </el-form-item>
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="中医诊断">
+                        <el-form-item prop="disease">
+                            <div>疾病：</div>
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 2, maxRows: 4}"
+                                    placeholder="请输入中医诊断疾病内容"
+                                    v-model="collectForm.disease">
+                            </el-input>
+
+                        </el-form-item>
+
+                        <el-form-item prop="syndromeType">
+                            <div>证型：</div>
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 2, maxRows: 4}"
+                                    placeholder="请输入中医诊断证型内容"
+                                    v-model="collectForm.syndromeType">
+                            </el-input>
+
+                        </el-form-item>
+                    </el-descriptions-item>
+
 
 
                 </el-descriptions>
 
+                <el-descriptions style="margin-top:-5%" title="处方信息" direction="vertical" :column="1" border >
+                    <el-descriptions-item label="治法">
+                    <el-form-item prop="therapy">
+                        <el-input
+                                type="textarea"
+                                :autosize="{ minRows: 2, maxRows: 4}"
+                                placeholder="请输入治法"
+                                v-model="collectForm.therapy">
+                        </el-input>
 
+
+                    </el-form-item>
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="方剂名称">
+                        <el-form-item prop="prescriptionName">
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 2, maxRows: 4}"
+                                    placeholder="请输入方剂名称"
+                                    v-model="collectForm.prescriptionName">
+                            </el-input>
+
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="中药处方">
+                        <el-form-item prop="prescription">
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 5, maxRows: 10}"
+                                    placeholder="请输入中药处方"
+                                    v-model="collectForm.prescription">
+                            </el-input>
+
+                        </el-form-item>
+                        <el-form-item prop="medicineNum">
+                            <div>
+                                <el-input-number v-model="collectForm.medicineNum"  :min="1" :max="999" ></el-input-number>  剂
+
+                            </div>
+
+
+                        </el-form-item>
+                        <el-form-item prop="decoctingMethod">
+                            <div>煎服法：</div>
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 2, maxRows: 4}"
+                                    placeholder="请输入煎服法"
+                                    v-model="collectForm.decoctingMethod">
+                            </el-input>
+                        </el-form-item>
+
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="中成药处方">
+                        <el-form-item prop="chinesePatentMedicine">
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 5, maxRows: 10}"
+                                    placeholder="请输入中成药处方"
+                                    v-model="collectForm.chinesePatentMedicine">
+                            </el-input>
+                        </el-form-item>
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="针灸推拿">
+                        <el-form-item prop="acupunctureAndMassage">
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 5, maxRows: 10}"
+                                    placeholder="请输入针灸推拿相关内容"
+                                    v-model="collectForm.acupunctureAndMassage">
+                            </el-input>
+                        </el-form-item>
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="西药处方">
+                        <el-form-item prop="westernMedicinePrescription">
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 5, maxRows: 10}"
+                                    placeholder="请输入西药处方"
+                                    v-model="collectForm.westernMedicinePrescription">
+                            </el-input>
+                        </el-form-item>
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="医嘱">
+                        <el-form-item prop="adviceForFood">
+                            <div>饮食：</div>
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 5, maxRows: 10}"
+                                    placeholder="请输入饮食相关医嘱"
+                                    v-model="collectForm.adviceForFood">
+                            </el-input>
+                        </el-form-item>
+
+                        <el-form-item prop="adviceForDailyLife">
+                            <div>起居：</div>
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 5, maxRows: 10}"
+                                    placeholder="请输入起居相关医嘱"
+                                    v-model="collectForm.adviceForDailyLife">
+                            </el-input>
+                        </el-form-item>
+
+                        <el-form-item prop="adviceForEmotion">
+                            <div>情志：</div>
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 5, maxRows: 10}"
+                                    placeholder="请输入情志相关医嘱"
+                                    v-model="collectForm.adviceForEmotion">
+                            </el-input>
+                        </el-form-item>
+
+                        <el-form-item prop="adviceForOther">
+                            <div>其他：</div>
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 5, maxRows: 10}"
+                                    placeholder="请输入其他医嘱"
+                                    v-model="collectForm.adviceForOther">
+                            </el-input>
+                        </el-form-item>
+
+                    </el-descriptions-item>
+
+
+
+
+                </el-descriptions>
 
                 <el-form-item style="margin-top: 5%">
-                    <el-button type="primary" @click="">提交</el-button>
+                    <el-button type="primary" @click="saveCollectForm">提交</el-button>
                     <el-button @click="resetFormForCollect('collectForm')">重置</el-button>
                 </el-form-item>
             </el-form>
@@ -1235,7 +1533,6 @@
                 },
                   //就诊采集字段
                 collectForm:{
-                    name:null,
                     //表一字段
                     main:null,
                     present:null,
@@ -1282,8 +1579,37 @@
                     sleep:[],
                     sleepOther:null,
                     bodyAndLimbs:[],
-                    bodyAndLimbsOthers:null
-                    //表二字段
+                    bodyAndLimbsOthers:null,
+                    tongueColor:[],
+                    tongueShape:[],
+                    tongueState:[],
+                    coatingNature:[],
+                    coatingColour:[],
+                    tongueUnder:[],
+                    tongueUnderOther:null,
+                    pulseCondition:[],
+                    disease:null,
+                    syndromeType:null,
+                    //处方信息：
+
+                    therapy:null,
+                    prescriptionName:null,
+                    prescription:null,
+                    medicineNum:null,
+                    decoctingMethod:null,
+                    chinesePatentMedicine:null,
+                    acupunctureAndMassage:null,
+                    westernMedicinePrescription:null,
+                    adviceForFood:null,
+                    adviceForDailyLife:null,
+                    adviceForEmotion:null,
+                    adviceForOther:null,
+
+                    //
+
+
+
+
 
 
 
@@ -1335,7 +1661,7 @@
                 })
             },
 
-
+            //新建档案
             saveArchives(){
 
                 let that= this
@@ -1379,7 +1705,8 @@
                         name:that.ruleForm.name,
                         phone:that.ruleForm.phone,
                         address:that.ruleForm.address,
-                        age:that.ruleForm.age
+                        age:that.ruleForm.age,
+
 
 
                 }).then(res =>{
@@ -1404,7 +1731,34 @@
 
             resetFormForCollect(collectForm){
                 this.$refs[collectForm].resetFields();
-            }
+            },
+
+
+            //就诊信息采集-其他
+            saveCollectForm(){
+
+                let that= this
+                this.$axios.post("/doctor/visit/saveCollectForm",{
+                    //当前采集的患者档案号
+                    archivesNo:null,
+                    collectForm:that.collectForm,
+
+                }).then(res =>{
+                    console.log(res)
+                    that.resetFormForCollect('collectForm')
+                    if (res.data.message == "success"){
+                        that.dialogVisible2 =false
+                        that.$message({
+                            showClose: true,
+                            message: res.data.data,
+                            type: 'success'
+                        });
+
+                    }
+
+                })
+
+            },
 
 
 
