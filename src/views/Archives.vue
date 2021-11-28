@@ -1437,9 +1437,284 @@
                     </el-descriptions-item>
 
 
+                    <el-descriptions-item label="必要的临床检查">
+                        <div>胸部HRCT：</div>
+                            <el-form-item  prop="hrctDate">
+
+                               <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="collectForm.hrctDate" style="width: 50%;"></el-date-picker></div>
+                            </el-form-item>
+                        <el-form-item  prop="hrctStore">
+                                <div>是否已留存：
+                                    <el-radio-group v-model="collectForm.hrctStore">
+                                        <el-radio label="是"></el-radio>
+                                        <el-radio label="否"></el-radio>
+
+                                    </el-radio-group>
+
+                                </div>
+                        </el-form-item>
+
+
+                        <div>肺功能： </div>
+                        <el-form-item  prop="lungFunctionDate">
+
+                            <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="collectForm.lungFunctionDate" style="width: 50%;"></el-date-picker></div>
+                        </el-form-item>
+                        <el-form-item  prop="lungFunctionStore">
+                            <div>是否已留存：
+                                <el-radio-group v-model="collectForm.lungFunctionStore">
+                                    <el-radio label="是"></el-radio>
+                                    <el-radio label="否"></el-radio>
+
+                                </el-radio-group>
+
+                            </div>
+                        </el-form-item>
+
+
+                        <div>动脉血气分析： </div>
+                        <el-form-item  prop="bloodGasAnalysisDate">
+
+                            <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="collectForm.bloodGasAnalysisDate" style="width: 50%;"></el-date-picker></div>
+                        </el-form-item>
+                        <el-form-item  prop="bloodGasAnalysisStore">
+                            <div>是否已留存：
+                                <el-radio-group v-model="collectForm.bloodGasAnalysisStore">
+                                    <el-radio label="是"></el-radio>
+                                    <el-radio label="否"></el-radio>
+
+                                </el-radio-group>
+
+                            </div>
+                        </el-form-item>
+
+
+
+                        <div>6分钟步行试验： </div>
+                        <el-form-item  prop="walkTestDate">
+
+                            <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="collectForm.walkTestDate" style="width: 50%;"></el-date-picker></div>
+                        </el-form-item>
+                        <el-form-item  prop="walkTestStore">
+                            <div>是否已留存：
+                                <el-radio-group v-model="collectForm.walkTestStore">
+                                    <el-radio label="是"></el-radio>
+                                    <el-radio label="否"></el-radio>
+
+                                </el-radio-group>
+
+                            </div>
+                        </el-form-item>
+
+
+
+                        <div>胸部X线： </div>
+                        <el-form-item  prop="rayDate">
+
+                            <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="collectForm.rayDate" style="width: 50%;"></el-date-picker></div>
+                        </el-form-item>
+                        <el-form-item  prop="rayStore">
+                            <div>是否已留存：
+                                <el-radio-group v-model="collectForm.rayStore">
+                                    <el-radio label="是"></el-radio>
+                                    <el-radio label="否"></el-radio>
+
+                                </el-radio-group>
+
+                            </div>
+                        </el-form-item>
+
+
+                        <div>心脏彩超： </div>
+                        <el-form-item  prop="colourSonographyDate">
+
+                            <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="collectForm.colourSonographyDate" style="width: 50%;"></el-date-picker></div>
+                        </el-form-item>
+                        <el-form-item  prop="colourSonographyStore">
+                            <div>是否已留存：
+                                <el-radio-group v-model="collectForm.colourSonographyStore">
+                                    <el-radio label="是"></el-radio>
+                                    <el-radio label="否"></el-radio>
+
+                                </el-radio-group>
+
+                            </div>
+                        </el-form-item>
+
+
+
+                        <div>血常规： </div>
+                        <el-form-item  prop="routineBloodTestDate">
+
+                            <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="collectForm.routineBloodTestDate" style="width: 50%;"></el-date-picker></div>
+                        </el-form-item>
+                        <el-form-item  prop="routineBloodTestStore">
+                            <div>是否已留存：
+                                <el-radio-group v-model="collectForm.routineBloodTestStore">
+                                    <el-radio label="是"></el-radio>
+                                    <el-radio label="否"></el-radio>
+
+                                </el-radio-group>
+
+                            </div>
+                        </el-form-item>
+
+
+
+
+                        <div>血生化检查： </div>
+                        <el-form-item  prop="bloodExaminationDate">
+
+                            <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="collectForm.bloodExaminationDate" style="width: 50%;"></el-date-picker></div>
+                        </el-form-item>
+                        <el-form-item  prop="bloodExaminationStore">
+                            <div>是否已留存：
+                                <el-radio-group v-model="collectForm.bloodExaminationStore">
+                                    <el-radio label="是"></el-radio>
+                                    <el-radio label="否"></el-radio>
+
+                                </el-radio-group>
+
+                            </div>
+                        </el-form-item>
+
+
+                        <div>凝血功能和D二聚体： </div>
+                        <el-form-item  prop="coagulationFunctionDate">
+
+                            <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="collectForm.coagulationFunctionDate" style="width: 50%;"></el-date-picker></div>
+                        </el-form-item>
+                        <el-form-item  prop="coagulationFunctionStore">
+                            <div>是否已留存：
+                                <el-radio-group v-model="collectForm.coagulationFunctionStore">
+                                    <el-radio label="是"></el-radio>
+                                    <el-radio label="否"></el-radio>
+
+                                </el-radio-group>
+
+                            </div>
+                        </el-form-item>
+
+
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="院外合并治疗情况(西药)">
+
+
+                        <el-form-item prop="westernMedicineHas">
+
+                                <div>西药：
+                                <el-radio-group v-model="collectForm.westernMedicineHas">
+                                    <el-radio label="有"></el-radio>
+                                    <el-radio label="无"></el-radio>
+                                </el-radio-group>
+                                </div>
+
+                        </el-form-item>
+
+                        <el-form-item prop="westernMedicineMain">
+
+                                <div>如有，记录主要药物名称：
+                                <el-checkbox-group v-model="collectForm.westernMedicineMain">
+                                    <el-checkbox label="吡非尼酮/尼达尼布"></el-checkbox>
+                                    <el-checkbox label="N-乙酰半胱氨酸"></el-checkbox>
+                                </el-checkbox-group>
+                                </div>
+                        </el-form-item>
+
+                            <el-form-item prop="westernMedicineMainOther">
+                            其他：
+                            <el-input v-model="collectForm.westernMedicineMainOther"  size="mini" placeholder="请在此补充其他西药" style="width: 200px" ></el-input>
+                            </el-form-item>
+
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="院外合并治疗情况(中成药)">
+
+
+                        <el-form-item prop="chinesePatentMedicineHas">
+
+                            <div>中成药：
+                                <el-radio-group v-model="collectForm.chinesePatentMedicineHas">
+                                    <el-radio label="有"></el-radio>
+                                    <el-radio label="无"></el-radio>
+                                </el-radio-group>
+                            </div>
+
+                        </el-form-item>
+
+
+                        <el-form-item prop="chinesePatentMedicineMain">
+                            如有，记录主要中成药名称：
+                            <el-input v-model="collectForm.chinesePatentMedicineMain"  size="mini" placeholder="请在此补充主要中成药名称" style="width: 500px" ></el-input>
+                        </el-form-item>
+
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="院外合并治疗情况(其他疗法)">
+
+
+                        <el-form-item prop="therapyHas">
+
+                            <div>其他疗法：
+                                <el-radio-group v-model="collectForm.therapyHas">
+                                    <el-radio label="有"></el-radio>
+                                    <el-radio label="无"></el-radio>
+                                </el-radio-group>
+                            </div>
+
+                        </el-form-item>
+
+                        <el-form-item prop="therapyMain">
+
+                            <div>如有，记录具体疗法：
+                                <el-checkbox-group v-model="collectForm.therapyMain">
+                                    <el-checkbox label="氧疗"></el-checkbox>
+                                </el-checkbox-group>
+                            </div>
+                        </el-form-item>
+
+                        <el-form-item prop="therapyMainOther">
+                            其他：
+                            <el-input v-model="collectForm.therapyMainOther"  size="mini" placeholder="请在此补充其他疗法" style="width: 200px" ></el-input>
+                        </el-form-item>
+
+
+                    </el-descriptions-item>
+
+
+
+
+
+
+
+
 
 
                 </el-descriptions>
+
+
+                <el-descriptions  title="病例资料拓展（特色模块）" direction="vertical" :column="1" border >
+
+                    <el-descriptions-item label="病例资料拓展">
+                        <el-form-item prop="dataExpansion">
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 25, maxRows: 999}"
+                                    placeholder="请在此补充病例资料"
+                                    v-model="collectForm.dataExpansion">
+                            </el-input>
+
+                        </el-form-item>
+                    </el-descriptions-item>
+                </el-descriptions>
+
 
                 <el-form-item style="margin-top: 5%">
                     <el-button type="primary" @click="saveCollectForm">提交</el-button>
@@ -1605,7 +1880,38 @@
                     adviceForEmotion:null,
                     adviceForOther:null,
 
-                    //
+                    //必要的临床检查
+                    hrctDate:null,
+                    hrctStore:null,
+                    lungFunctionDate:null,
+                    lungFunctionStore:null,
+                    bloodGasAnalysisDate:null,
+                    bloodGasAnalysisStore:null,
+                    walkTestDate:null,
+                    walkTestStore:null,
+                    rayDate:null,
+                    rayStore:null,
+                    colourSonographyDate:null,
+                    colourSonographyStore:null,
+                    routineBloodTestDate:null,
+                    routineBloodTestStore:null,
+                    bloodExaminationDate:null,
+                    bloodExaminationStore:null,
+                    coagulationFunctionDate:null,
+                    coagulationFunctionStore:null,
+                    westernMedicineHas:null,
+                    westernMedicineMain:[],
+                    westernMedicineMainOther:null,
+                    chinesePatentMedicineHas:null,
+                    chinesePatentMedicineMain:null,
+                    therapyHas:null,
+                    therapyMain:[],
+                    therapyMainOther:null,
+                    dataExpansion:null,
+
+
+
+
 
 
 
