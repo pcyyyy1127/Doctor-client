@@ -1716,6 +1716,211 @@
                 </el-descriptions>
 
 
+                <span style="justify-content: center;display: flex"><h3>疗效评价</h3></span>
+
+                <el-descriptions  title="自评医疗成效问卷（MYMOP）" direction="vertical" :column="1" border >
+
+                    <el-descriptions-item label="1.请选出一或两项最令你困扰的症状（可以身体上或精神上的），写在下方输入框中。
+并把适当的数字勾上以表示该症状在过去一星期的情况有多坏（0代表情况算是最好，6代表情况算是最坏）">
+                        <el-form-item prop="mymopOnePointOne">
+                           <div>症状一：</div>
+                            <el-input placeholder="请在此填写症状一" v-model="collectForm.mymopOnePointOne" style="width: 20%">
+                            </el-input>
+
+                            <el-form-item prop="mymopOnePointOneScore">
+                                <div>情况算是最好
+                                <el-radio-group v-model="collectForm.mymopOnePointOneScore">
+                                    <el-radio label="1" ></el-radio>
+                                    <el-radio label="2" ></el-radio>
+                                    <el-radio label="3"></el-radio>
+                                    <el-radio label="4"></el-radio>
+                                    <el-radio  label="5"  ></el-radio>
+                                    <el-radio  label="6"  ></el-radio>
+                                </el-radio-group>
+                                情况算是最坏
+                                </div>
+                            </el-form-item>
+                        </el-form-item>
+
+
+                        <el-form-item prop="mymopOnePointTwo">
+                            <div>症状二：</div>
+                            <el-input placeholder="请在此填写症状二" v-model="collectForm.mymopOnePointTwo" style="width: 20%">
+                            </el-input>
+
+                            <el-form-item prop="mymopOnePointTwoScore">
+                                <div>情况算是最好
+                                    <el-radio-group v-model="collectForm.mymopOnePointTwoScore">
+                                        <el-radio label="1" ></el-radio>
+                                        <el-radio label="2" ></el-radio>
+                                        <el-radio label="3"></el-radio>
+                                        <el-radio label="4"></el-radio>
+                                        <el-radio  label="5"  ></el-radio>
+                                        <el-radio  label="6"  ></el-radio>
+                                    </el-radio-group>
+                                    情况算是最坏
+                                </div>
+                            </el-form-item>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="2.请写出一项对你而言是重要，却因为这些症状而受影响或甚至不能进行的活动（可
+以是身体上的、社交上的、或精神上的活动；例如工作、运动、或其他娱乐等等），并把适当的数字勾上以表受影响的情况有多坏。">
+                        <el-form-item prop="mymopTwo">
+                            <div>活动：</div>
+                            <el-input placeholder="请在此填写活动" v-model="collectForm.mymopTwo" style="width: 20%">
+                            </el-input>
+
+                            <el-form-item prop="mymopTwoScore">
+                                <div>情况算是最好
+                                    <el-radio-group v-model="collectForm.mymopTwoScore">
+                                        <el-radio label="1" ></el-radio>
+                                        <el-radio label="2" ></el-radio>
+                                        <el-radio label="3"></el-radio>
+                                        <el-radio label="4"></el-radio>
+                                        <el-radio  label="5"  ></el-radio>
+                                        <el-radio  label="6"  ></el-radio>
+                                    </el-radio-group>
+                                    情况算是最坏
+                                </div>
+                            </el-form-item>
+                        </el-form-item>
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="3.在过去一星期，你对自己身心状况的整体感觉如何？">
+
+
+
+                            <el-form-item prop="mymopThree">
+                                <div>情况算是最好
+                                    <el-radio-group v-model="collectForm.mymopThree">
+                                        <el-radio label="1" ></el-radio>
+                                        <el-radio label="2" ></el-radio>
+                                        <el-radio label="3"></el-radio>
+                                        <el-radio label="4"></el-radio>
+                                        <el-radio  label="5"  ></el-radio>
+                                        <el-radio  label="6"  ></el-radio>
+                                    </el-radio-group>
+                                    情况算是最坏
+                                </div>
+                            </el-form-item>
+
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="4.你上述的 症状一出现了多久？（不论是连续出现，或是断续地出现）">
+
+
+
+                        <el-form-item prop="mymopFour">
+                            <div>
+                                <el-radio-group v-model="collectForm.mymopFour">
+                                    <el-radio label="0-4星期" ></el-radio>
+                                    <el-radio label="4-12星期" ></el-radio>
+                                    <el-radio label="3个月至1年"></el-radio>
+                                    <el-radio label="1-5年"></el-radio>
+                                    <el-radio  label="超过5年"  ></el-radio>
+                                </el-radio-group>
+
+                            </div>
+                        </el-form-item>
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="5.你有没有使用任何药物来治疗症状一？">
+
+
+
+                        <el-form-item prop="mymopFive">
+                            <div>
+                                <el-radio-group v-model="collectForm.mymopFive">
+                                    <el-radio label="有" ></el-radio>
+                                    <el-radio label="没有（跳至第8题）" ></el-radio>
+
+                                </el-radio-group>
+
+                            </div>
+                        </el-form-item>
+
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="6.请写出该药物的名称及每天／每周使用量。">
+
+
+
+                        <el-form-item prop="mymopSixPointOne">
+                            <div>药物名称：
+                                <el-input placeholder="请在此填写药物名称" v-model="collectForm.mymopSixPointOne" style="width: 20%">
+                                    </el-input>
+                            </div>
+
+                        </el-form-item>
+
+                        <el-form-item prop="mymopSixPointTwo">
+                            <div>使用量：
+                                <el-input placeholder="请在此填写使用量" v-model="collectForm.mymopSixPointTwo" style="width: 20%">
+                                </el-input>
+                            </div>
+
+                        </el-form-item>
+
+
+
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="7.你认为减少使用这些药物有多重要？">
+
+
+
+                        <el-form-item prop="mymopSeven">
+                            <div>
+                                <el-radio-group v-model="collectForm.mymopSeven">
+                                    <el-radio label="不重要" ></el-radio>
+                                    <el-radio label="少许重要" ></el-radio>
+                                    <el-radio label="非常重要" ></el-radio>
+                                    <el-radio label="不适用" ></el-radio>
+
+                                </el-radio-group>
+
+                            </div>
+                        </el-form-item>
+
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="8.对症状一来说，你认为不使用任何药物有多重要？">
+
+
+
+                        <el-form-item prop="mymopEight">
+                            <div>
+                                <el-radio-group v-model="collectForm.mymopEight">
+                                    <el-radio label="不重要" ></el-radio>
+                                    <el-radio label="少许重要" ></el-radio>
+                                    <el-radio label="非常重要" ></el-radio>
+                                    <el-radio label="不适用" ></el-radio>
+
+                                </el-radio-group>
+
+                            </div>
+                        </el-form-item>
+
+                    </el-descriptions-item>
+
+
+
+
+
+
+
+                </el-descriptions>
+
+
                 <el-form-item style="margin-top: 5%">
                     <el-button type="primary" @click="saveCollectForm">提交</el-button>
                     <el-button @click="resetFormForCollect('collectForm')">重置</el-button>
@@ -1908,6 +2113,20 @@
                     therapyMain:[],
                     therapyMainOther:null,
                     dataExpansion:null,
+                    //疗效评价
+                    mymopOnePointOne:null,
+                    mymopOnePointOneScore:null,
+                    mymopOnePointTwo:null,
+                    mymopOnePointTwoScore:null,
+                    mymopTwo:null,
+                    mymopTwoScore:null,
+                    mymopThree:null,
+                    mymopFour:null,
+                    mymopFive:null,
+                    mymopSixPointOne:null,
+                    mymopSixPointTwo:null,
+                    mymopSeven:null,
+                    mymopEight:null,
 
 
 
