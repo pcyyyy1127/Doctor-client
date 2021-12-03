@@ -100,7 +100,11 @@
                     prop="option"
                     label="操作"
              width="300">
-                <el-button size="mini" round @click="drawer = true">选中</el-button>
+              <!--  <el-button size="mini" round @click="drawer = true">选中</el-button>-->
+                <template slot-scope="scope">
+                    <el-button size="mini" round @click="choose(scope.row)">选中</el-button>
+                </template>
+
             </el-table-column>
 
         </el-table>
@@ -2888,6 +2892,8 @@
                     ],
 
                 },
+                //当前选中的患者id
+                nowCollectNo:null,
                   //就诊采集字段
                 collectForm:{
                     //表一字段
@@ -3197,7 +3203,12 @@
             resetFormForCollect(collectForm){
                 this.$refs[collectForm].resetFields();
             },
+            choose(row){
+                console.log(row);
+                this.nowCollectNo = row.archivesNo
+                this.drawer = true
 
+            },
 
             //就诊信息采集-其他
             saveCollectForm(){
@@ -3205,7 +3216,7 @@
                 let that= this
                 this.$axios.post("/doctor/visit/saveCollectForm",{
                     //当前采集的患者档案号
-                    archivesNo:null,
+                    archivesNo:that.nowCollectNo,
                     collectForm:that.collectForm,
 
                 }).then(res =>{
