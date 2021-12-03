@@ -1920,6 +1920,883 @@
 
                 </el-descriptions>
 
+                <el-descriptions  title="圣乔治呼吸调查问卷" direction="vertical" :column="1" border >
+                    <el-descriptions-item label="这份问卷是用来帮助我们了解你的呼吸问题是如何正在困扰你的，以及它是如何影响你的生活的。我们通过它发现疾病在哪一方面对你的影响最大,但这不是医生或护士所认为的那些问题。
+                        请仔细阅读下列指导性语句，若有不明白之处请提问。不要花费太长的时间来决定你的答案。在完成余下的问卷前，请选择一个能体现你目前健康状况的描述：">
+                    <div></div>
+                    <el-form-item prop="sgrqDescription">
+
+                            <el-radio-group v-model="collectForm.sgrqDescription">
+                                <el-radio label="很好" ></el-radio>
+                                <el-radio label="好" ></el-radio>
+                                <el-radio label="一般" ></el-radio>
+                                <el-radio label="不好" ></el-radio>
+                                <el-radio label="很差" ></el-radio>
+
+                            </el-radio-group>
+
+
+                    </el-form-item>
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="第一部分：关于过去6个月内您的呼吸困难问题，每个问题只选择一个答案：">
+                        <div>1．在过去6个月内，咳嗽情况：
+                        <el-form-item prop="sgrqPartOnePointOne">
+
+                            <el-radio-group v-model="collectForm.sgrqPartOnePointOne">
+                                <el-radio label="1周中绝大部分时间" ></el-radio>
+                                <el-radio label="1周中有几天" ></el-radio>
+                                <el-radio label="l月中有几天" ></el-radio>
+                                <el-radio label="仅在肺部感染时" ></el-radio>
+                                <el-radio label="没有" ></el-radio>
+
+                            </el-radio-group>
+
+
+                        </el-form-item>
+                        </div>
+
+                        <div>2．在过去6个月内，咳痰情况：
+                            <el-form-item prop="sgrqPartOnePointTwo">
+
+                                <el-radio-group v-model="collectForm.sgrqPartOnePointTwo">
+                                    <el-radio label="1周中绝大部分时间" ></el-radio>
+                                    <el-radio label="1周中有几天" ></el-radio>
+                                    <el-radio label="l月中有几天" ></el-radio>
+                                    <el-radio label="仅在肺部感染时" ></el-radio>
+                                    <el-radio label="没有" ></el-radio>
+
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>3．在过去6个月内，呼吸急促的发生情况：
+                            <el-form-item prop="sgrqPartOnePointThree">
+
+                                <el-radio-group v-model="collectForm.sgrqPartOnePointThree">
+                                    <el-radio label="1周中绝大部分时间" ></el-radio>
+                                    <el-radio label="1周中有几天" ></el-radio>
+                                    <el-radio label="l月中有几天" ></el-radio>
+                                    <el-radio label="仅在肺部感染时" ></el-radio>
+                                    <el-radio label="没有" ></el-radio>
+
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>4．在过去6个月内，气喘发作情况：
+                            <el-form-item prop="sgrqPartOnePointFour">
+
+                                <el-radio-group v-model="collectForm.sgrqPartOnePointFour">
+                                    <el-radio label="1周中绝大部分时间" ></el-radio>
+                                    <el-radio label="1周中有几天" ></el-radio>
+                                    <el-radio label="l月中有几天" ></el-radio>
+                                    <el-radio label="仅在肺部感染时" ></el-radio>
+                                    <el-radio label="没有" ></el-radio>
+
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>5．在过去6个月内，我曾出现过几次严重的或极不舒服的呼吸困难：
+                            <el-form-item prop="sgrqPartOnePointFive">
+
+                                <el-radio-group v-model="collectForm.sgrqPartOnePointFive">
+                                    <el-radio label="超过3次" ></el-radio>
+                                    <el-radio label="3次发作" ></el-radio>
+                                    <el-radio label="2次发作" ></el-radio>
+                                    <el-radio label="l次发作" ></el-radio>
+                                    <el-radio label="没有发作" ></el-radio>
+
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>6．在过去6个月内，平均每周有几天呼吸是正常的（没有呼吸困难）
+                            <el-form-item prop="sgrqPartOnePointSix">
+
+                                <el-radio-group v-model="collectForm.sgrqPartOnePointSix">
+                                    <el-radio label="没有一天正常" ></el-radio>
+                                    <el-radio label="l到2天正常" ></el-radio>
+                                    <el-radio label="3到4天正常" ></el-radio>
+                                    <el-radio label="几乎每天都正常" ></el-radio>
+                                    <el-radio label="每一天都正常" ></el-radio>
+
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>7．如果有喘息，是否在清晨起来时加重？
+                            <el-form-item prop="sgrqPartOnePointSeven">
+
+                                <el-radio-group v-model="collectForm.sgrqPartOnePointSeven">
+                                    <el-radio label="否" ></el-radio>
+                                    <el-radio label="是" ></el-radio>
+
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                    </el-descriptions-item>
+
+
+
+                    <el-descriptions-item label="第二部分：（一）您如何描述您目前的呼吸困难？ ">
+                        <div>1.您如何评价呼吸困难对您生活的影响？
+                            <el-form-item prop="sgrqPartTwoOnePointOne">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoOnePointOne">
+                                    <el-radio label="呼吸困难严重影响了我的全部生活" ></el-radio><br>
+                                    <el-radio label="呼吸困难影响了我的全部生活" ></el-radio><br>
+                                    <el-radio label="呼吸困难影响了我的部分生活" ></el-radio><br>
+                                    <el-radio label="呼吸困难没有影响我的生活" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>2．关于呼吸对工作的影响，请从中选择一项
+                            <el-form-item prop="sgrqPartTwoOnePointTwo">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoOnePointTwo">
+                                    <el-radio label="我的呼吸问题使我完全中止工作" ></el-radio><br>
+                                    <el-radio label="我的呼吸问题影响我的工作或使我改变工作" ></el-radio><br>
+                                    <el-radio label="我的呼吸问题不影响我的工作" ></el-radio><br>
+                                    <el-radio label="我没有工作" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="第二部分：（二）下面问题是关于这些天来哪些活动经常让您觉得喘不过气来：对于每一个问题根据您的实际情况，选择“是”或“否” ">
+                        <div>1．静坐或静躺
+                            <el-form-item prop="sgrqPartTwoTwoPointOne">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoTwoPointOne">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>2．洗漱或穿衣
+                            <el-form-item prop="sgrqPartTwoTwoPointTwo">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoTwoPointTwo">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>3．在室内走动
+                            <el-form-item prop="sgrqPartTwoTwoPointThree">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoTwoPointThree">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>4．在户外平台上走动
+                            <el-form-item prop="sgrqPartTwoTwoPointFour">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoTwoPointFour">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>5．上一层楼
+                            <el-form-item prop="sgrqPartTwoTwoPointFive">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoTwoPointFive">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>6．爬坡
+                            <el-form-item prop="sgrqPartTwoTwoPointSix">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoTwoPointSix">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>7. 运动性体育活动或运动性游戏
+                            <el-form-item prop="sgrqPartTwoTwoPointSeven">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoTwoPointSeven">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="第二部分：（三）下面问题是关于这些天来您的咳嗽及气喘问题：对于每一个问题根据您的实际情况，选择“是”或“否”">
+                        <div>1．咳嗽使我感到痛苦
+                            <el-form-item prop="sgrqPartTwoThreePointOne">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoThreePointOne">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>2．咳嗽时我感到疲倦
+                            <el-form-item prop="sgrqPartTwoThreePointTwo">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoThreePointTwo">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>3．谈话时，我会感到喘不过气来
+                            <el-form-item prop="sgrqPartTwoThreePointThree">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoThreePointThree">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>4．弯腰时，我觉得喘不过气来
+                            <el-form-item prop="sgrqPartTwoThreePointFour">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoThreePointFour">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>5．咳嗽或呼吸困难影响我的睡眠
+                            <el-form-item prop="sgrqPartTwoThreePointFive">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoThreePointFive">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>6．我经常疲惫不堪
+                            <el-form-item prop="sgrqPartTwoThreePointSix">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoThreePointSix">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+
+
+
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="第二部分：（四）下面问题是关于这些天来您的呼吸困难可能对您的其他方面的影响，对于每一个问题根据您的实际情况，选择“是”或“否”">
+                        <div>1．咳嗽或呼吸困难使我心情不愉快
+                            <el-form-item prop="sgrqPartTwoFourPointOne">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFourPointOne">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>2．我的呼吸问题让我的家人担心
+                            <el-form-item prop="sgrqPartTwoFourPointTwo">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFourPointTwo">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>3．当喘不过气来时，我感到害怕或惊恐
+                            <el-form-item prop="sgrqPartTwoFourPointThree">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFourPointThree">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>4．我觉得我的呼吸问题很严重
+                            <el-form-item prop="sgrqPartTwoFourPointFour">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFourPointFour">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>5．我觉得我的呼吸问题不能好转
+                            <el-form-item prop="sgrqPartTwoFourPointFive">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFourPointFive">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>6．我的呼吸问题使我变得虚弱、活动不便
+                            <el-form-item prop="sgrqPartTwoFourPointSix">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFourPointSix">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>7．体育运动对我来说是不安全的
+                            <el-form-item prop="sgrqPartTwoFourPointSeven">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFourPointSeven">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>8．做任何事情我都很吃力
+                            <el-form-item prop="sgrqPartTwoFourPointEight">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFourPointEight">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+
+
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="第二部分：（五）下列问题是关于您的治疗问题，请根据您的实际情况，选择“是”或“否”">
+                        <div>我接受过治疗
+                            <el-form-item prop="sgrqPartTwoFivePoint">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFivePoint">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+                        如果接受过治疗，对于下面每一个问题，请根据您的实际情况，选择“是”或“否”
+                        <div>1．治疗对我来说没有多大帮助
+                            <el-form-item prop="sgrqPartTwoFivePointOne">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFivePointOne">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>2．在他人面前用药让我感到难堪
+                            <el-form-item prop="sgrqPartTwoFivePointTwo">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFivePointTwo">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>3．治疗引起了不良的药物副作用
+                            <el-form-item prop="sgrqPartTwoFivePointThree">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFivePointThree">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>4．治疗严重干扰了我的生活
+                            <el-form-item prop="sgrqPartTwoFivePointFour">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoFivePointFour">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="第二部分：（六）下列问题是关于您的呼吸困难可能如何影响您的活动，对于每一个问题，请根据您的实际情况，选择“是”或“否”">
+                        <div>1．我洗脸刷牙或穿衣时，感到费力
+                            <el-form-item prop="sgrqPartTwoSixPointOne">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSixPointOne">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>2．我不能洗澡或淋浴，或需要花很长的时间
+                            <el-form-item prop="sgrqPartTwoSixPointTwo">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSixPointTwo">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>3．我走得比别人慢，或常常停下来休息
+                            <el-form-item prop="sgrqPartTwoSixPointThree">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSixPointThree">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>4．我做家务事非常慢，或常常停下来休息
+                            <el-form-item prop="sgrqPartTwoSixPointFour">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSixPointFour">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>5．上一层楼时，我得慢慢走或停下来休息
+                            <el-form-item prop="sgrqPartTwoSixPointFive">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSixPointFive">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>6．如果赶时间或快走，我不得不休息或放慢速度
+                            <el-form-item prop="sgrqPartTwoSixPointSix">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSixPointSix">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>7．呼吸困难使我在进行诸如上坡、提东西上楼、在花园中除草、跳舞、练气功或做操等活动时感到困难
+                            <el-form-item prop="sgrqPartTwoSixPointSeven">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSixPointSeven">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>8．呼吸问题使我在进行诸如搬运重物、在花园中挖土、铲雪、慢跑或快走（8公里/小时）、舞剑或游泳时感到困难
+                            <el-form-item prop="sgrqPartTwoSixPointEight">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSixPointEight">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>9．呼吸问题使我在进行诸如重体力活、跑步、骑自行车、快速游泳、进行剧烈的体育运动时感到困难
+                            <el-form-item prop="sgrqPartTwoSixPointNine">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSixPointNine">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+
+
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="第二部分：（七）下列问题是您的呼吸问题如何影响您，对于每一个问题，请根据您的实际情况，选择“是”或“否”">
+                        <div>1．我不能进行体育活动或运动性活动
+                            <el-form-item prop="sgrqPartTwoSevenPointOne">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSevenPointOne">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>2．我不能外出娱乐或消遣
+                            <el-form-item prop="sgrqPartTwoSevenPointTwo">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSevenPointTwo">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>3．我不能外出购物
+                            <el-form-item prop="sgrqPartTwoSevenPointThree">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSevenPointThree">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>4．我不能做家务
+                            <el-form-item prop="sgrqPartTwoSevenPointFour">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSevenPointFour">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>5．我不能走得离床或椅子太远
+                            <el-form-item prop="sgrqPartTwoSevenPointFive">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoSevenPointFive">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+
+
+
+
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="下面是一些由于您的呼吸问题无法进行的其他活动项目，请您根据实际情况选择“是”或“否”。">
+                        <div>1．散步或遛狗
+                            <el-form-item prop="sgrqPartTwoEightPointOne">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoEightPointOne">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>2．在家干活
+                            <el-form-item prop="sgrqPartTwoEightPointTwo">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoEightPointTwo">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>3．性生活
+                            <el-form-item prop="sgrqPartTwoEightPointThree">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoEightPointThree">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>4．上商场、菜市场或进行娱乐活动
+                            <el-form-item prop="sgrqPartTwoEightPointFour">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoEightPointFour">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+                        <div>5．在天气不好时外出或进入有烟味的房间
+                            <el-form-item prop="sgrqPartTwoEightPointFive">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoEightPointFive">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+
+                        <div>6．探亲访友或与孩子玩耍
+                            <el-form-item prop="sgrqPartTwoEightPointSix">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoEightPointSix">
+                                    <el-radio label="是" ></el-radio>
+                                    <el-radio label="否" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+
+
+
+
+
+                    </el-descriptions-item>
+
+                    <el-descriptions-item label="现在请您选择一项最能反映您的呼吸问题对您的影响的选项">
+
+                            <el-form-item prop="sgrqPartTwoNinePointOne">
+
+                                <el-radio-group v-model="collectForm.sgrqPartTwoNinePointOne">
+                                    <el-radio label="影响所有我想做的事情" ></el-radio>
+                                    <el-radio label="影响我做的大多数事情" ></el-radio>
+                                    <el-radio label="影响我想做的1－2件事情" ></el-radio>
+                                    <el-radio label="不影响我想做的任何事情" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+
+
+
+                    </el-descriptions-item>
+
+
+                    <el-descriptions-item label="第三部分 （MRC呼吸困难分级）">
+
+                        <div>据以上调查，请根据您的实际情况选择一项最能反应您的呼吸困难情况的选项
+                            <el-form-item prop="sgrqPartThree">
+
+                                <el-radio-group v-model="collectForm.sgrqPartThree">
+                                    <el-radio label="除剧烈运外，一般不感到呼吸困难" ></el-radio><br>
+                                    <el-radio label="平地急行时气短或上坡时气短" ></el-radio><br>
+                                    <el-radio label="因气短平地行走时慢于同龄人以自己的步速平地行走时必须停下来喘气" ></el-radio><br>
+                                    <el-radio label="平地行走100米或数分钟即有气短" ></el-radio><br>
+                                    <el-radio label="因气短而不能离开房间" ></el-radio>
+                                </el-radio-group>
+
+
+                            </el-form-item>
+                        </div>
+
+
+
+
+                    </el-descriptions-item>
+
+
+
+
+                </el-descriptions>
+
+
+                <el-descriptions  title="呼吸困难量表评分（mMRC）" :column="1" :size="size" border>
+
+                    <el-descriptions-item>
+                        <template slot="label">
+                            分级
+                        </template>
+                        临床表现
+                    </el-descriptions-item>
+
+                    <el-descriptions-item>
+                        <template slot="label">
+                            0级
+                        </template>
+                        只在剧烈运动时才出现呼吸困难
+                    </el-descriptions-item>
+
+                    <el-descriptions-item>
+                        <template slot="label">
+                            1级
+                        </template>
+                        在走路较急或爬缓坡时会出现呼吸困难
+                    </el-descriptions-item>
+
+                    <el-descriptions-item>
+                        <template slot="label">
+                            2级
+                        </template>
+                        按平时走路方式走时会出现气短，必须停下来休息，走路比同龄人慢
+                    </el-descriptions-item>
+
+                    <el-descriptions-item>
+                        <template slot="label">
+                            3级
+                        </template>
+                        步行100码（91.44米）或几分钟后需要停下来休息
+                    </el-descriptions-item>
+
+                    <el-descriptions-item>
+                        <template slot="label">
+                            4级
+                        </template>
+                        因呼吸困难严重不能离家，或穿脱衣时出现呼吸困难
+                    </el-descriptions-item>
+
+
+
+
+
+                </el-descriptions>
+
+                <el-form-item prop="level" style="margin: 2%">
+                    分级：
+                    <el-select v-model="collectForm.level"  clearable placeholder="请选择分级">
+                        <el-option label="0级" value="0级"></el-option>
+                        <el-option label="1级" value="1级"></el-option>
+                        <el-option label="2级" value="2级"></el-option>
+                        <el-option label="3级" value="3级"></el-option>
+                        <el-option label="4级" value="4级"></el-option>
+
+                    </el-select>
+                </el-form-item>
+
+
 
                 <el-form-item style="margin-top: 5%">
                     <el-button type="primary" @click="saveCollectForm">提交</el-button>
@@ -2127,6 +3004,69 @@
                     mymopSixPointTwo:null,
                     mymopSeven:null,
                     mymopEight:null,
+                    //圣乔治
+                    sgrqDescription:null,
+                    sgrqPartOnePointOne:null,
+                    sgrqPartOnePointTwo:null,
+                    sgrqPartOnePointThree:null,
+                    sgrqPartOnePointFour:null,
+                    sgrqPartOnePointFive:null,
+                    sgrqPartOnePointSix:null,
+                    sgrqPartOnePointSeven:null,
+                    sgrqPartTwoOnePointOne:null,
+                    sgrqPartTwoOnePointTwo:null,
+
+                    sgrqPartTwoTwoPointTwo:null,
+                    sgrqPartTwoTwoPointThree:null,
+                    sgrqPartTwoTwoPointFour:null,
+                    sgrqPartTwoTwoPointFive:null,
+                    sgrqPartTwoTwoPointSix:null,
+                    sgrqPartTwoTwoPointSeven:null,
+                    sgrqPartTwoThreePointOne:null,
+                    sgrqPartTwoThreePointTwo:null,
+                    sgrqPartTwoThreePointThree:null,
+                    sgrqPartTwoThreePointFour:null,
+                    sgrqPartTwoThreePointFive:null,
+                    sgrqPartTwoThreePointSix:null,
+                    sgrqPartTwoFourPointOne:null,
+                    sgrqPartTwoFourPointTwo:null,
+                    sgrqPartTwoFourPointThree:null,
+                    sgrqPartTwoFourPointFour:null,
+                    sgrqPartTwoFourPointFive:null,
+                    sgrqPartTwoFourPointSix:null,
+                    sgrqPartTwoFourPointSeven:null,
+                    sgrqPartTwoFourPointEight:null,
+                    sgrqPartTwoFivePoint:null,
+                    sgrqPartTwoFivePointOne:null,
+                    sgrqPartTwoFivePointTwo:null,
+                    sgrqPartTwoFivePointThree:null,
+                    sgrqPartTwoFivePointFour:null,
+                    sgrqPartTwoSixPointOne:null,
+                    sgrqPartTwoSixPointTwo:null,
+                    sgrqPartTwoSixPointThree:null,
+                    sgrqPartTwoSixPointFour:null,
+                    sgrqPartTwoSixPointFive:null,
+                    sgrqPartTwoSixPointSix:null,
+                    sgrqPartTwoSixPointSeven:null,
+                    sgrqPartTwoSixPointEight:null,
+                    sgrqPartTwoSixPointNine:null,
+                    sgrqPartTwoSevenPointOne:null,
+                    sgrqPartTwoSevenPointTwo:null,
+                    sgrqPartTwoSevenPointThree:null,
+                    sgrqPartTwoSevenPointFour:null,
+                    sgrqPartTwoSevenPointFive:null,
+                    sgrqPartTwoEightPointOne:null,
+                    sgrqPartTwoEightPointTwo:null,
+                    sgrqPartTwoEightPointThree:null,
+                    sgrqPartTwoEightPointFour:null,
+                    sgrqPartTwoEightPointFive:null,
+                    sgrqPartTwoEightPointSix:null,
+                    sgrqPartTwoNinePointOne:null,
+                    sgrqPartThree:null,
+                    level:null,
+                    sgrqPartTwoTwoPointOne:null,
+
+
 
 
 
