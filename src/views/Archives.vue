@@ -110,11 +110,16 @@
         </el-table>
 
         <el-drawer
-                title="我是标题"
+                title=""
                 :visible.sync="drawer"
                 :with-header="false"
         >
-            <span style="justify-content: center;display: flex"><h3>就诊信息采集</h3></span>
+            <span style="justify-content: center;display: flex"><h3>就诊信息采集</h3>
+
+            </span>
+
+            <h5 style="justify-content: center;display: flex;line-height: 0px;margin-top: 0px">当前诊次：{{visitSequence}}</h5>
+
 
 
 
@@ -150,7 +155,12 @@
             <div style="justify-content: center;display: flex;flex-direction: row;line-height: 0px;margin-top: 5%">
 
 
-                <el-button size="mini" style="" round >结束就诊</el-button>
+                <el-button size="mini" style="" round @click="over()">结束本次就诊采集</el-button>
+            </div>
+
+
+            <div style="justify-content: center;display: flex;flex-direction: row;line-height: 0px;margin-top: 5%">
+                <el-button size="mini" style="" round >转入随访流程</el-button>
             </div>
 
 
@@ -2829,6 +2839,8 @@
                 pageSize:10,
                 total:null,
                 drawer: false,
+                //当前诊次，选中时展示在菜单中
+                visitSequence:null,
                 ruleForm:{
                     checkOne:null,
                     checkTwo:null,
@@ -3190,6 +3202,7 @@
                             message: res.data.data,
                             type: 'success'
                         });
+                        this.onSubmit()
 
                     }
 
@@ -3204,9 +3217,25 @@
                 this.$refs[collectForm].resetFields();
             },
             choose(row){
+                let that = this
                 console.log(row);
                 this.nowCollectNo = row.archivesNo
                 this.drawer = true
+
+                this.$axios.get("/doctor/visit/getVisitSequence",{
+                    //当前选中的患者档案号
+                    params:{
+                        archivesNo:that.nowCollectNo,
+                    },
+
+                }).then(res =>{
+                    console.log(res)
+
+                    if (res.data.message == "success"){
+                       that.visitSequence = res.data.data.sequence
+                    }
+
+                })
 
             },
 
@@ -3230,9 +3259,59 @@
                             type: 'success'
                         });
 
+
+
                     }
 
                 })
+
+            },
+
+            //结束本次采集
+            over(){
+                let that= this
+                this.$confirm('该患者本次就诊的相关信息是否采集完成？点击确定患者将会进入下一个诊次。', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+
+
+                    this.$axios.post("/doctor/visit/overNowCollect",{
+                        //当前采集的患者档案号
+                        archivesNo:that.nowCollectNo,
+                    }).then(res =>{
+                        console.log(res)
+
+                        if (res.data.message == "success"){
+                            that.$message({
+                                showClose: true,
+                                message: res.data.data,
+                                type: 'success'
+                            });
+
+                        }
+
+                        this.$axios.get("/doctor/visit/getVisitSequence",{
+                            //当前选中的患者档案号
+                            params:{
+                                archivesNo:that.nowCollectNo,
+                            },
+
+                        }).then(res =>{
+                            console.log(res)
+
+                            if (res.data.message == "success"){
+                                that.visitSequence = res.data.data.sequence
+                            }
+
+                        })
+                    });
+
+                    })
+
+
+
 
             },
 
