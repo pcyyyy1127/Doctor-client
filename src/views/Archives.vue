@@ -160,7 +160,7 @@
 
 
             <div style="justify-content: center;display: flex;flex-direction: row;line-height: 0px;margin-top: 5%">
-                <el-button size="mini" style="" round >转入随访流程</el-button>
+                <el-button size="mini" style="" round @click="pushFollow()" >转入随访流程</el-button>
             </div>
 
 
@@ -3314,6 +3314,37 @@
 
 
             },
+            //转入随访
+            pushFollow(){
+
+                let that= this
+                this.$confirm('是否将当前用户转入随访流程？（若患者的诊次大于三次,无需手动转入,系统已自动转入随访流程）', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+
+
+                    this.$axios.post("/doctor/visit/pushFollow",{
+                        //当前采集的患者档案号
+                        archivesNo:that.nowCollectNo,
+                    }).then(res =>{
+                        console.log(res)
+
+                        if (res.data.message == "success"){
+                            that.$message({
+                                showClose: true,
+                                message: res.data.data,
+                                type: 'success'
+                            });
+
+                        }
+
+                    });
+
+                })
+
+            }
 
 
 
