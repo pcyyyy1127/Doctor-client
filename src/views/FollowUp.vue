@@ -96,6 +96,20 @@
             </el-table-column>
 
         </el-table>
+
+        <div class="block">
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-sizes="[5, 10, 30]"
+                    :page-size="pageSize"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="total"
+                    background
+            >
+            </el-pagination>
+        </div>
     </div>
 </template>
 
@@ -106,6 +120,12 @@
         data() {
             return {
                 value:'',
+                currentPage: 1,
+                pageSize:10,
+                total:null,
+                type:null,  //档案号 /姓名 查询条件
+                searchStatus:"待随访",//默认待随访
+
                 options: [{
                     value: '选项1',
                     label: '全部'
@@ -119,53 +139,45 @@
                     value: '选项4',
                     label: '已完成三次随访'
                 }],
-                tableData: [{
-                    archivesNo: '0000001',
-                    name: '王小虎',
-                    age: '20',
-                    sex: '男',
-                    phone: "1554541231",
-                    finish :"1次",
-                    nextFollowDate:"2021-01-01",
-                    followStatus:"近期已完成随访"
-                }, {
-                    archivesNo: '0000002',
-                    name: '张小虎',
-                    age: '21',
-                    sex: '女',
-                    phone: "1554541231",
-                    finish :"2次",
-                    nextFollowDate:"2021-01-01",
-                    followStatus:"待随访"
-
-                }, {
-                    archivesNo: '0000003',
-                    name: '李小虎',
-                    age: '40',
-                    sex: '男',
-                    phone: "1554541231",
-                    finish :"3次",
-                    nextFollowDate:"2021-01-01",
-                    followStatus:"已超时"
-                },
-                    {
-                        archivesNo: '0000003',
-                        name: '李小虎',
-                        age: '40',
-                        sex: '男',
-                        phone: "1554541231",
-                        finish :"3次",
-                        nextFollowDate:"2021-01-01",
-                        followStatus:"已完成三次随访"
-                    }
-                    ]
+                tableData: [],
             }
         },
         methods:{
-
-            onSubmit(){
-
+            handleSizeChange(val) {
+                this.pageSize = val
+                this.onSubmit()
             },
+            handleCurrentChange(val) {
+                this.currentPage = val
+                this.onSubmit()
+            },
+            onSubmit(){
+                let that=this
+
+
+                this.$axios.get("/doctor/follow/getFollowUpList",{
+                    params:{
+                        type:that.type || "",
+                        searchStatus:that.searchStatus || "",
+                        currentPage:that.currentPage,
+                        pageSize:that.pageSize
+                    },
+
+                }).then(res =>{
+
+                    console.log(res)
+                    that.tableData = res.data.data.list
+                    that.total = res.data.data.total
+                    that.pageSize = res.data.data.pageSize
+
+                    console.log(that.tableData)
+                })
+            },
+
+            //页面渲染时，请求
+            created() {
+                this.onSubmit()
+            }
 
         }
     }
