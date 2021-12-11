@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import index from '../views/index'
 import Archives from "../views/Archives";
-import Visit from "../views/Visit";
 import FollowUp from "../views/FollowUp";
 import axios from "../axios";
 import store from "../store";
@@ -37,11 +36,6 @@ const routes = [
         path: '/userCenter',
         name: 'UserCenter',
         component: () => import( '../views/UserCenter.vue')
-      },
-      {
-        path: '/visit',
-        name: 'Visit',
-        component: () => import( '../views/Visit.vue')
       },
       {
         path: '/followUp',

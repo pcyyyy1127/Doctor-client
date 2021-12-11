@@ -60,14 +60,6 @@ Mock.mock('http://127.0.0.1:5001/sys/menu/nav', 'get', () => {
 
         },
         {
-            name: 'visit',
-            title: '就诊信息',
-            icon: 'el-icon-s-operation',
-            component: '/visit',
-            path: '/visit',
-
-        },
-        {
             name: 'followUp',
             title: '患者随访',
             icon: 'el-icon-s-operation',

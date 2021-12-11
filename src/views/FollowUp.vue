@@ -10,11 +10,11 @@
 
 
             <el-form-item >
-                <el-input  placeholder="姓名/档案号"></el-input>
+                <el-input  placeholder="姓名/档案号" v-model="type" clearable></el-input>
             </el-form-item>
 
             <el-form-item>
-                <el-select v-model="value" placeholder="请选择">
+                <el-select v-model="searchStatus" placeholder="请选择" @change="searchChange">
                     <el-option
                             v-for="item in options"
                             :key="item.value"
@@ -70,19 +70,19 @@
             </el-table-column>
 
             <el-table-column
-                    prop="finish"
+                    prop="finishSequence"
                     width="200"
                     label="已完成随访次数">
             </el-table-column>
 
             <el-table-column
-                    prop="nextFollowDate"
+                    prop="nextDate"
                     width="200"
                     label="下次随访时间">
             </el-table-column>
 
             <el-table-column
-                    prop="followStatus"
+                    prop="nowStatus"
                     width="200"
                     label="当前状态">
             </el-table-column>
@@ -119,7 +119,7 @@
 
         data() {
             return {
-                value:'',
+
                 currentPage: 1,
                 pageSize:10,
                 total:null,
@@ -127,17 +127,17 @@
                 searchStatus:"待随访",//默认待随访
 
                 options: [{
-                    value: '选项1',
-                    label: '全部'
-                }, {
-                    value: '选项2',
-                    label: '已超时'
-                }, {
-                    value: '选项3',
+                    value: '待随访',
                     label: '待随访'
                 }, {
-                    value: '选项4',
+                    value: '已超时',
+                    label: '已超时'
+                }, {
+                    value: '已完成三次随访',
                     label: '已完成三次随访'
+                }, {
+                    value: '待排期',
+                    label: '待排期'
                 }],
                 tableData: [],
             }
@@ -172,6 +172,10 @@
 
                     console.log(that.tableData)
                 })
+            },
+
+            searchChange(changeData){
+                this.searchStatus = changeData
             },
 
             //页面渲染时，请求
