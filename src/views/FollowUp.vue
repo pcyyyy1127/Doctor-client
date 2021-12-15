@@ -92,7 +92,9 @@
                     prop="option"
                     label="操作"
                     width="100">
-                <el-button size="mini" round  @click="dialogVisible2 = true">随访</el-button>
+                <template slot-scope="scope">
+                <el-button size="mini" round  @click="choose(scope.row)" :disabled="disablebtn == true">随访</el-button>
+                </template>
             </el-table-column>
 
         </el-table>
@@ -2357,6 +2359,7 @@
                 currentPage: 1,
                 pageSize:10,
                 total:null,
+                disablebtn:false,
                 //当前选择的患者档案号
                 nowCollectNo:null,
                 type:null,  //档案号 /姓名 查询条件
@@ -2541,18 +2544,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                 },
                 options: [{
                     value: '待随访',
@@ -2604,6 +2595,13 @@
 
             searchChange(changeData){
                 this.searchStatus = changeData
+                if (changeData == '待排期'){
+                    this.disablebtn = true
+                }
+                else{
+                    this.disablebtn = false
+                }
+
             },
 
 
@@ -2611,8 +2609,9 @@
                 this.$refs[collectForm].resetFields();
             },
             choose(row){
-                let that = this
+
                 console.log(row);
+                this.dialogVisible2 = true
                 this.nowCollectNo = row.archivesNo
 
 
@@ -2641,6 +2640,7 @@
 
 
                     }
+                    that.created()
 
                 })
 
