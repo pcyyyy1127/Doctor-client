@@ -67,6 +67,22 @@ Mock.mock('http://127.0.0.1:5001/sys/menu/nav', 'get', () => {
             path: '/followUp',
 
         },
+        {
+            name: 'Data',
+            title: '数据可视',
+            icon: 'el-icon-s-operation',
+            component: '/data',
+            path: '/data',
+
+        },
+        {
+            name: 'Article',
+            title: '文章科普',
+            icon: 'el-icon-s-operation',
+            component: '/article',
+            path: '/article',
+
+        },
 
     ]
 

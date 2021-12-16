@@ -42,6 +42,16 @@ const routes = [
         name: 'FollowUp',
         component: () => import( '../views/FollowUp.vue')
       },
+      {
+        path: '/data',
+        name: 'data',
+        component: () => import( '../views/Data.vue')
+      },
+      {
+        path: '/article',
+        name: 'article',
+        component: () => import( '../views/Article.vue')
+      },
     ]
   },
   {
