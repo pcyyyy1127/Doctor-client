@@ -15,10 +15,6 @@
                 <el-form-item label="密码" prop="password" style="width: 380px;">
                     <el-input type="password" v-model="loginForm.password"></el-input>
                 </el-form-item>
-               <!-- <el-form-item label="验证码" prop="code" style="width: 380px;">
-                    <el-input v-model="loginForm.code" style="width: 172px; float: left;" maxlength="5"></el-input>
-                    <el-image class="captchaImg" :src="captchaImg" @click="getCaptcha"></el-image>
-                </el-form-item>-->
                 <el-form-item>
                     <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
                 </el-form-item>
@@ -49,10 +45,6 @@
                     password: [
                         { required: true, message: '请输入密码', trigger: 'blur' },
                     ],
-                   /* code: [
-                        { required: true, message: '请输入验证码', trigger: 'blur' },
-                        { min: 5, max: 5, message: '长度为5字符', trigger: 'blur' }
-                    ]*/
 
                 },
                 captchaImg: null
@@ -79,21 +71,9 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
-            /*//获取验证码
-            getCaptcha(){
-                this.$axios.get("/getCaptcha").then(res =>{
 
-                    console.log(res)
-                       this.loginForm.keyCode = res.data.data.keyCode
-                       this.captchaImg = res.data.data.captchaImg
-                })
-            }*/
         },
-        //页面渲染时，请求一次验证码
-       /* created() {
-            this.getCaptcha()
-        }
-*/
+
     }
 </script>
 
