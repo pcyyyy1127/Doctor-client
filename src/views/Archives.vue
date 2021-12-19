@@ -139,7 +139,7 @@
 
                 <div>
                     舌象
-                    <el-button size="medium" round >采集</el-button>
+                    <el-button size="medium" round @click="tongueCollect()" >采集</el-button>
                 </div>
             </div>
 
@@ -2820,6 +2820,45 @@
 
         </el-dialog>
 
+        <!--面相采集对话框-->
+        <el-dialog
+                :visible.sync="dialogVisible3"
+                width="70%"
+        >
+        <template>
+            <div class="camera_outer">
+
+                <video
+                        id="videoCamera"
+                        :width="videoWidth"
+                        :height="videoHeight"
+                        autoplay
+                ></video>
+                <canvas
+                        style="display: none"
+                        id="canvasCamera"
+                        :width="videoWidth"
+                        :height="videoHeight"
+                ></canvas>
+
+                <div v-if="tongueImgSrc" class="img_bg_camera">
+                    采集结果：
+                    <img :src="tongueImgSrc" alt="" class="tx_img" />
+                    <div><el-button  @click="tongueImgSubimt()">提交</el-button></div>
+
+                </div>
+                <div style="margin-left: 5%">
+                    <el-button @click="getCompetence()">打开摄像头</el-button>
+                    <el-button @click="stopNavigator()">关闭摄像头</el-button>
+                    <el-button  @click="setImage()">拍照</el-button>
+
+                </div>
+
+
+
+            </div>
+        </template>
+            </el-dialog>
     </div>
 </template>
 
@@ -2835,6 +2874,15 @@
                 rangeDate:null,
                 dialogVisible: false,
                 dialogVisible2: false,
+                dialogVisible3:false,
+                //----相机相关
+                videoWidth: 300,
+                videoHeight: 300,
+                tongueImgSrc: "",
+                thisCancas: null,
+                thisContext: null,
+                thisVideo: null,
+                //------
                 currentPage: 1,
                 pageSize:10,
                 total:null,
@@ -3344,12 +3392,154 @@
 
                 })
 
-            }
+            },
+
+
+            // 调用权限（打开摄像头功能）
+            getCompetence() {
+                var _this = this;
+                this.thisCancas = document.getElementById("canvasCamera");
+                this.thisContext = this.thisCancas.getContext("2d");
+                this.thisVideo = document.getElementById("videoCamera");
+                // 旧版本浏览器可能根本不支持mediaDevices，我们首先设置一个空对象
+                if (navigator.mediaDevices === undefined) {
+                    navigator.mediaDevices = {};
+                }
+                // 一些浏览器实现了部分mediaDevices，我们不能只分配一个对象
+                // 使用getUserMedia，因为它会覆盖现有的属性。
+                // 这里，如果缺少getUserMedia属性，就添加它。
+                if (navigator.mediaDevices.getUserMedia === undefined) {
+                    navigator.mediaDevices.getUserMedia = function (constraints) {
+                        // 首先获取现存的getUserMedia(如果存在)
+                        var getUserMedia =
+                            navigator.webkitGetUserMedia ||
+                            navigator.mozGetUserMedia ||
+                            navigator.getUserMedia;
+                        // 有些浏览器不支持，会返回错误信息
+                        // 保持接口一致
+                        if (!getUserMedia) {
+                            return Promise.reject(
+                                new Error("getUserMedia is not implemented in this browser")
+                            );
+                        }
+                        // 否则，使用Promise将调用包装到旧的navigator.getUserMedia
+                        return new Promise(function (resolve, reject) {
+                            getUserMedia.call(navigator, constraints, resolve, reject);
+                        });
+                    };
+                }
+                var constraints = {
+                    audio: false,
+                    video: {
+                        width: this.videoWidth,
+                        height: this.videoHeight,
+                        transform: "scaleX(-1)",
+                    },
+                };
+                navigator.mediaDevices
+                    .getUserMedia(constraints)
+                    .then(function (stream) {
+                        // 旧的浏览器可能没有srcObject
+                        if ("srcObject" in _this.thisVideo) {
+                            _this.thisVideo.srcObject = stream;
+                        } else {
+                            // 避免在新的浏览器中使用它，因为它正在被弃用。
+                            _this.thisVideo.src = window.URL.createObjectURL(stream);
+                        }
+                        _this.thisVideo.onloadedmetadata = function (e) {
+                            _this.thisVideo.play();
+                        };
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            },
+            //  绘制图片（拍照功能）
+            setImage() {
+                var that = this;
+                // 点击，canvas画图
+                that.thisContext.drawImage(
+                    that.thisVideo,
+                    0,
+                    0,
+                    that.videoWidth,
+                    that.videoHeight
+                );
+                // 获取图片base64链接
+                var image = this.thisCancas.toDataURL("image/png");
+                that.tongueImgSrc = image;
+                this.$emit("refreshDataList", this.tongueImgSrc);
+                console.log(this.tongueImgSrc);
+            },
+            // base64转文件
+            dataURLtoFile(dataurl, filename) {
+                var arr = dataurl.split(",");
+                var mime = arr[0].match(/:(.*?);/)[1];
+                var bstr = atob(arr[1]);
+                var n = bstr.length;
+                var u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new File([u8arr], filename, { type: mime });
+            },
+            // 关闭摄像头
+            stopNavigator() {
+                this.thisVideo.srcObject.getTracks()[0].stop();
+            },
 
 
 
+            tongueImgSubimt(){
+                let that= this
+                if(this.tongueImgSrc == "" || this.tongueImgSrc == null ) {
+                    this.$confirm('还未拍照,不能提交', '提示', {
+                        confirmButtonText: '确定',
+                        type: 'warning'
+                    })
+                }
+                else {
 
 
+                    this.$confirm('是否确认提交当前采集的图像？', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+
+
+                        this.$axios.post("/doctor/visit/tongueImgCollect", {
+                            //当前采集的患者档案号
+                            archivesNo: that.nowCollectNo,
+                            //图像url
+                            tongueImgSrc: that.tongueImgSrc,
+                        }).then(res => {
+                            console.log(res)
+
+                            if (res.data.message == "success") {
+                                that.$message({
+                                    showClose: true,
+                                    message: res.data.data,
+                                    type: 'success'
+                                });
+
+                            }
+
+                        });
+
+                    })
+                }
+            },
+
+            tongueCollect(){
+                this.dialogVisible3 = true,
+                    this.tongueImgSrc = null
+            },
+
+        },
+        //相机相关方法
+        mounted() {
+            this.getCompetence();
         },
         //页面渲染时，请求
         created() {
@@ -3359,6 +3549,30 @@
     }
 </script>
 
-<style scoped>
+<style  scoped>
+    .camera_outer {
+        position: relative;
+        overflow: hidden;
+        background-size: 100%;
+    }
+        video,
+        canvas,
+        .tx_img {
+            -moz-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+
+        .img_bg_camera {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+            img {
+                width: 300px;
+                height: 300px;
+            }
+
 
 </style>
