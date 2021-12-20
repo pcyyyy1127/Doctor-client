@@ -25,10 +25,10 @@ request.interceptors.response.use(response => {
         if (res.message === "success") {
             return response
         } else {
-            Element.Message.error(!res.msg? res.message : '系统异常！', {duration: 3 * 1000})
+            Element.Message.error(!res.msg? res.data.errorMsg : '系统异常！', {duration: 3 * 1000})
             console.log("-----------------------")
-            console.log(res.message);
-            return Promise.reject(response.data.message)
+            console.log(res.data.errorMsg);
+            return Promise.reject(response.data.errorMsg)
         }
     },
     error => {

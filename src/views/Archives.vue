@@ -3513,6 +3513,8 @@
                             archivesNo: that.nowCollectNo,
                             //图像url
                             tongueImgSrc: that.tongueImgSrc,
+                            //当前患者诊次
+                            sequence : that.visitSequence,
                         }).then(res => {
                             console.log(res)
 
@@ -3522,6 +3524,8 @@
                                     message: res.data.data,
                                     type: 'success'
                                 });
+                                //每次采集完，清空url，避免影响下次
+                                that.tongueImgSrc = null;
 
                             }
 
