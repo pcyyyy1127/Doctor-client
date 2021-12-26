@@ -8,7 +8,6 @@ import request from "./axios";
 
 Vue.prototype.$axios = request
 Vue.use(Element)
-require("./moke.js")
 Vue.config.productionTip = false
 
 new Vue({

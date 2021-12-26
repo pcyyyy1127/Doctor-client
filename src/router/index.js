@@ -4,7 +4,6 @@ import Home from '../views/Home.vue'
 import index from '../views/index'
 import Archives from "../views/Archives";
 import FollowUp from "../views/FollowUp";
-import axios from "../axios";
 import store from "../store";
 import Login from "../views/Login";
 Vue.use(VueRouter)
@@ -82,34 +81,64 @@ router.beforeEach((to, from, next) => {
 
 
   } else if(token && !hasRoute) {
-    //请求获取导航
-    axios.get("/sys/menu/nav", {
-      headers: {
-        token: localStorage.getItem("token")
-      }
-    }).then(res => {
+    //导航 直接写死
+    let nav = [
+      {
+        name: 'archives',
+        title: '健康档案',
+        icon: 'el-icon-s-tools',
+        path: '/archives',
+        component: '/Archives',
 
-      console.log(res.data.data)
+      },
+      {
+        name: 'followUp',
+        title: '患者随访',
+        icon: 'el-icon-s-operation',
+        component: '/followUp',
+        path: '/followUp',
+
+      },
+      {
+        name: 'Data',
+        title: '数据可视',
+        icon: 'el-icon-s-operation',
+        component: '/data',
+        path: '/data',
+
+      },
+      {
+        name: 'Article',
+        title: '文章科普',
+        icon: 'el-icon-s-operation',
+        component: '/article',
+        path: '/article',
+
+      },
+
+    ]
+    //权限 写死  暂时没有引入权限  没啥用可以不看
+    let authoritys = ['sys:user:list', "sys:user:save", "sys:user:delete"]
 
       // 拿到menuList
-      store.commit("setMenuList", res.data.data.nav)
+      store.commit("setMenuList", nav)
 
       // 拿到用户权限
-      store.commit("setPermList", res.data.data.authoritys)
+      store.commit("setPermList", authoritys)
 
-      console.log(store.state.menus.menuList)
+
 
       // 动态绑定路由
       let newRoutes = router.options.routes
 
-      res.data.data.nav.forEach(menu => {
+      nav.forEach(menu => {
         if (menu.children) {
           menu.children.forEach(e => {
 
             // 转成路由
             let route = menuToRoute(e)
 
-            // 吧路由添加到路由管理中
+            // 把路由添加到路由管理中
             if (route) {
               newRoutes[0].children.push(route)
             }
@@ -118,16 +147,10 @@ router.beforeEach((to, from, next) => {
         }
       })
 
-      console.log("newRoutes")
-      console.log(newRoutes)
-      router.addRoutes(newRoutes)
 
       hasRoute = true
       store.commit("changeRouteStatus", hasRoute)
-    })
   }
-
-
 
   next()
 })
