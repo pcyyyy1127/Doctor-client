@@ -120,19 +120,16 @@
 
             <h5 style="justify-content: center;display: flex;line-height: 0px;margin-top: 0px">当前诊次：{{visitSequence}}</h5>
 
+            <div style="justify-content: center;display: flex;flex-direction: row;line-height: 0px;margin-top: 5%">
 
 
+                <div>
+                    表单
+                    <el-button size="medium" round @click="dialogVisible2 = true" >采集</el-button>
+                </div>
+            </div>
 
 
-
-                    <div style="justify-content: center;display: flex;flex-direction: row;line-height: 0px;margin-top: 0px">
-
-
-                        <div>
-                            面相
-                            <el-button size="medium" round  >采集</el-button>
-                        </div>
-                    </div>
 
             <div style="justify-content: center;display: flex;flex-direction: row;line-height: 0px;margin-top: 5%">
 
@@ -143,14 +140,6 @@
                 </div>
             </div>
 
-            <div style="justify-content: center;display: flex;flex-direction: row;line-height: 0px;margin-top: 5%">
-
-
-                <div>
-                    其他
-                    <el-button size="medium" round @click="dialogVisible2 = true" >采集</el-button>
-                </div>
-            </div>
 
             <div style="justify-content: center;display: flex;flex-direction: row;line-height: 0px;margin-top: 5%">
 
@@ -174,7 +163,6 @@
 
                 <div style="display: flex;flex-direction: row;justify-content: center;margin-top: 10%">
                     <el-button size="medium" round @click="getVisitHistory()" >历史就诊</el-button>
-                    <el-button size="medium" round  >档案修改</el-button>
                 </div>
 
 
@@ -2866,14 +2854,63 @@
                 width="70%"
         >
 
-            <div v-for="(item, index) in visitHistory" :key="index">
-                <el-collapse accordion>
-                    <el-collapse-item>
+            <div v-for="(item, index) in visitHistory" :key="index" @click="getHistoryRow(item)">
+                <el-collapse  accordion>
+                    <el-collapse-item >
                         <template slot="title">
                             <h2>第{{item.sequence}}次就诊</h2><i class="header-icon el-icon-info"></i>
                             <h3 v-if="item.status == 1" style="margin-left: 5%"> 采集进行中</h3>
                             <h3 v-if="item.status == 2" style="margin-left: 5%"> 采集已完成</h3>
                             <h3 style="margin-left: 5%"> 最后采集时间：{{item.collectTime}}</h3>
+                            <el-popover
+                                    placement="right"
+                                    width="400"
+                                    height="400"
+                                    trigger="click"
+                                    style="margin-left: 5%"
+                            >
+                                        <el-input
+                                                type="textarea"
+                                                :autosize="{ minRows: 5, maxRows: 5}"
+                                                placeholder="暂无"
+                                                v-model="item.experience"
+                                                >
+                                        </el-input>
+                                <el-button   @click="submitExperience(item.experience,item.id)">提交</el-button>
+                            <el-button  slot="reference" @click.stop>传承弟子心得</el-button>
+                            </el-popover>
+
+                            <el-popover
+                                    placement="top"
+                                    width="400"
+                                    height="400"
+                                    trigger="click"
+                                    style="margin-left: 5%"
+                            >
+                               <div>
+                                   <el-image
+                                           style="width: 90%; height: 90%"
+                                           :src="item.imageUrlOne">
+                                       <div slot="error">
+                                           暂无图像
+                                       </div>
+                                   </el-image>
+                               </div>
+                                <el-button  slot="reference" @click.stop>舌象</el-button>
+                            </el-popover>
+
+                            <el-popover
+                                    placement="top"
+                                    width="400"
+                                    height="400"
+                                    trigger="click"
+                                    style="margin-left: 5%"
+                            >
+                                <el-button  id="record-btn" style ="margin-right:10px" >录音</el-button>
+                                <audio controls id="audio-player" ></audio>
+                                <el-button  @click="submitSoundRecording(item.id,item.soundRecordingUrl) " style ="margin-top:10px" >提交</el-button>
+                                <el-button  slot="reference" @click.stop="start(item)">名老中医点评录音</el-button>
+                            </el-popover>
                         </template>
                         <el-form :model="item.survey"  ref="item.survey"  label-width="100px" >
                             <div style="display: flex;justify-content: center">
@@ -5091,24 +5128,20 @@
 
 
                             <el-form-item style="margin-top: 5%">
-                                <el-button type="primary" @click="saveCollectForm">提交</el-button>
-                                <el-button @click="resetFormForCollect('item.survey')">重置</el-button>
+                                <el-button type="primary" @click="updateForm">修改</el-button>
                             </el-form-item>
                         </el-form>
                     </el-collapse-item>
                 </el-collapse>
             </div>
-
-
-
-
-
-
         </el-dialog>
+
+
     </div>
 </template>
 
 <script>
+
 
     export default {
         name: "Archives",
@@ -5136,6 +5169,7 @@
                 drawer: false,
                 //当前诊次，选中时展示在菜单中
                 visitSequence:null,
+                //建档采集字段
                 ruleForm:{
                     checkOne:null,
                     checkTwo:null,
@@ -5381,7 +5415,13 @@
 
 
                 },
-                visitHistory:null
+                visitHistory:null,
+                // 当前操作的某一次就诊历史数据
+                visitHistoryItem:null,
+                //录音使用
+                recorder:null,
+                //录音url
+                soundRecordingUrl:null
             }
         },
         methods:{
@@ -5706,7 +5746,7 @@
                 console.log(this.tongueImgSrc);
             },
             // base64转文件
-            dataURLtoFile(dataurl, filename) {
+          /*  dataURLtoFile(dataurl, filename) {
                 var arr = dataurl.split(",");
                 var mime = arr[0].match(/:(.*?);/)[1];
                 var bstr = atob(arr[1]);
@@ -5716,7 +5756,7 @@
                     u8arr[n] = bstr.charCodeAt(n);
                 }
                 return new File([u8arr], filename, { type: mime });
-            },
+            },*/
             // 关闭摄像头
             stopNavigator() {
                 this.thisVideo.srcObject.getTracks()[0].stop();
@@ -5790,10 +5830,171 @@
 
                     });
 
+            },
+
+            //获取历史就诊 点击的某一行绑定的数据
+            getHistoryRow(item){
+                console.log(item)
+                this.visitHistoryItem = item;
+            },
+            //更新就诊信息
+            updateForm(){
+               let that = this
+                this.$confirm('是否确认修改当前采集信息？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+
+
+                    this.$axios.post("/doctor/visit/updateForm", {
+                        id : that.visitHistoryItem.id,  //要修改的数据的id
+                        survey:that.visitHistoryItem.survey //需要更新的问卷信息
+                    }).then(res => {
+                        console.log(res)
+
+                        if (res.data.message == "success") {
+                            that.$message({
+                                showClose: true,
+                                message: res.data.data,
+                                type: 'success'
+                            });
+                        }
+
+                    });
+
+             });
+
+            },
+            //提交传承弟子心得（就诊）
+            submitExperience(experience,id){
+                let that = this
+                this.$confirm('是否确认提交？如果已有心得,提交后将会覆盖之前的心得', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+
+
+                    this.$axios.post("/doctor/visit/updateExperience", {
+                        id : id,  //要修改的数据的id
+                        experience:experience //需要更新的心得
+                    }).then(res => {
+                        console.log(res)
+
+                        if (res.data.message == "success") {
+                            that.$message({
+                                showClose: true,
+                                message: res.data.data,
+                                type: 'success'
+                            });
+                        }
+
+                    });
+
+                });
+            },
+
+
+
+             start(item) {
+               let recordBtn = document.getElementById("record-btn")
+               let player = document.getElementById("audio-player")
+                 player.src = item.soundRecordingUrl
+                 if (navigator.mediaDevices.getUserMedia) {
+                     var chunks = [];
+                     const constraints = { audio: true };
+                     navigator.mediaDevices.getUserMedia(constraints).then(
+                         stream => {
+                             console.log("授权成功！");
+
+                             const mediaRecorder = new MediaRecorder(stream);
+
+                             recordBtn.onclick = () => {
+                                 if (mediaRecorder.state === "recording") {
+                                     mediaRecorder.stop();
+                                     recordBtn.textContent = "录音";
+                                     console.log("录音结束");
+                                 } else {
+                                     mediaRecorder.start();
+                                     console.log("录音中...");
+                                     recordBtn.textContent = "结束";
+                                 }
+                                 console.log("录音器状态：", mediaRecorder.state);
+                             };
+
+                             mediaRecorder.ondataavailable = e => {
+                                 chunks.push(e.data);
+                             };
+
+                             mediaRecorder.onstop = e => {
+                                 var blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
+                                 chunks = [];
+                               //  var audioURL = window.URL.createObjectURL(blob);
+                               //  player.src = audioURL;
+
+                                 this.getBase64(blob).then(res=>{
+                                    player.src = res;
+                                     item.soundRecordingUrl = res;
+
+                                     console.log(res)
+                                 });
+                             };
+                         },
+                         () => {
+                             console.error("授权失败！");
+                         }
+                     );
+                 } else {
+                     console.error("浏览器不支持 getUserMedia");
+                 }
+    },
+            getBase64(file) {
+                return new Promise((resolve, reject) => {
+                    let reader = new FileReader();
+                    let fileResult = "";
+                    reader.readAsDataURL(file);
+                    reader.onload = () => {
+                        fileResult = reader.result;
+                    };
+                    reader.onerror = (error) => {
+                        reject(error);
+                    };
+                    reader.onloadend = () => {
+                        resolve(fileResult);
+                    };
+                });
+            },
+            //提交名老中医点评录音 （就诊）
+            submitSoundRecording(id,url){
+                let that = this
+                this.$confirm('是否确认提交？如果已有点评,提交后将会覆盖之前的点评', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+
+                    this.$axios.post("/doctor/visit/updateSound", {
+                        id : id,  //要修改的数据的id
+                        soundRecordingUrl:url //需要更新的录音
+                    }).then(res => {
+                        console.log(res)
+
+                        if (res.data.message == "success") {
+                            that.$message({
+                                showClose: true,
+                                message: res.data.data,
+                                type: 'success'
+                            });
+                        }
+
+                    });
+
+                });
             }
 
 
-        },
+    },
         //相机相关方法
         mounted() {
             this.getCompetence();
