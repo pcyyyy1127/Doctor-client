@@ -157,13 +157,10 @@
             <div style="justify-content: center;display: flex;flex-direction: column;line-height: 0px;margin-top: 25%">
 
                 <div style="display: flex;flex-direction: row;justify-content: center">
-                    <el-button size="medium" round  >历史随访</el-button>
+                    <el-button size="medium" round @click="getVisitHistory()" >历史就诊</el-button>
                     <el-button size="medium" round  >自我管理</el-button>
                 </div>
 
-                <div style="display: flex;flex-direction: row;justify-content: center;margin-top: 10%">
-                    <el-button size="medium" round @click="getVisitHistory()" >历史就诊</el-button>
-                </div>
 
 
 
@@ -2851,7 +2848,7 @@
         <!--历史就诊-->
         <el-dialog
                 :visible.sync="dialogVisible4"
-                width="70%"
+                width="90%"
         >
 
             <div v-for="(item, index) in visitHistory" :key="index" @click="getHistoryRow(item)">
