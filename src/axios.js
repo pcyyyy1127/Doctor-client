@@ -2,19 +2,25 @@ import axios from "axios";
 import Element from 'element-ui'
 import router from "./router";
 import qs from 'qs';
-axios.defaults.baseURL = "http://127.0.0.1:5001"
+//axios.defaults.baseURL = "http://127.0.0.1:5001"
+axios.defaults.baseURL = "http://47.108.215.55:5001"
 
 const request = axios.create({
     timeout: 5000,
 
 })
 request.interceptors.request.use(config => {
-    config.headers['token'] = localStorage.getItem("token") // 请求头带上token
 
-    if (config.url =="/auth/oauth/token"){
-        config.data = qs.stringify(config.data)
+    if (config.url !="/auth/oauth/token" || config.url !="/auth/oauth/accessToken"){
+        config.headers['token'] = localStorage.getItem("token") // 请求头带上token
     }
 
+    /*if (config.url =="/auth/oauth/token"){
+        console.log(config.data);
+      config.data = qs.stringify(config.data)
+       // config.data =JSON.stringify(config.data)
+    }
+    console.log(config);*/
 
     return config
 })

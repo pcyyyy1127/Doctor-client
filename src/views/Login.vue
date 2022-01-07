@@ -24,14 +24,14 @@
 </template>
 
 <script>
+    import Element from "element-ui";
+
     export default {
         data() {
             return {
                 loginForm: {
                     username: '',
                     password: '',
-                    code: '',
-                    keyCode:null,
                     grant_type:'password',
                     client_id:'client1',
                     client_secret:"123123"
@@ -53,14 +53,30 @@
         methods: {
             //登录
             submitForm(formName) {
+                let that = this
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.$axios.post("/auth/oauth/token",this.loginForm).then(res =>{
-                            console.log(res)
-                            const  jwt = res.data.data.access_token
-                            this.$store.commit('SET_TOKEN',jwt)
+                        this.$axios.post("/auth/oauth/accessToken",{
 
-                            this.$router.push("/archives")
+                                client_id:that.loginForm.client_id,
+                                client_secret:that.loginForm.client_secret,
+                                grant_type:that.loginForm.grant_type,
+                                username:that.loginForm.username,
+                                password:that.loginForm.password
+
+
+                        }).then(res =>{
+                            console.log(res)
+                            if (res.data.data.message == "success") {
+                                const  jwt = res.data.data.data
+                                this.$store.commit('SET_TOKEN',jwt)
+
+                                this.$router.push("/archives")
+                            }
+                            else {
+                                Element.Message.error( res.data.data.data , {duration: 3 * 1000})
+                            }
+
                         })
                     } else {
                         console.log('error submit!!');
