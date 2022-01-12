@@ -68,9 +68,9 @@
                         }).then(res =>{
                             console.log(res)
                             if (res.data.data.message == "success") {
-                                const  jwt = res.data.data.data
+                                const  jwt = res.data.data.data.token
                                 this.$store.commit('SET_TOKEN',jwt)
-
+                                this.$store.commit('setUserInfo',res.data.data.data.userInfo)
                                 this.$router.push("/archives")
                             }
                             else {

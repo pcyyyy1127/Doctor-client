@@ -2,8 +2,8 @@ import axios from "axios";
 import Element from 'element-ui'
 import router from "./router";
 import qs from 'qs';
-//axios.defaults.baseURL = "http://127.0.0.1:5001"
-axios.defaults.baseURL = "http://47.108.215.55:5001"
+axios.defaults.baseURL = "http://127.0.0.1:5001"
+//axios.defaults.baseURL = "http://47.108.215.55:5001"
 
 const request = axios.create({
     timeout: 5000,

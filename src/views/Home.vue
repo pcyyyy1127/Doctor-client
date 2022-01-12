@@ -11,14 +11,13 @@
                 <strong>慢性肺病的中医慢病管理平台</strong>
                 <div class="header-avatar">
                     <el-avatar size="medium" :src="userInfo.avatar"></el-avatar>
-
                     <el-dropdown>
   <span class="el-dropdown-link">
-    {{userInfo.username}}<i class="el-icon-arrow-down el-icon--right"></i>
+    {{userInfo.name}}<i class="el-icon-arrow-down el-icon--right"></i>
   </span>
                         <el-dropdown-menu slot="dropdown">
                             <router-link to="userCenter">
-                                <el-dropdown-item>个人中心</el-dropdown-item>
+                                <el-dropdown-item v-if="userInfo.role==='admin'">权限中心</el-dropdown-item>
                             </router-link>
                             <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
                         </el-dropdown-menu>
@@ -46,36 +45,34 @@
         data(){
          return{
              userInfo:{
-                 id:"",
-                 username:"",
-                 avatar:""
-
+                 name:"",
+                 avatar:"",
+                 role:""
 
              }
          }
         },
-        //渲染页面时，请求用户信息
+        //渲染页面时，获取用户信息
         created() {
             this.getUserInfo()
         },
         methods:{
             getUserInfo(){
-                this.$axios.get("/admin/userInfo").then(res =>{
-                    this.userInfo = res.data.data
-                })
+                //获取用户信息
+               this.userInfo = JSON.parse(localStorage.getItem("userInfo"))
+
+
             },
             logout() {
-                this.$axios.post("/logout").then(res => {
                     localStorage.clear()
                     sessionStorage.clear()
-
                     this.$store.commit("resetState")
-
+                    this.$store.commit("resetRole")
                     this.$router.push("/login")
-                })
+                }
             }
 
-        }
+
     }
 </script>
 

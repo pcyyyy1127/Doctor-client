@@ -14,7 +14,15 @@ export default new Vuex.Store({
     },
     resetState:(state) =>{
        state.token = ''
-    }
+    },
+    setUserInfo:(state,userInfo) =>{
+      state.userInfo = JSON.stringify(userInfo)
+      localStorage.setItem("userInfo",JSON.stringify(userInfo))
+    },
+    resetUserInfo:(state) =>{
+      state.userInfo = ''
+    },
+
   },
   actions: {
   },
