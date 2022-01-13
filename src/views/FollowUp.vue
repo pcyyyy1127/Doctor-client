@@ -5124,10 +5124,11 @@
                 });
             },
             //页面渲染时，请求
-            created() {
-                this.onSubmit()
-            }
 
+
+        },
+        created() {
+            this.onSubmit()
         }
     }
 </script>

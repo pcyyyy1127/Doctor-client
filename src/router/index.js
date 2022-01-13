@@ -117,14 +117,11 @@ router.beforeEach((to, from, next) => {
       },
 
     ]
-    //权限 写死  暂时没有引入权限  没啥用可以不看
-    let authoritys = ['sys:user:list', "sys:user:save", "sys:user:delete"]
 
       // 拿到menuList
       store.commit("setMenuList", nav)
 
-      // 拿到用户权限
-      store.commit("setPermList", authoritys)
+
 
 
 
