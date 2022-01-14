@@ -101,7 +101,7 @@ router.beforeEach((to, from, next) => {
       },
       {
         name: 'Data',
-        title: '数据可视',
+        title: '数据看板',
         icon: 'el-icon-s-operation',
         component: '/data',
         path: '/data',

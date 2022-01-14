@@ -553,7 +553,13 @@
                                         <el-form-item label="姓名" prop="name" ><el-input v-model="ruleForm.name"  size="mini" placeholder="请输入姓名" style="width: 60%" ></el-input></el-form-item>
                                         <el-form-item label="电话" prop="phone" ><el-input v-model="ruleForm.phone"  size="mini" placeholder="请输入电话" style="width: 60%" prop="phone" ></el-input></el-form-item>
                                         <el-form-item label="住址" prop="address" ><el-input v-model="ruleForm.address"  size="mini" placeholder="请输入住址" style="width: 60%" prop="address"></el-input></el-form-item>
-                                       <el-form-item label="年龄" prop="age" ><el-input v-model="ruleForm.age"  size="mini" placeholder="请输入年龄" style="width: 60%" prop="age"></el-input></el-form-item>
+                                       <el-form-item label="出生日期" prop="birthDate" >
+                                           <el-date-picker
+                                                   v-model="ruleForm.birthDate"
+                                                   type="date"
+                                                   placeholder="选择日期">
+                                           </el-date-picker>
+                                           </el-form-item>
                                    </div>
 
 
@@ -5206,7 +5212,7 @@
                     name:null,
                     phone:null,
                     address:null,
-                    age:null
+                    birthDate:null
 
 
 
@@ -5224,8 +5230,8 @@
                         { required: true, message: '地址不能为空', trigger: 'blur' },
 
                     ],
-                    age: [
-                        { required: true, message: '年龄不能为空', trigger: 'blur' },
+                    birthDate: [
+                        { required: true, message: '出生日期不能为空', trigger: 'blur' },
 
                     ],
 
@@ -5465,67 +5471,77 @@
 
             //新建档案
             saveArchives(){
-
-                let that= this
-                this.$axios.post("/doctor/archives/saveArchives",{
-
-                        checkOne:that.ruleForm.checkOne,
-                        checkTwo:that.ruleForm.checkTwo,
-                        addOne:that.ruleForm.addOne,
-                        addTwo:that.ruleForm.addTwo,
-                        addThree:that.ruleForm.addThree,
-                        addFour:that.ruleForm.addFour,
-                        excludeOne:that.ruleForm.excludeOne,
-                        excludeTwo:that.ruleForm.excludeTwo,
-                        excludeThree:that.ruleForm.excludeThree,
-                        sex:that.ruleForm.sex,
-                        birth:that.ruleForm.birth,
-                        nation:that.ruleForm.nation,
-                        marriage:that.ruleForm.marriage,
-                        edu:that.ruleForm.edu,
-                        profession:that.ruleForm.profession,
-                        height:that.ruleForm.height,
-                        weight:that.ruleForm.weight,
-                        startDate:that.ruleForm.startDate,
-                        endDate:that.ruleForm.sureDate,
-                        pastHistory:that.ruleForm.pastHistory,
-                        otherPastHistory:that.ruleForm.otherPastHistory,
-                        smokeHistoryYear:that.ruleForm.smokeHistoryYear,
-                        smokeNum:that.ruleForm.smokeNum,
-                        noSmokeDays:that.ruleForm.noSmokeDays,
-                        drinkHistoryYear:that.ruleForm.drinkHistoryYear,
-                        whiteDrink:that.ruleForm.whiteDrink,
-                        bearDrink:that.ruleForm.bearDrink,
-                        noDrinkDays:that.ruleForm.noDrinkDays,
-                        exposureHistoryYear:that.ruleForm.exposureHistoryYear,
-                        exposureHistory:that.ruleForm.exposureHistory,
-                        pets:that.ruleForm.pets,
-                        familyHistory:that.ruleForm.familyHistory,
-                        otherFamilyHistory:that.ruleForm.otherFamilyHistory,
-                        drugAllergyHistory:that.ruleForm.drugAllergyHistory,
-                        drugAllergyHistoryDetail:that.ruleForm.drugAllergyHistoryDetail,
-                        name:that.ruleForm.name,
-                        phone:that.ruleForm.phone,
-                        address:that.ruleForm.address,
-                        age:that.ruleForm.age,
+                if (this.ruleForm.name == null || this.ruleForm.phone == null || this.ruleForm.address == null || this.ruleForm.birthDate == null)
+                {
+                    this.$message({
+                        showClose: true,
+                        message: "请输入必填字段后再提交",
+                        type: 'error'
+                    });
+                }
+                else {
 
 
+                    let that = this
+                    this.$axios.post("/doctor/archives/saveArchives", {
 
-                }).then(res =>{
-                    console.log(res)
-                     that.resetForm('ruleForm')
-                    if (res.data.message == "success"){
-                        that.dialogVisible =false
-                        that.$message({
-                            showClose: true,
-                            message: res.data.data,
-                            type: 'success'
-                        });
-                        this.onSubmit()
+                        checkOne: that.ruleForm.checkOne,
+                        checkTwo: that.ruleForm.checkTwo,
+                        addOne: that.ruleForm.addOne,
+                        addTwo: that.ruleForm.addTwo,
+                        addThree: that.ruleForm.addThree,
+                        addFour: that.ruleForm.addFour,
+                        excludeOne: that.ruleForm.excludeOne,
+                        excludeTwo: that.ruleForm.excludeTwo,
+                        excludeThree: that.ruleForm.excludeThree,
+                        sex: that.ruleForm.sex,
+                        birth: that.ruleForm.birth,
+                        nation: that.ruleForm.nation,
+                        marriage: that.ruleForm.marriage,
+                        edu: that.ruleForm.edu,
+                        profession: that.ruleForm.profession,
+                        height: that.ruleForm.height,
+                        weight: that.ruleForm.weight,
+                        startDate: that.ruleForm.startDate,
+                        endDate: that.ruleForm.sureDate,
+                        pastHistory: that.ruleForm.pastHistory,
+                        otherPastHistory: that.ruleForm.otherPastHistory,
+                        smokeHistoryYear: that.ruleForm.smokeHistoryYear,
+                        smokeNum: that.ruleForm.smokeNum,
+                        noSmokeDays: that.ruleForm.noSmokeDays,
+                        drinkHistoryYear: that.ruleForm.drinkHistoryYear,
+                        whiteDrink: that.ruleForm.whiteDrink,
+                        bearDrink: that.ruleForm.bearDrink,
+                        noDrinkDays: that.ruleForm.noDrinkDays,
+                        exposureHistoryYear: that.ruleForm.exposureHistoryYear,
+                        exposureHistory: that.ruleForm.exposureHistory,
+                        pets: that.ruleForm.pets,
+                        familyHistory: that.ruleForm.familyHistory,
+                        otherFamilyHistory: that.ruleForm.otherFamilyHistory,
+                        drugAllergyHistory: that.ruleForm.drugAllergyHistory,
+                        drugAllergyHistoryDetail: that.ruleForm.drugAllergyHistoryDetail,
+                        name: that.ruleForm.name,
+                        phone: that.ruleForm.phone,
+                        address: that.ruleForm.address,
+                        birthDate: that.ruleForm.birthDate,
 
-                    }
 
-                })
+                    }).then(res => {
+                        console.log(res)
+                        that.resetForm('ruleForm')
+                        if (res.data.message == "success") {
+                            that.dialogVisible = false
+                            that.$message({
+                                showClose: true,
+                                message: res.data.data,
+                                type: 'success'
+                            });
+                            this.onSubmit()
+
+                        }
+
+                    })
+                }
 
             },
             resetForm(ruleForm) {
