@@ -93,7 +93,7 @@
                     label="操作"
                     width="200">
                 <template slot-scope="scope">
-                    <el-button size="mini" round  @click="choose(scope.row)" :disabled="disablebtn == true">随访</el-button>
+                    <el-button size="mini" round  @click="choose(scope.row)">随访</el-button>
                     <el-button size="mini" round  @click="getFollowHistory(scope.row)" >历史随访</el-button>
                 </template>
             </el-table-column>
@@ -4651,7 +4651,7 @@
                 currentPage: 1,
                 pageSize:10,
                 total:null,
-                disablebtn:false,
+               // disablebtn:false,
                 //当前选择的患者档案号
                 nowCollectNo:null,
                 type:null,  //档案号 /姓名 查询条件
@@ -4846,9 +4846,6 @@
                 }, {
                     value: '已完成三次随访',
                     label: '已完成三次随访'
-                }, {
-                    value: '待排期',
-                    label: '待排期'
                 }],
                 tableData: [],
                 //历史就诊数据

@@ -125,7 +125,7 @@
 
                 <div>
                     表单
-                    <el-button size="medium" round @click="dialogVisible2 = true" >采集</el-button>
+                    <el-button size="medium" round @click="showVisitForm()" >采集</el-button>
                 </div>
             </div>
 
@@ -5145,13 +5145,15 @@
 
 <script>
 
-
+    import Common from './module/Common'
     export default {
         name: "Archives",
 
 
         data() {
             return {
+
+
                 type:null,  //档案号 /姓名 查询条件
                 rangeDate:null,
                 dialogVisible: false,
@@ -5573,8 +5575,30 @@
                 })
 
             },
+            //展开表单问卷 并查询上一次填写的随访记录 进行回写
+            showVisitForm() {
 
-            //就诊信息采集-其他
+                let that = this
+                this.dialogVisible2 = true
+                this.$axios.post("/doctor/visit/getLastSurvey",{
+                    //患者档案号
+                    archivesId:that.nowCollectNo,
+                    sequence : that.visitSequence
+
+                }).then(res =>{
+                    console.log(res)
+                    if (res.data.message == "success" && res.data.data.survey != null ){
+
+                        that.$message('系统匹配到当前患者存在上一诊次的记录,已自动回写历史数据,您只需在上次的基础上修改即可提交');
+                        that.collectForm = res.data.data.survey
+                    }
+
+
+                })
+
+            },
+
+            //就诊信息采集-表单
             saveCollectForm(){
 
                 let that= this
@@ -6015,9 +6039,33 @@
 
 
 
+
         //页面渲染时，请求
         created() {
             this.onSubmit()
+            let that = this
+            if ( ! Common.remindFlag ) {
+                this.$axios.post("/doctor/follow/remind").then(res => {
+                    console.log(res)
+
+                    if (res.data.message == "success") {
+                        let num = res.data.data
+                        if (num > 0) {
+                            this.$notify({
+                                title: '提示',
+                                message: '您当前有'+num+'位患者处于随访超时队列,请尽快安排随访工作',
+                                duration: 0
+                            });
+                        }
+                    }
+                    Common.remindFlag = true
+
+                });
+            }
+
+
+
+
         }
 
     }
