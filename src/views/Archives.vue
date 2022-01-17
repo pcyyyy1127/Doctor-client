@@ -3471,7 +3471,8 @@
 
                                 <el-descriptions-item label="舌象">
                                     <el-form-item prop="tongueColor">
-                                        <div>舌色</div>
+                                        <div>舌色 <div v-if="item.different.tongueColor != '0' " class="differentText">*上诊次差异结果：{{item.different.tongueColor}}</div></div>
+
                                         <el-checkbox-group v-model="item.survey.tongueColor">
                                             <el-checkbox label="淡红"></el-checkbox>
                                             <el-checkbox label="淡白"></el-checkbox>
@@ -3484,7 +3485,7 @@
                                     </el-form-item>
 
                                     <el-form-item prop="tongueShape">
-                                        <div>舌形</div>
+                                        <div>舌形<div v-if="item.different.tongueShape != '0' " class="differentText">*上诊次差异结果：{{item.different.tongueShape}}</div></div>
                                         <el-checkbox-group v-model="item.survey.tongueShape">
                                             <el-checkbox label="正常"></el-checkbox>
                                             <el-checkbox label="老"></el-checkbox>
@@ -3500,7 +3501,7 @@
                                     </el-form-item>
 
                                     <el-form-item prop="tongueState">
-                                        <div>舌态</div>
+                                        <div>舌态<div v-if="item.different.tongueState != '0' " class="differentText">*上诊次差异结果：{{item.different.tongueState}}</div></div>
                                         <el-checkbox-group v-model="item.survey.tongueState">
                                             <el-checkbox label="正常"></el-checkbox>
                                             <el-checkbox label="强硬"></el-checkbox>
@@ -3517,7 +3518,7 @@
 
 
                                     <el-form-item prop="coatingNature">
-                                        <div>苔质</div>
+                                        <div>苔质<div v-if="item.different.coatingNature != '0' " class="differentText">*上诊次差异结果：{{item.different.coatingNature}}</div></div>
                                         <el-checkbox-group v-model="item.survey.coatingNature">
                                             <el-checkbox label="薄"></el-checkbox>
                                             <el-checkbox label="厚"></el-checkbox>
@@ -3535,7 +3536,7 @@
                                     </el-form-item>
 
                                     <el-form-item prop="coatingColour">
-                                        <div>苔色</div>
+                                        <div>苔色 <div v-if="item.different.coatingColour != '0' " class="differentText">*上诊次差异结果：{{item.different.coatingColour}}</div> </div>
                                         <el-checkbox-group v-model="item.survey.coatingColour">
                                             <el-checkbox label="白"></el-checkbox>
                                             <el-checkbox label="黄"></el-checkbox>
@@ -5041,6 +5042,7 @@
                                 <el-descriptions-item label="第三部分 （MRC呼吸困难分级）">
 
                                     <div>据以上调查，请根据您的实际情况选择一项最能反应您的呼吸困难情况的选项
+                                        <div v-if="item.different.sgrqPartThree != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartThree}}</div>
                                         <el-form-item prop="sgrqPartThree">
 
                                             <el-radio-group v-model="item.survey.sgrqPartThree">
@@ -5126,6 +5128,7 @@
                                     <el-option label="4级" value="4级"></el-option>
 
                                 </el-select>
+                                <div v-if="item.different.level != '0' " class="differentText">*上诊次差异结果：{{item.different.level}}</div>
                             </el-form-item>
 
 
@@ -6072,6 +6075,11 @@
 </script>
 
 <style  scoped>
+
+    .differentText {
+        color: red;
+    }
+
     .camera_outer {
         position: relative;
         overflow: hidden;
