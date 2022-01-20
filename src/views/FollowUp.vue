@@ -2421,7 +2421,7 @@
 
                                 <el-descriptions-item label="主诉" >
 
-
+                                    <div v-if="item.different.main != '0' " class="differentText">*上诊次差异结果：{{item.different.main}}</div>
                                     <el-form-item prop="main">
                                         <el-input
                                                 type="textarea"
@@ -2437,6 +2437,7 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="现病史">
+                                    <div v-if="item.different.present != '0' " class="differentText">*上诊次差异结果：{{item.different.present}}</div>
                                     <el-form-item prop="present">
                                         <el-input
                                                 type="textarea"
@@ -2449,6 +2450,7 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="刻下症">
+                                    <div v-if="item.different.visible != '0' " class="differentText">*上诊次差异结果：{{item.different.visible}}</div>
                                     <el-form-item prop="visible">
                                         <el-input
                                                 type="textarea"
@@ -2466,6 +2468,8 @@
 
                             <el-descriptions  title="主症" direction="vertical" :column="1" border >
                                 <el-descriptions-item label="咳嗽"  >
+                                    <div v-if="item.different.cough != '0' " class="differentText">*上诊次差异结果：{{item.different.cough}}</div>
+
                                     <el-form-item label="" prop="cough" >
                                         <el-radio-group v-model="item.survey.cough">
                                             <el-radio label="无"></el-radio>
@@ -2475,6 +2479,8 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="性质">
+                                    <div v-if="item.different.nature != '0' " class="differentText">*上诊次差异结果：{{item.different.nature}}</div>
+
                                     <el-form-item prop="nature">
                                         <el-radio-group v-model="item.survey.nature">
                                             <el-radio label="干咳"></el-radio>
@@ -2484,6 +2490,8 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="程度">
+                                    <div v-if="item.different.degree != '0' " class="differentText">*上诊次差异结果：{{item.different.degree}}</div>
+
                                     <el-form-item  prop="degree">
                                         <el-radio-group v-model="item.survey.degree">
                                             <el-radio label="偶有短暂咳嗽"></el-radio>
@@ -2494,6 +2502,7 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="加重因素">
+                                    <div v-if="item.different.increaseFactors != '0' " class="differentText">*上诊次差异结果：{{item.different.increaseFactors}}</div>
                                     <el-form-item prop="increaseFactors">
                                         <el-radio-group v-model="item.survey.increaseFactors">
                                             <el-radio label="活动后加重"></el-radio>
@@ -2505,6 +2514,7 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="缓解因素">
+                                    <div v-if="item.different.decreaseFactors != '0' " class="differentText">*上诊次差异结果：{{item.different.decreaseFactors}}</div>
                                     <el-form-item prop="decreaseFactors">
                                         <el-radio-group v-model="item.survey.decreaseFactors">
                                             <el-radio label="痰出"></el-radio>
@@ -2517,6 +2527,8 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="咳痰">
+                                    <div v-if="item.different.expectoration != '0' " class="differentText">*上诊次差异结果：{{item.different.expectoration}}</div>
+
                                     <el-form-item prop="expectoration">
                                         <el-radio-group v-model="item.survey.expectoration">
                                             <el-radio label="无"></el-radio>
@@ -2526,6 +2538,8 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="痰量">
+                                    <div v-if="item.different.volume != '0' " class="differentText">*上诊次差异结果：{{item.different.volume}}</div>
+
                                     <el-form-item prop="volume">
                                         <el-radio-group v-model="item.survey.volume">
                                             <el-radio label="少量（昼夜咯痰10-50ml）"></el-radio>
@@ -2538,6 +2552,8 @@
 
 
                                 <el-descriptions-item label="痰色">
+                                    <div v-if="item.different.phlegmColor != '0' " class="differentText">*上诊次差异结果：{{item.different.phlegmColor}}</div>
+
                                     <el-form-item prop="phlegmColor">
                                         <el-radio-group v-model="item.survey.phlegmColor">
                                             <el-radio label="白"></el-radio>
@@ -2551,6 +2567,8 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="痰质">
+                                    <div v-if="item.different.phlegmQuality != '0' " class="differentText">*上诊次差异结果：{{item.different.phlegmQuality}}</div>
+
                                     <el-form-item prop="phlegmQuality">
                                         <el-radio-group v-model="item.survey.phlegmQuality">
                                             <el-radio label="清稀"></el-radio>
@@ -2565,6 +2583,8 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="痰味">
+                                    <div v-if="item.different.phlegmTaste != '0' " class="differentText">*上诊次差异结果：{{item.different.phlegmTaste}}</div>
+
                                     <el-form-item prop="phlegmTaste">
                                         <el-radio-group v-model="item.survey.phlegmTaste">
                                             <el-radio label="无"></el-radio>
@@ -2578,6 +2598,8 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="呼吸困难">
+                                    <div v-if="item.different.dyspnea != '0' " class="differentText">*上诊次差异结果：{{item.different.dyspnea}}</div>
+
                                     <el-form-item prop="dyspnea">
                                         <el-radio-group v-model="item.survey.dyspnea">
                                             <el-radio label="无"></el-radio>
@@ -2587,6 +2609,7 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="呼吸困难加重因素">
+                                    <div v-if="item.different.dyspneaIncrease != '0' " class="differentText">*上诊次差异结果：{{item.different.dyspneaIncrease}}</div>
                                     <el-form-item prop="dyspneaIncrease">
                                         <el-checkbox-group v-model="item.survey.dyspneaIncrease">
                                             <el-checkbox label="活动"></el-checkbox>
@@ -2595,6 +2618,8 @@
                                             <el-checkbox label="呼吸道感染"></el-checkbox>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="dyspneaIncreaseOther">
+                                                <div v-if="item.different.dyspneaIncreaseOther != '0' " class="differentText">*上诊次差异结果：{{item.different.dyspneaIncreaseOther}}</div>
+
                                                 <el-input v-model="item.survey.dyspneaIncreaseOther"  size="mini" placeholder="请在此补充其他呼吸困难加重因素" style="width: 200px" ></el-input>
                                             </el-form-item>
                                         </el-checkbox-group>
@@ -2602,12 +2627,16 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="呼吸困难缓解因素">
+                                    <div v-if="item.different.dyspneaDecrease != '0' " class="differentText">*上诊次差异结果：{{item.different.dyspneaDecrease}}</div>
+
                                     <el-form-item prop="dyspneaDecrease">
                                         <el-checkbox-group v-model="item.survey.dyspneaDecrease">
                                             <el-checkbox label="休息"></el-checkbox>
                                             <el-checkbox label="吸氧"></el-checkbox>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="dyspneaDecreaseOther">
+                                                <div v-if="item.different.dyspneaDecreaseOther != '0' " class="differentText">*上诊次差异结果：{{item.different.dyspneaDecreaseOther}}</div>
+
                                                 <el-input v-model="item.survey.dyspneaDecreaseOther"  size="mini" placeholder="请在此补充其他呼吸困难缓解因素" style="width: 200px" ></el-input>
 
                                             </el-form-item>
@@ -2618,6 +2647,8 @@
 
 
                                 <el-descriptions-item label="呼吸困难程度">
+                                    <div v-if="item.different.dyspneaDegree != '0' " class="differentText">*上诊次差异结果：{{item.different.dyspneaDegree}}</div>
+
                                     <el-form-item prop="dyspneaDegree">
                                         <el-radio-group v-model="item.survey.dyspneaDegree">
                                             <el-radio label="0级 只在剧烈运动时才出现呼吸困难"></el-radio><br>
@@ -2632,6 +2663,8 @@
 
 
                                 <el-descriptions-item label="伴随症状">
+                                    <div v-if="item.different.accompanyingSymptoms != '0' " class="differentText">*上诊次差异结果：{{item.different.accompanyingSymptoms}}</div>
+
                                     <el-form-item prop="accompanyingSymptoms">
                                         <el-checkbox-group v-model="item.survey.accompanyingSymptoms">
                                             <el-checkbox label="发热"></el-checkbox>
@@ -2666,6 +2699,8 @@
                                             <el-checkbox label="体重下降"></el-checkbox>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="accompanyingSymptomsOther">
+                                                <div v-if="item.different.accompanyingSymptomsOther != '0' " class="differentText">*上诊次差异结果：{{item.different.accompanyingSymptomsOther}}</div>
+
                                                 <el-input v-model="item.survey.accompanyingSymptomsOther"  size="mini" placeholder="请在此补充其他伴随症状" style="width: 200px" ></el-input>
 
                                             </el-form-item>
@@ -2683,10 +2718,12 @@
 
 
 
-                            <el-descriptions style="margin-top:-5%" title="中医证候信息表" direction="vertical" :column="1" border >
+                            <el-descriptions style="margin-top:0%" title="中医证候信息表" direction="vertical" :column="1" border >
 
                                 <el-descriptions-item label="肺系">
                                     <el-form-item prop="pulmonarySystem">
+                                        <div v-if="item.different.pulmonarySystem != '0' " class="differentText">*上诊次差异结果：{{item.different.pulmonarySystem}}</div>
+
                                         <el-checkbox-group v-model="item.survey.pulmonarySystem">
                                             <el-checkbox label="咳嗽"></el-checkbox>
                                             <el-checkbox label="咳声重浊/沉闷"></el-checkbox>
@@ -2710,6 +2747,8 @@
                                             <el-checkbox label="咽痒"></el-checkbox>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="pulmonarySystemOther">
+                                                <div v-if="item.different.pulmonarySystemOther != '0' " class="differentText">*上诊次差异结果：{{item.different.pulmonarySystemOther}}</div>
+
                                                 <el-input v-model="item.survey.pulmonarySystemOther"  size="mini" placeholder="请在此补充其他肺系情况" style="width: 200px" ></el-input>
                                             </el-form-item>
                                         </el-checkbox-group>
@@ -2720,6 +2759,8 @@
 
                                 <el-descriptions-item label="寒热">
                                     <el-form-item prop="coldAndHeat">
+                                        <div v-if="item.different.coldAndHeat != '0' " class="differentText">*上诊次差异结果：{{item.different.coldAndHeat}}</div>
+
                                         <el-checkbox-group v-model="item.survey.coldAndHeat">
                                             <el-checkbox label="正常"></el-checkbox>
                                             <el-checkbox label="畏寒"></el-checkbox>
@@ -2737,6 +2778,8 @@
 
                                 <el-descriptions-item label="汗出">
                                     <el-form-item prop="perspiration">
+                                        <div v-if="item.different.perspiration != '0' " class="differentText">*上诊次差异结果：{{item.different.perspiration}}</div>
+
                                         <el-checkbox-group v-model="item.survey.perspiration">
                                             <el-checkbox label="正常"></el-checkbox>
                                             <el-checkbox label="无汗"></el-checkbox>
@@ -2746,6 +2789,8 @@
                                             <el-checkbox label="手足心汗"></el-checkbox>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="perspirationOther">
+                                                <div v-if="item.different.perspirationOther != '0' " class="differentText">*上诊次差异结果：{{item.different.perspirationOther}}</div>
+
                                                 <el-input v-model="item.survey.perspirationOther"  size="mini" placeholder="请在此补充其他汗出情况" style="width: 200px" ></el-input>
                                             </el-form-item>
 
@@ -2757,6 +2802,8 @@
 
                                 <el-descriptions-item label="精神">
                                     <el-form-item prop="spirit">
+                                        <div v-if="item.different.spirit != '0' " class="differentText">*上诊次差异结果：{{item.different.spirit}}</div>
+
                                         <el-checkbox-group v-model="item.survey.spirit">
                                             <el-checkbox label="正常"></el-checkbox>
                                             <el-checkbox label="乏力"></el-checkbox>
@@ -2766,6 +2813,8 @@
                                             <el-checkbox label="神昏"></el-checkbox>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="spiritOther">
+                                                <div v-if="item.different.spiritOther != '0' " class="differentText">*上诊次差异结果：{{item.different.spiritOther}}</div>
+
                                                 <el-input v-model="item.survey.spiritOther"  size="mini" placeholder="请在此补充其他精神情况" style="width: 200px" ></el-input>
                                             </el-form-item>
 
@@ -2777,6 +2826,8 @@
 
                                 <el-descriptions-item label="情志">
                                     <el-form-item prop="emotion">
+                                        <div v-if="item.different.emotion != '0' " class="differentText">*上诊次差异结果：{{item.different.emotion}}</div>
+
                                         <el-checkbox-group v-model="item.survey.emotion">
                                             <el-checkbox label="正常"></el-checkbox>
                                             <el-checkbox label="烦躁易怒"></el-checkbox>
@@ -2785,6 +2836,8 @@
                                             <el-checkbox label="易惊"></el-checkbox>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="emotionOther">
+                                                <div v-if="item.different.emotionOther != '0' " class="differentText">*上诊次差异结果：{{item.different.emotionOther}}</div>
+
                                                 <el-input v-model="item.survey.emotionOther"  size="mini" placeholder="请在此补充其他情志情况" style="width: 200px" ></el-input>
 
                                             </el-form-item>
@@ -2796,6 +2849,8 @@
 
                                 <el-descriptions-item label="面色">
                                     <el-form-item prop="complexion">
+                                        <div v-if="item.different.complexion != '0' " class="differentText">*上诊次差异结果：{{item.different.complexion}}</div>
+
                                         <el-checkbox-group v-model="item.survey.complexion">
                                             <el-checkbox label="常色"></el-checkbox>
                                             <el-checkbox label="淡白无华"></el-checkbox>
@@ -2807,6 +2862,8 @@
                                             <el-checkbox label="面色黧黑、肌肤甲错"></el-checkbox>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="complexionOther">
+                                                <div v-if="item.different.complexionOther != '0' " class="differentText">*上诊次差异结果：{{item.different.complexionOther}}</div>
+
                                                 <el-input v-model="item.survey.complexionOther"  size="mini" placeholder="请在此补充其他面色情况" style="width: 200px" ></el-input>
 
                                             </el-form-item>
@@ -2821,6 +2878,8 @@
                                     <el-form-item >
                                         <div>食：</div>
                                         <el-form-item prop="food">
+                                            <div v-if="item.different.food != '0' " class="differentText">*上诊次差异结果：{{item.different.food}}</div>
+
                                             <el-checkbox-group v-model="item.survey.food">
                                                 <el-checkbox label="正常"></el-checkbox>
                                                 <el-checkbox label="纳差"></el-checkbox>
@@ -2832,6 +2891,8 @@
                                                 <el-checkbox label="腹胀"></el-checkbox>
                                                 <el-checkbox label="其他"></el-checkbox>
                                                 <el-form-item prop="foodOther">
+                                                    <div v-if="item.different.foodOther != '0' " class="differentText">*上诊次差异结果：{{item.different.foodOther}}</div>
+
                                                     <el-input v-model="item.survey.foodOther"  size="mini" placeholder="请在此补充其他" style="width: 200px" ></el-input>
 
                                                 </el-form-item>
@@ -2841,6 +2902,8 @@
 
                                         <div>饮：</div>
                                         <el-form-item prop="drink">
+                                            <div v-if="item.different.drink != '0' " class="differentText">*上诊次差异结果：{{item.different.drink}}</div>
+
                                             <el-checkbox-group v-model="item.survey.drink">
                                                 <el-checkbox label="正常"></el-checkbox>
                                                 <el-checkbox label="口不渴"></el-checkbox>
@@ -2852,12 +2915,16 @@
                                                 <el-checkbox label="水入即吐"></el-checkbox>
                                                 <el-checkbox label="其他"></el-checkbox>
                                                 <el-form-item prop="drinkOther">
+                                                    <div v-if="item.different.drinkOther != '0' " class="differentText">*上诊次差异结果：{{item.different.drinkOther}}</div>
+
                                                     <el-input v-model="item.survey.drinkOther"  size="mini" placeholder="请在此补充其他" style="width: 200px" ></el-input>
                                                 </el-form-item >
                                             </el-checkbox-group>
                                         </el-form-item >
                                         <div>味：</div>
                                         <el-form-item prop="taste">
+                                            <div v-if="item.different.taste != '0' " class="differentText">*上诊次差异结果：{{item.different.taste}}</div>
+
                                             <el-checkbox-group v-model="item.survey.taste">
                                                 <el-checkbox label="正常"></el-checkbox>
                                                 <el-checkbox label="口苦"></el-checkbox>
@@ -2868,6 +2935,8 @@
                                                 <el-checkbox label="口腻"></el-checkbox>
                                                 <el-checkbox label="其他"></el-checkbox>
                                                 <el-form-item prop="tasteOther">
+                                                    <div v-if="item.different.tasteOther != '0' " class="differentText">*上诊次差异结果：{{item.different.tasteOther}}</div>
+
                                                     <el-input v-model="item.survey.tasteOther"  size="mini" placeholder="请在此补充其他" style="width: 200px" ></el-input>
                                                 </el-form-item >
                                             </el-checkbox-group>
@@ -2880,6 +2949,7 @@
                                 <el-descriptions-item label="二便">
                                     <el-form-item prop="urine">
                                         <div>小便：</div>
+                                        <div v-if="item.different.urine != '0' " class="differentText">*上诊次差异结果：{{item.different.urine}}</div>
 
                                         <el-checkbox-group v-model="item.survey.urine">
                                             <el-checkbox label="正常"></el-checkbox>
@@ -2892,6 +2962,8 @@
                                             <el-checkbox label="遗尿"></el-checkbox>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="urineOther">
+                                                <div v-if="item.different.urineOther != '0' " class="differentText">*上诊次差异结果：{{item.different.urineOther}}</div>
+
                                                 <el-input v-model="item.survey.urineOther"  size="mini" placeholder="请在此补充其他小便情况" style="width: 200px" ></el-input>
 
                                             </el-form-item>
@@ -2901,7 +2973,10 @@
                                     <el-form-item prop="defecate">
 
                                         <div>大便：</div>
+                                        <div v-if="item.different.defecate != '0' " class="differentText">*上诊次差异结果：{{item.different.defecate}}</div>
+
                                         <el-checkbox-group v-model="item.survey.defecate">
+
                                             <el-checkbox label="正常"></el-checkbox>
                                             <el-checkbox label="干结"></el-checkbox>
                                             <el-checkbox label="稀溏"></el-checkbox>
@@ -2910,6 +2985,8 @@
                                             <el-checkbox label="完谷不化"></el-checkbox><br>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="defecateOther">
+                                                <div v-if="item.different.defecateOther != '0' " class="differentText">*上诊次差异结果：{{item.different.defecateOther}}</div>
+
                                                 <el-input v-model="item.survey.defecateOther"  size="mini" placeholder="请在此补充其他大便情况" style="width: 200px" ></el-input>
 
                                             </el-form-item>
@@ -2924,6 +3001,7 @@
 
                                 <el-descriptions-item label="睡眠">
                                     <el-form-item prop="sleep">
+                                        <div v-if="item.different.sleep != '0' " class="differentText">*上诊次差异结果：{{item.different.sleep}}</div>
 
                                         <el-checkbox-group v-model="item.survey.sleep">
                                             <el-checkbox label="正常"></el-checkbox>
@@ -2932,6 +3010,8 @@
                                             <el-checkbox label="易醒"></el-checkbox>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="sleepOther">
+                                                <div v-if="item.different.sleepOther != '0' " class="differentText">*上诊次差异结果：{{item.different.sleepOther}}</div>
+
                                                 <el-input v-model="item.survey.sleepOther"  size="mini" placeholder="请在此补充其他睡眠情况" style="width: 200px" ></el-input>
 
                                             </el-form-item>
@@ -2944,6 +3024,7 @@
 
                                 <el-descriptions-item label="周身四肢">
                                     <el-form-item prop="bodyAndLimbs">
+                                        <div v-if="item.different.bodyAndLimbs != '0' " class="differentText">*上诊次差异结果：{{item.different.bodyAndLimbs}}</div>
 
                                         <el-checkbox-group v-model="item.survey.bodyAndLimbs">
                                             <el-checkbox label="正常"></el-checkbox>
@@ -2954,6 +3035,8 @@
                                             <el-checkbox label="面目或肢体浮肿"></el-checkbox>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="bodyAndLimbsOthers">
+                                                <div v-if="item.different.bodyAndLimbsOthers != '0' " class="differentText">*上诊次差异结果：{{item.different.bodyAndLimbsOthers}}</div>
+
                                                 <el-input v-model="item.survey.bodyAndLimbsOthers"  size="mini" placeholder="请在此补充其他周身四肢情况" style="width: 200px" ></el-input>
 
                                             </el-form-item>
@@ -2966,7 +3049,8 @@
 
                                 <el-descriptions-item label="舌象">
                                     <el-form-item prop="tongueColor">
-                                        <div>舌色</div>
+                                        <div>舌色 <div v-if="item.different.tongueColor != '0' " class="differentText">*上诊次差异结果：{{item.different.tongueColor}}</div></div>
+
                                         <el-checkbox-group v-model="item.survey.tongueColor">
                                             <el-checkbox label="淡红"></el-checkbox>
                                             <el-checkbox label="淡白"></el-checkbox>
@@ -2979,7 +3063,7 @@
                                     </el-form-item>
 
                                     <el-form-item prop="tongueShape">
-                                        <div>舌形</div>
+                                        <div>舌形<div v-if="item.different.tongueShape != '0' " class="differentText">*上诊次差异结果：{{item.different.tongueShape}}</div></div>
                                         <el-checkbox-group v-model="item.survey.tongueShape">
                                             <el-checkbox label="正常"></el-checkbox>
                                             <el-checkbox label="老"></el-checkbox>
@@ -2995,7 +3079,7 @@
                                     </el-form-item>
 
                                     <el-form-item prop="tongueState">
-                                        <div>舌态</div>
+                                        <div>舌态<div v-if="item.different.tongueState != '0' " class="differentText">*上诊次差异结果：{{item.different.tongueState}}</div></div>
                                         <el-checkbox-group v-model="item.survey.tongueState">
                                             <el-checkbox label="正常"></el-checkbox>
                                             <el-checkbox label="强硬"></el-checkbox>
@@ -3012,7 +3096,7 @@
 
 
                                     <el-form-item prop="coatingNature">
-                                        <div>苔质</div>
+                                        <div>苔质<div v-if="item.different.coatingNature != '0' " class="differentText">*上诊次差异结果：{{item.different.coatingNature}}</div></div>
                                         <el-checkbox-group v-model="item.survey.coatingNature">
                                             <el-checkbox label="薄"></el-checkbox>
                                             <el-checkbox label="厚"></el-checkbox>
@@ -3030,7 +3114,7 @@
                                     </el-form-item>
 
                                     <el-form-item prop="coatingColour">
-                                        <div>苔色</div>
+                                        <div>苔色 <div v-if="item.different.coatingColour != '0' " class="differentText">*上诊次差异结果：{{item.different.coatingColour}}</div> </div>
                                         <el-checkbox-group v-model="item.survey.coatingColour">
                                             <el-checkbox label="白"></el-checkbox>
                                             <el-checkbox label="黄"></el-checkbox>
@@ -3042,12 +3126,15 @@
 
                                     <el-form-item prop="tongueUnder">
                                         <div>舌下络脉</div>
+                                        <div v-if="item.different.tongueUnder != '0' " class="differentText">*上诊次差异结果：{{item.different.tongueUnder}}</div>
                                         <el-checkbox-group v-model="item.survey.tongueUnder">
                                             <el-checkbox label="正常"></el-checkbox>
                                             <el-checkbox label="粗胀"></el-checkbox>
                                             <el-checkbox label="青紫"></el-checkbox>
                                             <el-checkbox label="其他"></el-checkbox>
                                             <el-form-item prop="tongueUnderOther">
+                                                <div v-if="item.different.tongueUnderOther != '0' " class="differentText">*上诊次差异结果：{{item.different.tongueUnderOther}}</div>
+
                                                 <el-input v-model="item.survey.tongueUnderOther"  size="mini" placeholder="请在此补充其他舌下络脉情况" style="width: 200px" ></el-input>
                                             </el-form-item>
                                         </el-checkbox-group>
@@ -3059,6 +3146,8 @@
 
                                 <el-descriptions-item label="脉象">
                                     <el-form-item prop="pulseCondition">
+                                        <div v-if="item.different.pulseCondition != '0' " class="differentText">*上诊次差异结果：{{item.different.pulseCondition}}</div>
+
                                         <el-checkbox-group v-model="item.survey.pulseCondition">
                                             <el-checkbox label="浮"></el-checkbox>
                                             <el-checkbox label="洪"></el-checkbox>
@@ -3099,6 +3188,8 @@
                                 <el-descriptions-item label="中医诊断">
                                     <el-form-item prop="disease">
                                         <div>疾病：</div>
+                                        <div v-if="item.different.disease != '0' " class="differentText">*上诊次差异结果：{{item.different.disease}}</div>
+
                                         <el-input
                                                 type="textarea"
                                                 :autosize="{ minRows: 2, maxRows: 4}"
@@ -3110,6 +3201,8 @@
 
                                     <el-form-item prop="syndromeType">
                                         <div>证型：</div>
+                                        <div v-if="item.different.syndromeType != '0' " class="differentText">*上诊次差异结果：{{item.different.syndromeType}}</div>
+
                                         <el-input
                                                 type="textarea"
                                                 :autosize="{ minRows: 2, maxRows: 4}"
@@ -3124,8 +3217,10 @@
 
                             </el-descriptions>
 
-                            <el-descriptions style="margin-top:-5%" title="处方信息" direction="vertical" :column="1" border >
+                            <el-descriptions style="margin-top:0%" title="处方信息" direction="vertical" :column="1" border >
                                 <el-descriptions-item label="治法">
+                                    <div v-if="item.different.therapy != '0' " class="differentText">*上诊次差异结果：{{item.different.therapy}}</div>
+
                                     <el-form-item prop="therapy">
                                         <el-input
                                                 type="textarea"
@@ -3139,6 +3234,8 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="方剂名称">
+                                    <div v-if="item.different.prescriptionName != '0' " class="differentText">*上诊次差异结果：{{item.different.prescriptionName}}</div>
+
                                     <el-form-item prop="prescriptionName">
                                         <el-input
                                                 type="textarea"
@@ -3152,6 +3249,8 @@
 
 
                                 <el-descriptions-item label="中药处方">
+                                    <div v-if="item.different.prescription != '0' " class="differentText">*上诊次差异结果：{{item.different.prescription}}</div>
+
                                     <el-form-item prop="prescription">
                                         <el-input
                                                 type="textarea"
@@ -3163,6 +3262,8 @@
                                     </el-form-item>
                                     <el-form-item prop="medicineNum">
                                         <div>
+                                            <div v-if="item.different.medicineNum != '0' " class="differentText">*上诊次差异结果：{{item.different.medicineNum}}剂</div>
+
                                             <el-input-number v-model="item.survey.medicineNum"  :min="1" :max="999" ></el-input-number>  剂
 
                                         </div>
@@ -3171,6 +3272,8 @@
                                     </el-form-item>
                                     <el-form-item prop="decoctingMethod">
                                         <div>煎服法：</div>
+                                        <div v-if="item.different.decoctingMethod != '0' " class="differentText">*上诊次差异结果：{{item.different.decoctingMethod}}</div>
+
                                         <el-input
                                                 type="textarea"
                                                 :autosize="{ minRows: 2, maxRows: 4}"
@@ -3182,6 +3285,8 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="中成药处方">
+                                    <div v-if="item.different.chinesePatentMedicine != '0' " class="differentText">*上诊次差异结果：{{item.different.chinesePatentMedicine}}</div>
+
                                     <el-form-item prop="chinesePatentMedicine">
                                         <el-input
                                                 type="textarea"
@@ -3195,6 +3300,8 @@
 
 
                                 <el-descriptions-item label="针灸推拿">
+                                    <div v-if="item.different.acupunctureAndMassage != '0' " class="differentText">*上诊次差异结果：{{item.different.acupunctureAndMassage}}</div>
+
                                     <el-form-item prop="acupunctureAndMassage">
                                         <el-input
                                                 type="textarea"
@@ -3208,6 +3315,8 @@
 
 
                                 <el-descriptions-item label="西药处方">
+                                    <div v-if="item.different.westernMedicinePrescription != '0' " class="differentText">*上诊次差异结果：{{item.different.westernMedicinePrescription}}</div>
+
                                     <el-form-item prop="westernMedicinePrescription">
                                         <el-input
                                                 type="textarea"
@@ -3223,6 +3332,8 @@
                                 <el-descriptions-item label="医嘱">
                                     <el-form-item prop="adviceForFood">
                                         <div>饮食：</div>
+                                        <div v-if="item.different.adviceForFood != '0' " class="differentText">*上诊次差异结果：{{item.different.adviceForFood}}</div>
+
                                         <el-input
                                                 type="textarea"
                                                 :autosize="{ minRows: 5, maxRows: 10}"
@@ -3233,6 +3344,8 @@
 
                                     <el-form-item prop="adviceForDailyLife">
                                         <div>起居：</div>
+                                        <div v-if="item.different.adviceForDailyLife != '0' " class="differentText">*上诊次差异结果：{{item.different.adviceForDailyLife}}</div>
+
                                         <el-input
                                                 type="textarea"
                                                 :autosize="{ minRows: 5, maxRows: 10}"
@@ -3243,6 +3356,8 @@
 
                                     <el-form-item prop="adviceForEmotion">
                                         <div>情志：</div>
+                                        <div v-if="item.different.adviceForEmotion != '0' " class="differentText">*上诊次差异结果：{{item.different.adviceForEmotion}}</div>
+
                                         <el-input
                                                 type="textarea"
                                                 :autosize="{ minRows: 5, maxRows: 10}"
@@ -3253,6 +3368,8 @@
 
                                     <el-form-item prop="adviceForOther">
                                         <div>其他：</div>
+                                        <div v-if="item.different.adviceForOther != '0' " class="differentText">*上诊次差异结果：{{item.different.adviceForOther}}</div>
+
                                         <el-input
                                                 type="textarea"
                                                 :autosize="{ minRows: 5, maxRows: 10}"
@@ -3267,11 +3384,15 @@
                                 <el-descriptions-item label="必要的临床检查">
                                     <div>胸部HRCT：</div>
                                     <el-form-item  prop="hrctDate">
+                                        <div v-if="item.different.hrctDate != '0' " class="differentText">*上诊次差异结果：{{item.different.hrctDate}}</div>
+
 
                                         <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="item.survey.hrctDate" style="width: 50%;"></el-date-picker></div>
                                     </el-form-item>
                                     <el-form-item  prop="hrctStore">
                                         <div>是否已留存：
+                                            <div v-if="item.different.hrctStore != '0' " class="differentText">*上诊次差异结果：{{item.different.hrctStore}}</div>
+
                                             <el-radio-group v-model="item.survey.hrctStore">
                                                 <el-radio label="是"></el-radio>
                                                 <el-radio label="否"></el-radio>
@@ -3284,11 +3405,14 @@
 
                                     <div>肺功能： </div>
                                     <el-form-item  prop="lungFunctionDate">
+                                        <div v-if="item.different.lungFunctionDate != '0' " class="differentText">*上诊次差异结果：{{item.different.lungFunctionDate}}</div>
 
                                         <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="item.survey.lungFunctionDate" style="width: 50%;"></el-date-picker></div>
                                     </el-form-item>
                                     <el-form-item  prop="lungFunctionStore">
                                         <div>是否已留存：
+                                            <div v-if="item.different.lungFunctionStore != '0' " class="differentText">*上诊次差异结果：{{item.different.lungFunctionStore}}</div>
+
                                             <el-radio-group v-model="item.survey.lungFunctionStore">
                                                 <el-radio label="是"></el-radio>
                                                 <el-radio label="否"></el-radio>
@@ -3301,11 +3425,14 @@
 
                                     <div>动脉血气分析： </div>
                                     <el-form-item  prop="bloodGasAnalysisDate">
+                                        <div v-if="item.different.bloodGasAnalysisDate != '0' " class="differentText">*上诊次差异结果：{{item.different.bloodGasAnalysisDate}}</div>
 
                                         <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="item.survey.bloodGasAnalysisDate" style="width: 50%;"></el-date-picker></div>
                                     </el-form-item>
                                     <el-form-item  prop="bloodGasAnalysisStore">
                                         <div>是否已留存：
+                                            <div v-if="item.different.bloodGasAnalysisStore != '0' " class="differentText">*上诊次差异结果：{{item.different.bloodGasAnalysisStore}}</div>
+
                                             <el-radio-group v-model="item.survey.bloodGasAnalysisStore">
                                                 <el-radio label="是"></el-radio>
                                                 <el-radio label="否"></el-radio>
@@ -3319,11 +3446,14 @@
 
                                     <div>6分钟步行试验： </div>
                                     <el-form-item  prop="walkTestDate">
+                                        <div v-if="item.different.walkTestDate != '0' " class="differentText">*上诊次差异结果：{{item.different.walkTestDate}}</div>
 
                                         <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="item.survey.walkTestDate" style="width: 50%;"></el-date-picker></div>
                                     </el-form-item>
                                     <el-form-item  prop="walkTestStore">
                                         <div>是否已留存：
+                                            <div v-if="item.different.walkTestStore != '0' " class="differentText">*上诊次差异结果：{{item.different.walkTestStore}}</div>
+
                                             <el-radio-group v-model="item.survey.walkTestStore">
                                                 <el-radio label="是"></el-radio>
                                                 <el-radio label="否"></el-radio>
@@ -3337,11 +3467,14 @@
 
                                     <div>胸部X线： </div>
                                     <el-form-item  prop="rayDate">
+                                        <div v-if="item.different.rayDate != '0' " class="differentText">*上诊次差异结果：{{item.different.rayDate}}</div>
 
                                         <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="item.survey.rayDate" style="width: 50%;"></el-date-picker></div>
                                     </el-form-item>
                                     <el-form-item  prop="rayStore">
                                         <div>是否已留存：
+                                            <div v-if="item.different.rayStore != '0' " class="differentText">*上诊次差异结果：{{item.different.rayStore}}</div>
+
                                             <el-radio-group v-model="item.survey.rayStore">
                                                 <el-radio label="是"></el-radio>
                                                 <el-radio label="否"></el-radio>
@@ -3354,11 +3487,14 @@
 
                                     <div>心脏彩超： </div>
                                     <el-form-item  prop="colourSonographyDate">
+                                        <div v-if="item.different.colourSonographyDate != '0' " class="differentText">*上诊次差异结果：{{item.different.colourSonographyDate}}</div>
 
                                         <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="item.survey.colourSonographyDate" style="width: 50%;"></el-date-picker></div>
                                     </el-form-item>
                                     <el-form-item  prop="colourSonographyStore">
                                         <div>是否已留存：
+                                            <div v-if="item.different.colourSonographyStore != '0' " class="differentText">*上诊次差异结果：{{item.different.colourSonographyStore}}</div>
+
                                             <el-radio-group v-model="item.survey.colourSonographyStore">
                                                 <el-radio label="是"></el-radio>
                                                 <el-radio label="否"></el-radio>
@@ -3372,11 +3508,15 @@
 
                                     <div>血常规： </div>
                                     <el-form-item  prop="routineBloodTestDate">
+                                        <div v-if="item.different.routineBloodTestDate != '0' " class="differentText">*上诊次差异结果：{{item.different.routineBloodTestDate}}</div>
+
 
                                         <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="item.survey.routineBloodTestDate" style="width: 50%;"></el-date-picker></div>
                                     </el-form-item>
                                     <el-form-item  prop="routineBloodTestStore">
                                         <div>是否已留存：
+                                            <div v-if="item.different.routineBloodTestStore != '0' " class="differentText">*上诊次差异结果：{{item.different.routineBloodTestStore}}</div>
+
                                             <el-radio-group v-model="item.survey.routineBloodTestStore">
                                                 <el-radio label="是"></el-radio>
                                                 <el-radio label="否"></el-radio>
@@ -3391,11 +3531,14 @@
 
                                     <div>血生化检查： </div>
                                     <el-form-item  prop="bloodExaminationDate">
+                                        <div v-if="item.different.bloodExaminationDate != '0' " class="differentText">*上诊次差异结果：{{item.different.bloodExaminationDate}}</div>
 
                                         <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="item.survey.bloodExaminationDate" style="width: 50%;"></el-date-picker></div>
                                     </el-form-item>
                                     <el-form-item  prop="bloodExaminationStore">
                                         <div>是否已留存：
+                                            <div v-if="item.different.bloodExaminationStore != '0' " class="differentText">*上诊次差异结果：{{item.different.bloodExaminationStore}}</div>
+
                                             <el-radio-group v-model="item.survey.bloodExaminationStore">
                                                 <el-radio label="是"></el-radio>
                                                 <el-radio label="否"></el-radio>
@@ -3408,11 +3551,14 @@
 
                                     <div>凝血功能和D二聚体： </div>
                                     <el-form-item  prop="coagulationFunctionDate">
+                                        <div v-if="item.different.coagulationFunctionDate != '0' " class="differentText">*上诊次差异结果：{{item.different.coagulationFunctionDate}}</div>
 
                                         <div>检查日期：<el-date-picker type="date" placeholder="选择日期" v-model="item.survey.coagulationFunctionDate" style="width: 50%;"></el-date-picker></div>
                                     </el-form-item>
                                     <el-form-item  prop="coagulationFunctionStore">
                                         <div>是否已留存：
+                                            <div v-if="item.different.coagulationFunctionStore != '0' " class="differentText">*上诊次差异结果：{{item.different.coagulationFunctionStore}}</div>
+
                                             <el-radio-group v-model="item.survey.coagulationFunctionStore">
                                                 <el-radio label="是"></el-radio>
                                                 <el-radio label="否"></el-radio>
@@ -3428,6 +3574,7 @@
 
 
                                 <el-descriptions-item label="院外合并治疗情况(西药)">
+                                    <div v-if="item.different.westernMedicineHas != '0' " class="differentText">*上诊次差异结果：{{item.different.westernMedicineHas}}</div>
 
 
                                     <el-form-item prop="westernMedicineHas">
@@ -3442,6 +3589,7 @@
                                     </el-form-item>
 
                                     <el-form-item prop="westernMedicineMain">
+                                        <div v-if="item.different.westernMedicineMain != '0' " class="differentText">*上诊次差异结果：{{item.different.westernMedicineMain}}</div>
 
                                         <div>如有，记录主要药物名称：
                                             <el-checkbox-group v-model="item.survey.westernMedicineMain">
@@ -3452,6 +3600,8 @@
                                     </el-form-item>
 
                                     <el-form-item prop="westernMedicineMainOther">
+                                        <div v-if="item.different.westernMedicineMainOther != '0' " class="differentText">*上诊次差异结果：{{item.different.westernMedicineMainOther}}</div>
+
                                         其他：
                                         <el-input v-model="item.survey.westernMedicineMainOther"  size="mini" placeholder="请在此补充其他西药" style="width: 200px" ></el-input>
                                     </el-form-item>
@@ -3465,6 +3615,8 @@
 
                                     <el-form-item prop="chinesePatentMedicineHas">
 
+                                        <div v-if="item.different.chinesePatentMedicineHas != '0' " class="differentText">*上诊次差异结果：{{item.different.chinesePatentMedicineHas}}</div>
+
                                         <div>中成药：
                                             <el-radio-group v-model="item.survey.chinesePatentMedicineHas">
                                                 <el-radio label="有"></el-radio>
@@ -3476,6 +3628,8 @@
 
 
                                     <el-form-item prop="chinesePatentMedicineMain">
+                                        <div v-if="item.different.chinesePatentMedicineMain != '0' " class="differentText">*上诊次差异结果：{{item.different.chinesePatentMedicineMain}}</div>
+
                                         如有，记录主要中成药名称：
                                         <el-input v-model="item.survey.chinesePatentMedicineMain"  size="mini" placeholder="请在此补充主要中成药名称" style="width: 500px" ></el-input>
                                     </el-form-item>
@@ -3489,6 +3643,8 @@
 
                                     <el-form-item prop="therapyHas">
 
+                                        <div v-if="item.different.therapyHas != '0' " class="differentText">*上诊次差异结果：{{item.different.therapyHas}}</div>
+
                                         <div>其他疗法：
                                             <el-radio-group v-model="item.survey.therapyHas">
                                                 <el-radio label="有"></el-radio>
@@ -3499,6 +3655,8 @@
                                     </el-form-item>
 
                                     <el-form-item prop="therapyMain">
+                                        <div v-if="item.different.therapyMain != '0' " class="differentText">*上诊次差异结果：{{item.different.therapyMain}}</div>
+
 
                                         <div>如有，记录具体疗法：
                                             <el-checkbox-group v-model="item.survey.therapyMain">
@@ -3508,6 +3666,8 @@
                                     </el-form-item>
 
                                     <el-form-item prop="therapyMainOther">
+                                        <div v-if="item.different.therapyMainOther != '0' " class="differentText">*上诊次差异结果：{{item.different.therapyMainOther}}</div>
+
                                         其他：
                                         <el-input v-model="item.survey.therapyMainOther"  size="mini" placeholder="请在此补充其他疗法" style="width: 200px" ></el-input>
                                     </el-form-item>
@@ -3551,8 +3711,12 @@
 并把适当的数字勾上以表示该症状在过去一星期的情况有多坏（0代表情况算是最好，6代表情况算是最坏）">
                                     <el-form-item prop="mymopOnePointOne">
                                         <div>症状一：</div>
+                                        <div v-if="item.different.mymopOnePointOne != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopOnePointOne}}</div>
+
                                         <el-input placeholder="请在此填写症状一" v-model="item.survey.mymopOnePointOne" style="width: 20%">
                                         </el-input>
+
+                                        <div v-if="item.different.mymopOnePointOneScore != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopOnePointOneScore}}</div>
 
                                         <el-form-item prop="mymopOnePointOneScore">
                                             <div>情况算是最好
@@ -3572,10 +3736,14 @@
 
                                     <el-form-item prop="mymopOnePointTwo">
                                         <div>症状二：</div>
+                                        <div v-if="item.different.mymopOnePointTwo != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopOnePointTwo}}</div>
+
                                         <el-input placeholder="请在此填写症状二" v-model="item.survey.mymopOnePointTwo" style="width: 20%">
                                         </el-input>
 
                                         <el-form-item prop="mymopOnePointTwoScore">
+                                            <div v-if="item.different.mymopOnePointTwoScore != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopOnePointTwoScore}}</div>
+
                                             <div>情况算是最好
                                                 <el-radio-group v-model="item.survey.mymopOnePointTwoScore">
                                                     <el-radio label="1" ></el-radio>
@@ -3596,8 +3764,12 @@
 以是身体上的、社交上的、或精神上的活动；例如工作、运动、或其他娱乐等等），并把适当的数字勾上以表受影响的情况有多坏。">
                                     <el-form-item prop="mymopTwo">
                                         <div>活动：</div>
+                                        <div v-if="item.different.mymopTwo != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopTwo}}</div>
+
                                         <el-input placeholder="请在此填写活动" v-model="item.survey.mymopTwo" style="width: 20%">
                                         </el-input>
+
+                                        <div v-if="item.different.mymopTwoScore != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopTwoScore}}</div>
 
                                         <el-form-item prop="mymopTwoScore">
                                             <div>情况算是最好
@@ -3619,6 +3791,7 @@
                                 <el-descriptions-item label="3.在过去一星期，你对自己身心状况的整体感觉如何？">
 
 
+                                    <div v-if="item.different.mymopThree != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopThree}}</div>
 
                                     <el-form-item prop="mymopThree">
                                         <div>情况算是最好
@@ -3638,6 +3811,7 @@
 
                                 <el-descriptions-item label="4.你上述的 症状一出现了多久？（不论是连续出现，或是断续地出现）">
 
+                                    <div v-if="item.different.mymopFour != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopFour}}</div>
 
 
                                     <el-form-item prop="mymopFour">
@@ -3659,6 +3833,7 @@
                                 <el-descriptions-item label="5.你有没有使用任何药物来治疗症状一？">
 
 
+                                    <div v-if="item.different.mymopFive != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopFive}}</div>
 
                                     <el-form-item prop="mymopFive">
                                         <div>
@@ -3675,6 +3850,7 @@
 
                                 <el-descriptions-item label="6.请写出该药物的名称及每天／每周使用量。">
 
+                                    <div v-if="item.different.mymopSixPointOne != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopSixPointOne}}</div>
 
 
                                     <el-form-item prop="mymopSixPointOne">
@@ -3684,6 +3860,8 @@
                                         </div>
 
                                     </el-form-item>
+                                    <div v-if="item.different.mymopSixPointTwo != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopSixPointTwo}}</div>
+
 
                                     <el-form-item prop="mymopSixPointTwo">
                                         <div>使用量：
@@ -3702,6 +3880,7 @@
                                 <el-descriptions-item label="7.你认为减少使用这些药物有多重要？">
 
 
+                                    <div v-if="item.different.mymopSeven != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopSeven}}</div>
 
                                     <el-form-item prop="mymopSeven">
                                         <div>
@@ -3722,6 +3901,7 @@
 
                                 <el-descriptions-item label="8.对症状一来说，你认为不使用任何药物有多重要？">
 
+                                    <div v-if="item.different.mymopEight != '0' " class="differentText">*上诊次差异结果：{{item.different.mymopEight}}</div>
 
 
                                     <el-form-item prop="mymopEight">
@@ -3751,6 +3931,8 @@
                                 <el-descriptions-item label="这份问卷是用来帮助我们了解你的呼吸问题是如何正在困扰你的，以及它是如何影响你的生活的。我们通过它发现疾病在哪一方面对你的影响最大,但这不是医生或护士所认为的那些问题。
                         请仔细阅读下列指导性语句，若有不明白之处请提问。不要花费太长的时间来决定你的答案。在完成余下的问卷前，请选择一个能体现你目前健康状况的描述：">
                                     <div></div>
+                                    <div v-if="item.different.sgrqDescription != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqDescription}}</div>
+
                                     <el-form-item prop="sgrqDescription">
 
                                         <el-radio-group v-model="item.survey.sgrqDescription">
@@ -3770,6 +3952,8 @@
 
                                 <el-descriptions-item label="第一部分：关于过去6个月内您的呼吸困难问题，每个问题只选择一个答案：">
                                     <div>1．在过去6个月内，咳嗽情况：
+                                        <div v-if="item.different.sgrqPartOnePointOne != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartOnePointOne}}</div>
+
                                         <el-form-item prop="sgrqPartOnePointOne">
 
                                             <el-radio-group v-model="item.survey.sgrqPartOnePointOne">
@@ -3786,6 +3970,8 @@
                                     </div>
 
                                     <div>2．在过去6个月内，咳痰情况：
+                                        <div v-if="item.different.sgrqPartOnePointTwo != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartOnePointTwo}}</div>
+
                                         <el-form-item prop="sgrqPartOnePointTwo">
 
                                             <el-radio-group v-model="item.survey.sgrqPartOnePointTwo">
@@ -3802,6 +3988,8 @@
                                     </div>
 
                                     <div>3．在过去6个月内，呼吸急促的发生情况：
+                                        <div v-if="item.different.sgrqPartOnePointThree != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartOnePointThree}}</div>
+
                                         <el-form-item prop="sgrqPartOnePointThree">
 
                                             <el-radio-group v-model="item.survey.sgrqPartOnePointThree">
@@ -3818,6 +4006,8 @@
                                     </div>
 
                                     <div>4．在过去6个月内，气喘发作情况：
+                                        <div v-if="item.different.sgrqPartOnePointFour != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartOnePointFour}}</div>
+
                                         <el-form-item prop="sgrqPartOnePointFour">
 
                                             <el-radio-group v-model="item.survey.sgrqPartOnePointFour">
@@ -3834,6 +4024,8 @@
                                     </div>
 
                                     <div>5．在过去6个月内，我曾出现过几次严重的或极不舒服的呼吸困难：
+                                        <div v-if="item.different.sgrqPartOnePointFive != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartOnePointFive}}</div>
+
                                         <el-form-item prop="sgrqPartOnePointFive">
 
                                             <el-radio-group v-model="item.survey.sgrqPartOnePointFive">
@@ -3850,6 +4042,8 @@
                                     </div>
 
                                     <div>6．在过去6个月内，平均每周有几天呼吸是正常的（没有呼吸困难）
+                                        <div v-if="item.different.sgrqPartOnePointSix != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartOnePointSix}}</div>
+
                                         <el-form-item prop="sgrqPartOnePointSix">
 
                                             <el-radio-group v-model="item.survey.sgrqPartOnePointSix">
@@ -3866,6 +4060,8 @@
                                     </div>
 
                                     <div>7．如果有喘息，是否在清晨起来时加重？
+                                        <div v-if="item.different.sgrqPartOnePointSeven != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartOnePointSeven}}</div>
+
                                         <el-form-item prop="sgrqPartOnePointSeven">
 
                                             <el-radio-group v-model="item.survey.sgrqPartOnePointSeven">
@@ -3884,6 +4080,8 @@
 
                                 <el-descriptions-item label="第二部分：（一）您如何描述您目前的呼吸困难？ ">
                                     <div>1.您如何评价呼吸困难对您生活的影响？
+                                        <div v-if="item.different.sgrqPartTwoOnePointOne != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoOnePointOne}}</div>
+
                                         <el-form-item prop="sgrqPartTwoOnePointOne">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoOnePointOne">
@@ -3898,6 +4096,8 @@
                                     </div>
 
                                     <div>2．关于呼吸对工作的影响，请从中选择一项
+                                        <div v-if="item.different.sgrqPartTwoOnePointTwo != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoOnePointTwo}}</div>
+
                                         <el-form-item prop="sgrqPartTwoOnePointTwo">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoOnePointTwo">
@@ -3916,6 +4116,8 @@
 
                                 <el-descriptions-item label="第二部分：（二）下面问题是关于这些天来哪些活动经常让您觉得喘不过气来：对于每一个问题根据您的实际情况，选择“是”或“否” ">
                                     <div>1．静坐或静躺
+                                        <div v-if="item.different.sgrqPartTwoTwoPointOne != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoTwoPointOne}}</div>
+
                                         <el-form-item prop="sgrqPartTwoTwoPointOne">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoTwoPointOne">
@@ -3928,6 +4130,8 @@
                                     </div>
 
                                     <div>2．洗漱或穿衣
+                                        <div v-if="item.different.sgrqPartTwoTwoPointTwo != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoTwoPointTwo}}</div>
+
                                         <el-form-item prop="sgrqPartTwoTwoPointTwo">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoTwoPointTwo">
@@ -3940,6 +4144,8 @@
                                     </div>
 
                                     <div>3．在室内走动
+                                        <div v-if="item.different.sgrqPartTwoTwoPointThree != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoTwoPointThree}}</div>
+
                                         <el-form-item prop="sgrqPartTwoTwoPointThree">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoTwoPointThree">
@@ -3952,6 +4158,8 @@
                                     </div>
 
                                     <div>4．在户外平台上走动
+                                        <div v-if="item.different.sgrqPartTwoTwoPointFour != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoTwoPointFour}}</div>
+
                                         <el-form-item prop="sgrqPartTwoTwoPointFour">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoTwoPointFour">
@@ -3964,6 +4172,8 @@
                                     </div>
 
                                     <div>5．上一层楼
+                                        <div v-if="item.different.sgrqPartTwoTwoPointFive != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoTwoPointFive}}</div>
+
                                         <el-form-item prop="sgrqPartTwoTwoPointFive">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoTwoPointFive">
@@ -3976,6 +4186,8 @@
                                     </div>
 
                                     <div>6．爬坡
+                                        <div v-if="item.different.sgrqPartTwoTwoPointSix != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoTwoPointSix}}</div>
+
                                         <el-form-item prop="sgrqPartTwoTwoPointSix">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoTwoPointSix">
@@ -3988,6 +4200,8 @@
                                     </div>
 
                                     <div>7. 运动性体育活动或运动性游戏
+                                        <div v-if="item.different.sgrqPartTwoTwoPointSeven != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoTwoPointSeven}}</div>
+
                                         <el-form-item prop="sgrqPartTwoTwoPointSeven">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoTwoPointSeven">
@@ -4004,6 +4218,8 @@
 
                                 <el-descriptions-item label="第二部分：（三）下面问题是关于这些天来您的咳嗽及气喘问题：对于每一个问题根据您的实际情况，选择“是”或“否”">
                                     <div>1．咳嗽使我感到痛苦
+                                        <div v-if="item.different.sgrqPartTwoThreePointOne != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoThreePointOne}}</div>
+
                                         <el-form-item prop="sgrqPartTwoThreePointOne">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoThreePointOne">
@@ -4016,6 +4232,8 @@
                                     </div>
 
                                     <div>2．咳嗽时我感到疲倦
+                                        <div v-if="item.different.sgrqPartTwoThreePointTwo != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoThreePointTwo}}</div>
+
                                         <el-form-item prop="sgrqPartTwoThreePointTwo">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoThreePointTwo">
@@ -4028,6 +4246,8 @@
                                     </div>
 
                                     <div>3．谈话时，我会感到喘不过气来
+                                        <div v-if="item.different.sgrqPartTwoThreePointThree != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoThreePointThree}}</div>
+
                                         <el-form-item prop="sgrqPartTwoThreePointThree">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoThreePointThree">
@@ -4040,6 +4260,8 @@
                                     </div>
 
                                     <div>4．弯腰时，我觉得喘不过气来
+                                        <div v-if="item.different.sgrqPartTwoThreePointFour != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoThreePointFour}}</div>
+
                                         <el-form-item prop="sgrqPartTwoThreePointFour">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoThreePointFour">
@@ -4052,6 +4274,8 @@
                                     </div>
 
                                     <div>5．咳嗽或呼吸困难影响我的睡眠
+                                        <div v-if="item.different.sgrqPartTwoThreePointFive != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoThreePointFive}}</div>
+
                                         <el-form-item prop="sgrqPartTwoThreePointFive">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoThreePointFive">
@@ -4064,6 +4288,8 @@
                                     </div>
 
                                     <div>6．我经常疲惫不堪
+                                        <div v-if="item.different.sgrqPartTwoThreePointSix != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoThreePointSix}}</div>
+
                                         <el-form-item prop="sgrqPartTwoThreePointSix">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoThreePointSix">
@@ -4082,6 +4308,8 @@
 
                                 <el-descriptions-item label="第二部分：（四）下面问题是关于这些天来您的呼吸困难可能对您的其他方面的影响，对于每一个问题根据您的实际情况，选择“是”或“否”">
                                     <div>1．咳嗽或呼吸困难使我心情不愉快
+                                        <div v-if="item.different.sgrqPartTwoFourPointOne != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFourPointOne}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFourPointOne">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFourPointOne">
@@ -4094,6 +4322,8 @@
                                     </div>
 
                                     <div>2．我的呼吸问题让我的家人担心
+                                        <div v-if="item.different.sgrqPartTwoFourPointTwo != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFourPointTwo}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFourPointTwo">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFourPointTwo">
@@ -4106,6 +4336,8 @@
                                     </div>
 
                                     <div>3．当喘不过气来时，我感到害怕或惊恐
+                                        <div v-if="item.different.sgrqPartTwoFourPointThree != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFourPointThree}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFourPointThree">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFourPointThree">
@@ -4118,6 +4350,8 @@
                                     </div>
 
                                     <div>4．我觉得我的呼吸问题很严重
+                                        <div v-if="item.different.sgrqPartTwoFourPointFour != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFourPointFour}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFourPointFour">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFourPointFour">
@@ -4130,6 +4364,8 @@
                                     </div>
 
                                     <div>5．我觉得我的呼吸问题不能好转
+                                        <div v-if="item.different.sgrqPartTwoFourPointFive != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFourPointFive}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFourPointFive">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFourPointFive">
@@ -4142,6 +4378,8 @@
                                     </div>
 
                                     <div>6．我的呼吸问题使我变得虚弱、活动不便
+                                        <div v-if="item.different.sgrqPartTwoFourPointSix != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFourPointSix}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFourPointSix">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFourPointSix">
@@ -4154,6 +4392,8 @@
                                     </div>
 
                                     <div>7．体育运动对我来说是不安全的
+                                        <div v-if="item.different.sgrqPartTwoFourPointSeven != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFourPointSeven}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFourPointSeven">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFourPointSeven">
@@ -4166,6 +4406,8 @@
                                     </div>
 
                                     <div>8．做任何事情我都很吃力
+                                        <div v-if="item.different.sgrqPartTwoFourPointEight != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFourPointEight}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFourPointEight">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFourPointEight">
@@ -4185,6 +4427,8 @@
 
                                 <el-descriptions-item label="第二部分：（五）下列问题是关于您的治疗问题，请根据您的实际情况，选择“是”或“否”">
                                     <div>我接受过治疗
+                                        <div v-if="item.different.sgrqPartTwoFivePoint != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFivePoint}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFivePoint">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFivePoint">
@@ -4197,6 +4441,8 @@
                                     </div>
                                     如果接受过治疗，对于下面每一个问题，请根据您的实际情况，选择“是”或“否”
                                     <div>1．治疗对我来说没有多大帮助
+                                        <div v-if="item.different.sgrqPartTwoFivePointOne != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFivePointOne}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFivePointOne">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFivePointOne">
@@ -4209,6 +4455,8 @@
                                     </div>
 
                                     <div>2．在他人面前用药让我感到难堪
+                                        <div v-if="item.different.sgrqPartTwoFivePointTwo != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFivePointTwo}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFivePointTwo">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFivePointTwo">
@@ -4221,6 +4469,8 @@
                                     </div>
 
                                     <div>3．治疗引起了不良的药物副作用
+                                        <div v-if="item.different.sgrqPartTwoFivePointThree != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFivePointThree}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFivePointThree">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFivePointThree">
@@ -4233,6 +4483,8 @@
                                     </div>
 
                                     <div>4．治疗严重干扰了我的生活
+                                        <div v-if="item.different.sgrqPartTwoFivePointFour != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoFivePointFour}}</div>
+
                                         <el-form-item prop="sgrqPartTwoFivePointFour">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoFivePointFour">
@@ -4251,6 +4503,8 @@
 
                                 <el-descriptions-item label="第二部分：（六）下列问题是关于您的呼吸困难可能如何影响您的活动，对于每一个问题，请根据您的实际情况，选择“是”或“否”">
                                     <div>1．我洗脸刷牙或穿衣时，感到费力
+                                        <div v-if="item.different.sgrqPartTwoSixPointOne != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSixPointOne}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSixPointOne">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSixPointOne">
@@ -4263,6 +4517,8 @@
                                     </div>
 
                                     <div>2．我不能洗澡或淋浴，或需要花很长的时间
+                                        <div v-if="item.different.sgrqPartTwoSixPointTwo != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSixPointTwo}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSixPointTwo">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSixPointTwo">
@@ -4275,6 +4531,8 @@
                                     </div>
 
                                     <div>3．我走得比别人慢，或常常停下来休息
+                                        <div v-if="item.different.sgrqPartTwoSixPointThree != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSixPointThree}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSixPointThree">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSixPointThree">
@@ -4287,6 +4545,8 @@
                                     </div>
 
                                     <div>4．我做家务事非常慢，或常常停下来休息
+                                        <div v-if="item.different.sgrqPartTwoSixPointFour != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSixPointFour}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSixPointFour">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSixPointFour">
@@ -4299,6 +4559,8 @@
                                     </div>
 
                                     <div>5．上一层楼时，我得慢慢走或停下来休息
+                                        <div v-if="item.different.sgrqPartTwoSixPointFive != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSixPointFive}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSixPointFive">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSixPointFive">
@@ -4311,6 +4573,8 @@
                                     </div>
 
                                     <div>6．如果赶时间或快走，我不得不休息或放慢速度
+                                        <div v-if="item.different.sgrqPartTwoSixPointSix != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSixPointSix}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSixPointSix">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSixPointSix">
@@ -4323,6 +4587,8 @@
                                     </div>
 
                                     <div>7．呼吸困难使我在进行诸如上坡、提东西上楼、在花园中除草、跳舞、练气功或做操等活动时感到困难
+                                        <div v-if="item.different.sgrqPartTwoSixPointSeven != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSixPointSeven}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSixPointSeven">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSixPointSeven">
@@ -4335,6 +4601,8 @@
                                     </div>
 
                                     <div>8．呼吸问题使我在进行诸如搬运重物、在花园中挖土、铲雪、慢跑或快走（8公里/小时）、舞剑或游泳时感到困难
+                                        <div v-if="item.different.sgrqPartTwoSixPointEight != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSixPointEight}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSixPointEight">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSixPointEight">
@@ -4347,6 +4615,8 @@
                                     </div>
 
                                     <div>9．呼吸问题使我在进行诸如重体力活、跑步、骑自行车、快速游泳、进行剧烈的体育运动时感到困难
+                                        <div v-if="item.different.sgrqPartTwoSixPointNine != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSixPointNine}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSixPointNine">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSixPointNine">
@@ -4366,6 +4636,8 @@
 
                                 <el-descriptions-item label="第二部分：（七）下列问题是您的呼吸问题如何影响您，对于每一个问题，请根据您的实际情况，选择“是”或“否”">
                                     <div>1．我不能进行体育活动或运动性活动
+                                        <div v-if="item.different.sgrqPartTwoSevenPointOne != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSevenPointOne}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSevenPointOne">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSevenPointOne">
@@ -4378,6 +4650,8 @@
                                     </div>
 
                                     <div>2．我不能外出娱乐或消遣
+                                        <div v-if="item.different.sgrqPartTwoSevenPointTwo != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSevenPointTwo}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSevenPointTwo">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSevenPointTwo">
@@ -4390,6 +4664,8 @@
                                     </div>
 
                                     <div>3．我不能外出购物
+                                        <div v-if="item.different.sgrqPartTwoSevenPointThree != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSevenPointThree}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSevenPointThree">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSevenPointThree">
@@ -4402,6 +4678,8 @@
                                     </div>
 
                                     <div>4．我不能做家务
+                                        <div v-if="item.different.sgrqPartTwoSevenPointFour != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSevenPointFour}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSevenPointFour">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSevenPointFour">
@@ -4414,6 +4692,8 @@
                                     </div>
 
                                     <div>5．我不能走得离床或椅子太远
+                                        <div v-if="item.different.sgrqPartTwoSevenPointFive != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoSevenPointFive}}</div>
+
                                         <el-form-item prop="sgrqPartTwoSevenPointFive">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoSevenPointFive">
@@ -4435,6 +4715,8 @@
 
                                 <el-descriptions-item label="下面是一些由于您的呼吸问题无法进行的其他活动项目，请您根据实际情况选择“是”或“否”。">
                                     <div>1．散步或遛狗
+                                        <div v-if="item.different.sgrqPartTwoEightPointOne != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoEightPointOne}}</div>
+
                                         <el-form-item prop="sgrqPartTwoEightPointOne">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoEightPointOne">
@@ -4447,6 +4729,8 @@
                                     </div>
 
                                     <div>2．在家干活
+                                        <div v-if="item.different.sgrqPartTwoEightPointTwo != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoEightPointTwo}}</div>
+
                                         <el-form-item prop="sgrqPartTwoEightPointTwo">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoEightPointTwo">
@@ -4459,6 +4743,8 @@
                                     </div>
 
                                     <div>3．性生活
+                                        <div v-if="item.different.sgrqPartTwoEightPointThree != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoEightPointThree}}</div>
+
                                         <el-form-item prop="sgrqPartTwoEightPointThree">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoEightPointThree">
@@ -4471,6 +4757,8 @@
                                     </div>
 
                                     <div>4．上商场、菜市场或进行娱乐活动
+                                        <div v-if="item.different.sgrqPartTwoEightPointFour != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoEightPointFour}}</div>
+
                                         <el-form-item prop="sgrqPartTwoEightPointFour">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoEightPointFour">
@@ -4483,6 +4771,8 @@
                                     </div>
 
                                     <div>5．在天气不好时外出或进入有烟味的房间
+                                        <div v-if="item.different.sgrqPartTwoEightPointFive != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoEightPointFive}}</div>
+
                                         <el-form-item prop="sgrqPartTwoEightPointFive">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoEightPointFive">
@@ -4496,6 +4786,8 @@
 
 
                                     <div>6．探亲访友或与孩子玩耍
+                                        <div v-if="item.different.sgrqPartTwoEightPointSix != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoEightPointSix}}</div>
+
                                         <el-form-item prop="sgrqPartTwoEightPointSix">
 
                                             <el-radio-group v-model="item.survey.sgrqPartTwoEightPointSix">
@@ -4515,6 +4807,9 @@
                                 </el-descriptions-item>
 
                                 <el-descriptions-item label="现在请您选择一项最能反映您的呼吸问题对您的影响的选项">
+
+                                    <div v-if="item.different.sgrqPartTwoNinePointOne != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartTwoNinePointOne}}</div>
+
 
                                     <el-form-item prop="sgrqPartTwoNinePointOne">
 
@@ -4536,6 +4831,7 @@
                                 <el-descriptions-item label="第三部分 （MRC呼吸困难分级）">
 
                                     <div>据以上调查，请根据您的实际情况选择一项最能反应您的呼吸困难情况的选项
+                                        <div v-if="item.different.sgrqPartThree != '0' " class="differentText">*上诊次差异结果：{{item.different.sgrqPartThree}}</div>
                                         <el-form-item prop="sgrqPartThree">
 
                                             <el-radio-group v-model="item.survey.sgrqPartThree">
@@ -4621,6 +4917,7 @@
                                     <el-option label="4级" value="4级"></el-option>
 
                                 </el-select>
+                                <div v-if="item.different.level != '0' " class="differentText">*上诊次差异结果：{{item.different.level}}</div>
                             </el-form-item>
 
 
@@ -4901,11 +5198,28 @@
             resetFormForCollect(collectForm){
                 this.$refs[collectForm].resetFields();
             },
+            //点击随访触发 弹窗以及回写数据
             choose(row){
-
+               let that = this
                 console.log(row);
                 this.dialogVisible2 = true
                 this.nowCollectNo = row.archivesNo
+
+                this.$axios.post("/doctor/follow/getLastSurvey",{
+                    //患者档案号
+                    archivesId:that.nowCollectNo,
+                    sequence : row.finishSequence
+
+                }).then(res =>{
+                    console.log(res)
+                    if (res.data.message == "success" && res.data.data.survey != null ){
+
+                        that.$message('系统匹配到当前患者存在上一诊次的记录,已自动回写历史数据,您只需在上次的基础上修改即可提交');
+                        that.collectForm = res.data.data.survey
+                    }
+
+
+                })
 
 
             },
@@ -5131,5 +5445,7 @@
 </script>
 
 <style scoped>
-
+    .differentText {
+        color: red;
+    }
 </style>
