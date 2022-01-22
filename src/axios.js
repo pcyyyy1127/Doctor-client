@@ -25,9 +25,10 @@ request.interceptors.request.use(config => {
     return config
 })
 request.interceptors.response.use(response => {
+    // 导出的excel 由于是文件流  不能在这里统一处理
+
+    if (response.data.type != "application/vnd.ms-excel") {
         let res = response.data;
-
-
         if (res.message === "success") {
             return response
         } else {
@@ -36,6 +37,10 @@ request.interceptors.response.use(response => {
             console.log(res.data.errorMsg);
             return Promise.reject(response.data.errorMsg)
         }
+    } else {
+        return response;
+    }
+
     },
     error => {
         console.log(error.response)
