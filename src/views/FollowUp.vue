@@ -5212,9 +5212,13 @@
 
                 }).then(res =>{
                     console.log(res)
-                    if (res.data.message == "success" && res.data.data.survey != null ){
+                    if (res.data.message == "success" && res.data.data.sequence != null ){
 
                         that.$message('系统匹配到当前患者存在上一诊次的记录,已自动回写历史数据,您只需在上次的基础上修改即可提交');
+                        that.collectForm = res.data.data.survey
+                    }
+                    // 第一诊 或上一诊无数据的 重新设置表单字段为 返回的null值 ，避免 将别的病人的数据 错误回写到 当前病人表单中
+                    else {
                         that.collectForm = res.data.data.survey
                     }
 
