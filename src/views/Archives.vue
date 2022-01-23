@@ -158,7 +158,7 @@
 
                 <div style="display: flex;flex-direction: row;justify-content: center">
                     <el-button size="medium" round @click="getVisitHistory()" >历史就诊</el-button>
-                    <el-button size="medium" round  >自我管理</el-button>
+                    <el-button size="medium" round  >医患沟通</el-button>
                 </div>
 
 

@@ -47,9 +47,9 @@ const routes = [
         component: () => import( '../views/Data.vue')
       },
       {
-        path: '/article',
-        name: 'article',
-        component: () => import( '../views/Article.vue')
+        path: '/selfManage',
+        name: 'selfManage',
+        component: () => import( '../views/SelfManage.vue')
       },
     ]
   },
@@ -85,7 +85,7 @@ router.beforeEach((to, from, next) => {
     let nav = [
       {
         name: 'archives',
-        title: '健康档案',
+        title: '就诊信息',
         icon: 'el-icon-s-tools',
         path: '/archives',
         component: '/Archives',
@@ -108,11 +108,11 @@ router.beforeEach((to, from, next) => {
 
       },
       {
-        name: 'Article',
-        title: '文章科普',
+        name: 'SelfManage',
+        title: '自我管理',
         icon: 'el-icon-s-operation',
-        component: '/article',
-        path: '/article',
+        component: '/selfManage',
+        path: '/selfManage',
 
       },
 

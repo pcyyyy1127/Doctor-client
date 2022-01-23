@@ -1,12 +1,12 @@
 <template>
     <div>
-        文章科普
+        查看患者自我管理
     </div>
 </template>
 
 <script>
     export default {
-        name: "Article"
+        name: "SelfManage"
     }
 </script>
 
