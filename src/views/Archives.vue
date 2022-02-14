@@ -158,7 +158,7 @@
 
                 <div style="display: flex;flex-direction: row;justify-content: center">
                     <el-button size="medium" round @click="getVisitHistory()" >历史就诊</el-button>
-                    <el-button size="medium" round  >医患沟通</el-button>
+                    <el-button size="medium" round @click="showMedicalAdvice()" >医患沟通</el-button>
                 </div>
 
 
@@ -5436,6 +5436,38 @@
             </div>
         </el-dialog>
 
+        <!--医嘱-->
+        <el-dialog :visible.sync="dialogVisible5" width="60%">
+            <h2 style="margin-top: -10%">请选择医嘱类型</h2>
+            <el-form>
+
+                <el-form-item label="类型：" >
+                    <el-radio v-model="medicalAdviceField" label="长期医嘱" @change="longTermShow ()">长期医嘱</el-radio>
+                    <el-radio v-model="medicalAdviceField" label="临时医嘱" @change="tempShow ()">临时医嘱</el-radio>
+
+                    <el-form-item>
+                        <el-descriptions>
+                            <el-descriptions-item label="生活环境" v-if="self.status == 0">
+                                <el-input
+                                        type="textarea"
+                                        :autosize="{ minRows: 0, maxRows: 10}"
+                                        style="width: 600px;height: 200px"
+                                        v-model="self.lifeEnvironment">
+                                </el-input>
+                            </el-descriptions-item>
+                        </el-descriptions>
+
+
+
+                    </el-form-item>
+
+                </el-form-item>
+            </el-form>
+
+
+
+
+        </el-dialog>
 
     </div>
 </template>
@@ -5457,6 +5489,7 @@
                 dialogVisible2:false,
                 dialogVisible3:false,
                 dialogVisible4:false,
+                dialogVisible5:false,
                 //----相机相关
                 videoWidth: 300,
                 videoHeight: 300,
@@ -5723,7 +5756,24 @@
                 //录音使用
                 recorder:null,
                 //录音url
-                soundRecordingUrl:null
+                soundRecordingUrl:null,
+                // 医嘱字段
+                self: {
+                    lifeEnvironment:"1.（生活环境）注意天气变化，适时増减衣物，冬季外出最好配戴口罩，保证患者居住环境舒适卫生，远离刺激性气味气体，远离外源性过敏原。\n" +
+                        "2.（戒烟、戒酒）有吸烟史的患者必须戒烟，积极使用戒烟新产品，家庭中的吸烟者禁止在与患者相处期间吸烟，减少患者与其他吸烟者的相处时间。（对患者不健康的、或错误的日常生活习惯提出建议，此点可去除）\n" +
+                        "3.（生活饮食）饮食上，少食辛辣刺激性、油腻食品，日常饮食中以清淡为主，尽量多食用富含优质蛋白、高热量和高维生素的食物。咳嗽严重的患者，可在饮食中加陈皮或梨；萝卜、生姜有宣肺止咳的效果，有条件的可给予雪梨银耳汤，可清肺祛痰。\n" +
+                        "4.（预防感染）患者要注意保暖，不可以受寒，同时要预防感染；\n" +
+                        "注意口腔卫生，观察口腔有无白色点状物或白斑，及时做好口腔护理，有感染情况及时就医。",
+                    breathTrain:null,
+                    sportsAdvice:null,
+                    emotionManage:null,
+                    medicalCare:null,
+                    status:null,
+                    detail:null
+                },
+                // 绑定选择模板的单选按钮 无实际意义
+                medicalAdviceField : null
+
             }
         },
         methods:{
@@ -6330,6 +6380,17 @@
                     });
 
                 });
+            },
+            // 弹出医嘱对话框
+            showMedicalAdvice(){
+                this.dialogVisible5 = true;
+            },
+            // 选择长期医嘱
+            longTermShow() {
+              this.self.status = 0;
+            },
+            tempShow() {
+                this.self.status = 1;
             }
 
 
