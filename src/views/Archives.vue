@@ -5437,7 +5437,7 @@
         </el-dialog>
 
         <!--医嘱-->
-        <el-dialog :visible.sync="dialogVisible5" width="60%">
+        <el-dialog :visible.sync="dialogVisible5" width="60%"  >
             <h2 style="margin-top: -10%">请选择医嘱类型</h2>
             <el-form>
 
@@ -5445,24 +5445,84 @@
                     <el-radio v-model="medicalAdviceField" label="长期医嘱" @change="longTermShow ()">长期医嘱</el-radio>
                     <el-radio v-model="medicalAdviceField" label="临时医嘱" @change="tempShow ()">临时医嘱</el-radio>
 
-                    <el-form-item>
-                        <el-descriptions>
-                            <el-descriptions-item label="生活环境" v-if="self.status == 0">
-                                <el-input
-                                        type="textarea"
-                                        :autosize="{ minRows: 0, maxRows: 10}"
-                                        style="width: 600px;height: 200px"
-                                        v-model="self.lifeEnvironment">
-                                </el-input>
-                            </el-descriptions-item>
-                        </el-descriptions>
 
-
-
-                    </el-form-item>
 
                 </el-form-item>
             </el-form>
+           <!-- 长期医嘱模板-->
+            <el-descriptions   :column="1" :size="size" v-if="self.status == 0" border >
+            <el-descriptions-item>
+             <el-form>
+                 <div v-if="self.status == 0">生活环境：</div>
+                 <el-input
+                         type="textarea"
+                         :autosize="{ minRows: 0, maxRows: 10}"
+                         style="width: 800px"
+                         v-model="self.lifeEnvironment"
+                         v-if="self.status == 0"
+                 >
+
+                 </el-input>
+                 <div v-if="self.status == 0">呼吸训练：</div>
+                 <el-input
+                         type="textarea"
+                         :autosize="{ minRows: 0, maxRows: 10}"
+                         style="width: 800px"
+                         v-model="self.breathTrain"
+                         v-if="self.status == 0"
+                 >
+                 </el-input>
+                 <div v-if="self.status == 0">运动建议：</div>
+                 <el-input
+                         type="textarea"
+                         :autosize="{ minRows: 0, maxRows: 10}"
+                         style="width: 800px"
+                         v-model="self.sportsAdvice"
+                         v-if="self.status == 0"
+                 >
+                 </el-input>
+                 <div v-if="self.status == 0">情志管理：</div>
+                 <el-input
+                         type="textarea"
+                         :autosize="{ minRows: 0, maxRows: 10}"
+                         style="width: 800px"
+                         v-model="self.emotionManage"
+                         v-if="self.status == 0"
+                 >
+                 </el-input>
+                 <div v-if="self.status == 0">医疗护理：</div>
+                 <el-input
+                         type="textarea"
+                         :autosize="{ minRows: 0, maxRows: 10}"
+                         style="width: 800px"
+                         v-model="self.medicalCare"
+                         v-if="self.status == 0"
+                 >
+                 </el-input>
+             </el-form>
+
+            </el-descriptions-item>
+            </el-descriptions>
+
+           <!-- 临时医嘱-->
+            <el-descriptions   :column="1" :size="size" v-if="self.status == 1" border >
+                <el-descriptions-item>
+                    <el-form>
+                        <div v-if="self.status == 1">临时/备用医嘱：</div>
+                        <el-input
+                                type="textarea"
+                                :autosize="{ minRows: 5, maxRows: 10}"
+                                style="width: 800px"
+                                v-model="self.detail"
+                                v-if="self.status == 1"
+                        >
+
+                        </el-input>
+
+                    </el-form>
+
+                </el-descriptions-item>
+            </el-descriptions>
 
 
 
@@ -5764,10 +5824,13 @@
                         "3.（生活饮食）饮食上，少食辛辣刺激性、油腻食品，日常饮食中以清淡为主，尽量多食用富含优质蛋白、高热量和高维生素的食物。咳嗽严重的患者，可在饮食中加陈皮或梨；萝卜、生姜有宣肺止咳的效果，有条件的可给予雪梨银耳汤，可清肺祛痰。\n" +
                         "4.（预防感染）患者要注意保暖，不可以受寒，同时要预防感染；\n" +
                         "注意口腔卫生，观察口腔有无白色点状物或白斑，及时做好口腔护理，有感染情况及时就医。",
-                    breathTrain:null,
-                    sportsAdvice:null,
-                    emotionManage:null,
-                    medicalCare:null,
+                    breathTrain:"5.（呼吸训练）患者可以进行呼吸训练，如腹式呼吸、缩唇呼气、吹蜡烛训练、进行四肢伸展、扩胸、弯腰、下蹲等运动，改善患者肺通气、换气功能，每日需进行2次，每次30min。（时间、次数、训练种类由医生根据患者身体情况决定）",
+                    sportsAdvice:"6.（运动）患者需适度运动，选择如改良式太极、五禽戏、中医八段锦、太极拳、上下楼梯、散步、骑自行车、提高患者运动耐受性，增加潮气量。患者运动期间需有监护人陪同，且以不感到心慌、胸闷、气短为宜，患者视体能状况每日练习30min~40min，以微微出汗为宜，每周运动4～5次。（时间、次数和训练种类由医生根据患者身体情况决定）",
+                    emotionManage:"7.（心情）保持患者情绪舒畅、稳定，播放舒缓类的音乐或者节目，让患者放松心情，加强沟通，舒缓患者情绪，避免患者的焦虑、抑郁现象；若存在焦虑症状，可应用移情易性的方法，提及患者感兴趣的事情或话题，或者通过中医学的情志相胜法、五音疗法、导引吐纳法，帮助患者缓解。",
+                    medicalCare:"8.（用药指导）出院带药：需罗列具体药物名称、剂量、用法、频次，开具的数量以及服药注意事项。\n" +
+                        "9.（用药/治疗）坚持按时服药或治疗，如每周进行2次雾化吸入、排痰训练、家庭氧疗、肺康复治疗及注意事项（医生可根据情况与第8点合并）。\n" +
+                        "10.（随访）出院后需参与定期随访，定期回医院进行其他治疗的项目，如“2周后门诊行玻璃酸钠注射”等等。\n" +
+                        "11.（自我管理）患者在家需要记录锻炼情况，按时填写自我管理情况问卷，复诊时间（什么情況下需要复诊或每周哪一天可以到XXX门诊复诊），另其他专科疾病或检查检验结果需其他专科或医院诊治的需告知清楚。",
                     status:null,
                     detail:null
                 },
