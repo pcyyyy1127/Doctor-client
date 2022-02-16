@@ -5525,7 +5525,7 @@
             </el-descriptions>
 
 
-
+           <el-button v-if="self.status == 1 || self.status == 0"  @click="pushMedicalAdvice()">推送</el-button>
 
         </el-dialog>
 
@@ -6452,8 +6452,44 @@
             longTermShow() {
               this.self.status = 0;
             },
+            // 选择临时医嘱
             tempShow() {
                 this.self.status = 1;
+            },
+
+            //推送按钮触发
+            pushMedicalAdvice() {
+                let that = this
+                this.$confirm('是否确认推送', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+
+                    this.$axios.post("/doctor/medicalAdvice/push", {
+                        lifeEnvironment:that.self.lifeEnvironment,
+                        breathTrain:that.self.breathTrain,
+                        sportsAdvice:that.self.sportsAdvice,
+                        emotionManagement:that.self.emotionManagement,
+                        medicalCare:that.self.medicalCare,
+                        status:that.self.status,
+                        detail:that.self.detail,
+                        archivesId: that.nowCollectNo,
+                    }).then(res => {
+                        console.log(res)
+
+                        if (res.data.message == "success") {
+                            that.$message({
+                                showClose: true,
+                                message: res.data.data,
+                                type: 'success'
+                            });
+                           that.dialogVisible5 = false
+                        }
+
+                    });
+
+                });
             }
 
 
