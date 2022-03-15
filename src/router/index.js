@@ -63,7 +63,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })
@@ -73,20 +73,22 @@ router.beforeEach((to, from, next) => {
 
   let token = localStorage.getItem("token")
 
-  if (to.path == '/login') {
+  if (to.path === '/login') {//to.path == '/login'
     next()
 
-  } else if (!token) {
-    next({path: '/login'})
+  }
+  else if (!token) {
+    next({path: '/login'})//next({path: '/login'})
 
 
-  } else if(token && !hasRoute) {
+  }
+  else if(token && !hasRoute) {
     //导航 直接写死
     let nav = [
       {
         name: 'archives',
         title: '就诊信息',
-        icon: 'el-icon-s-tools',
+        icon: 'el-icon-postcard',
         path: '/archives',
         component: '/Archives',
 
@@ -94,25 +96,25 @@ router.beforeEach((to, from, next) => {
       {
         name: 'followUp',
         title: '患者随访',
-        icon: 'el-icon-s-operation',
+        icon: 'el-icon-phone-outline',
         component: '/followUp',
         path: '/followUp',
 
       },
       {
-        name: 'Data',
-        title: '数据中心',
-        icon: 'el-icon-s-operation',
-        component: '/data',
-        path: '/data',
+        name: 'SelfManage',
+        title: '自我管理',
+        icon: 'el-icon-table-lamp',
+        component: '/selfManage',
+        path: '/selfManage',
 
       },
       {
-        name: 'SelfManage',
-        title: '自我管理',
-        icon: 'el-icon-s-operation',
-        component: '/selfManage',
-        path: '/selfManage',
+        name: 'Data',
+        title: '数据中心',
+        icon: 'el-icon-data-line',
+        component: '/data',
+        path: '/data',
 
       },
 

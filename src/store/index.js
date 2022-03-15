@@ -12,6 +12,7 @@ export default new Vuex.Store({
       state.token = token
       localStorage.setItem("token",token)
     },
+    //调用resetState清除token数据
     resetState:(state) =>{
        state.token = ''
     },
@@ -19,6 +20,7 @@ export default new Vuex.Store({
       state.userInfo = JSON.stringify(userInfo)
       localStorage.setItem("userInfo",JSON.stringify(userInfo))
     },
+    //调用resetState清除用户数据
     resetUserInfo:(state) =>{
       state.userInfo = ''
     },
